@@ -1,0 +1,83 @@
+
+RELEASE-NOTES 0.4 2009-09-07 19:12
+
+                     Simplium 0.4
+                     Release Notes
+
+Changes from Simplium 0.3 TO 0.4
+=============================================
+Updated Simplium to work woth Selenium RC 1.0.1 as there has been some none backward compliant changes to the 
+Selenium Server API. Thanks to Dmitry Isachenkov for pointing this out.
+
+Changes that could break older environments:
+-------------------------------------------
+0.4 only works with Selenium RC 1.0.1 or later.
+
+Fixed bugs:
+-----------
+
+Other changes:
+--------------
+Simplium didn't start a local Selenium RC server if the enviroment was set to TEST or PRODUCTION in previous versions.
+This has now been changed so if the TEST or PRODUCTION enviroment is pointing to a RC server on LOCALHOST Simplium will
+start a local Selenium RC Server to run it's test against.
+@Enviroments(
+    test = {
+        "localhost",
+        "4444",
+        "http://localhost:8080"
+    },
+    production = {
+        "localhost",
+        "4444",
+        "http://localhost:8080"
+    }
+) 
+This setting will cause Simplium to start a local RC server. 
+
+Changes from Simplium 0.2 TO 0.3
+=============================================
+New annotation added.
+- @Timeout. Specifies the amount of time that Selenium will wait for actions to complete. The timeout is specificed
+  in milliseconds. This overrides the Selenium default of 30s. Can be applied as MetaAnnotation, at class and method
+  level.
+
+Changes that could break older environments:
+-------------------------------------------
+None
+
+Fixed bugs:
+-----------
+- Bug id: 001 - When specified @Delay on a method all method executed after also got the delay effect even if 
+  the method lacked the @Delay annoation.
+
+Other changes:
+--------------
+Updated some JavaDoc.
+
+Changes from Simplium 0.1 TO 0.2
+=============================================
+New annotation added.
+- @Delay. Used to ensure there is a delay between each selenium call. Useful for debugging.
+  Can be used on classes and methods.
+- @RunOnlyInDevelopment. Indicates a method or a class should only be run under the development enviroment. 
+- @RunOnlyInTest. Indicates a method or a class should only be run under the test enviroment.
+- @RunOnlyInProduction. Indicates a method or a class should only be run under the production enviroment.
+
+Changes that could break older environments:
+-------------------------------------------
+None
+
+Fixed bugs:
+-----------
+None
+
+Other changes:
+--------------
+Updated some JavaDoc.
+
+
+When all else fails:
+--------------
+See the homepage
+http://simplium.sektor.se/

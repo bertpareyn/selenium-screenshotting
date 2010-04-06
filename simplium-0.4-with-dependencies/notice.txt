@@ -1,0 +1,5 @@
+Simplium
+http://simplium.sektor.se
+Copyright 2009 Markus Backman
+
+This product includes software developed by Markus Backman (markus@sektor.se).
