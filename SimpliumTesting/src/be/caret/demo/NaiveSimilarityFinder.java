@@ -44,7 +44,7 @@ public class NaiveSimilarityFinder extends JFrame
   private static final String basePath = 
     "/home/rafael/Pesquisa/ImageSimilarity";
   
-  public static boolean TestTwoImages(File reference, File newImage) throws IOException{
+  public static double TestTwoImages(File reference, File newImage) throws IOException{
       if(reference.exists() && newImage.exists()){
             RenderedImage ref = rescale(ImageIO.read(reference));
             // Calculate the signature vector for the reference.
@@ -52,13 +52,12 @@ public class NaiveSimilarityFinder extends JFrame
             //Render the new image and calculate its distance to the reference
             RenderedImage rnewImage = rescale( ImageIO.read(newImage));
             Double distance = calcDistance(rnewImage);
-            if(distance == 0){
-                return true;
-            }else{
-                return false;
-            }
+            System.out.println(reference.getName());
+            System.out.println(newImage.getName());
+            System.out.println(distance);
+            return distance;
         }else{
-            return false;
+            return 999;
         }
   }
   

@@ -17,12 +17,12 @@ public class JPEGImageFileFilter extends FileFilter implements java.io.FileFilte
 {
 	public boolean accept(File f)
     {
-		if (f.getName().toLowerCase().endsWith(".jpeg")) return true;
-		if (f.getName().toLowerCase().endsWith(".jpg")) return true;
+		if (f.getName().toLowerCase().endsWith(".png")) return true;
+		if (f.getName().toLowerCase().endsWith(".PNG")) return true;
 		return false;
     }
 	public String getDescription()
     {
-		return "JPEG files";
+		return "PNG files";
     }
 } 
