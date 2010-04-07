@@ -229,7 +229,7 @@ public class NaiveSimilarityFinder extends JFrame
   * This method get all image files in the same directory as the reference.
   * Just for kicks include also the reference image.
   */
-  private File[] getOtherImageFiles(File reference)
+  public static File[] getOtherImageFiles(File reference)
     {
     File dir = new File(reference.getParent());
     // List all the image files in that directory.
