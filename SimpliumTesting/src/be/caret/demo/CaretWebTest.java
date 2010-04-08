@@ -13,7 +13,8 @@ import org.simplium.annotation.Screenshot.CaptureRule;
 		development = {
 				"localhost",
 				"4444",
-				"http://sakaiproject.org"
+				//"http://sakaiproject.org"
+				"http://www.physx.be/"
 		},
 		test = {
 				"grid.selenium.com",

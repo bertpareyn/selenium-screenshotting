@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.awt.image.renderable.ParameterBlock;
 import java.io.File;
@@ -52,13 +53,20 @@ public class NaiveSimilarityFinder extends JFrame
             //Render the new image and calculate its distance to the reference
             RenderedImage rnewImage = rescale( ImageIO.read(newImage));
             Double distance = calcDistance(rnewImage);
-            System.out.println(reference.getName());
-            System.out.println(newImage.getName());
-            System.out.println(distance);
             return distance;
         }else{
             return 999;
         }
+  }
+  
+  public static double TestTwoImages(BufferedImage reference, BufferedImage newImage) throws IOException{
+        RenderedImage ref = rescale(reference);
+        // Calculate the signature vector for the reference.
+        signature = calcSignature(ref);
+        //Render the new image and calculate its distance to the reference
+        RenderedImage rnewImage = rescale(newImage);
+        Double distance = calcDistance(rnewImage);
+        return distance;
   }
   
  /*
