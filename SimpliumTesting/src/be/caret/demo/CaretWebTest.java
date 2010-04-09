@@ -14,6 +14,7 @@ import org.simplium.annotation.Screenshot.CaptureRule;
 				"localhost",
 				"4444",
 				//"http://sakaiproject.org"
+				//"http://www.physx.be"
 				"http://henryhoudmont.be/"
 		},
 		test = {

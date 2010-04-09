@@ -26,16 +26,33 @@ public class TestA extends SimpliumWebTest {
         int refBlue = 255;
         int x = 20;
         int y = 150;
-        int topPosX,topPosY,bottomPosX,bottomPosY;           //the values of the top left corner
+        int topPosX,topPosY,bottomPosX,bottomPosY,viewportHeight,viewportWidth;           //the values of the top left corner
         String browser = "";
         String os = "";
         int colors[] = new int[3];
         File[] files;
         ArrayList<Integer> mergePositions = new ArrayList<Integer>();
+        int lastOffset = 0;
 
         public void setConfiguration() throws Exception{
+
+
+            //////////////////////////
+            //    General Config    //
+            //////////////////////////
+
             //Clear the screenshots folder
             //deleteDir(new File("/Users/hh354/Documents/screenshots"));
+
+            getBrowserInformation();
+
+            //complete path to save screenshot to
+            path = "/Users/hh354/Documents/screenshots/"+ os + "/" + browser + "/";
+
+
+            //////////////////////////////////
+            //    General Browser Config    //
+            //////////////////////////////////
 
             //Get the browser viewport config
             selenium.windowMaximize();
@@ -65,7 +82,7 @@ public class TestA extends SimpliumWebTest {
                         break;
                     }
                 }while(colors[0] == 255 && colors[1] == 255 && colors[2] == 255);
-                topPosX = x++;
+                topPosX = x+2;
                 
                 //then check the top side
                 do{
@@ -94,7 +111,7 @@ public class TestA extends SimpliumWebTest {
                         break;
                     }
                 }while(colors[0] == 255 && colors[1] == 255 && colors[2] == 255);
-                bottomPosX = x--;
+                bottomPosX = x-2;
 
                 //then check the bottom side
                 do{
@@ -107,7 +124,10 @@ public class TestA extends SimpliumWebTest {
                         break;
                     }
                 }while(colors[0] == 255 && colors[1] == 255 && colors[2] == 255);
-                bottomPosY = y--;
+                bottomPosY = y-2;
+                
+                viewportWidth = bottomPosX - topPosX - 15;
+                viewportHeight = bottomPosY - topPosY;
             }catch(Exception ex){
                 System.out.println(ex);
             }
@@ -123,23 +143,9 @@ public class TestA extends SimpliumWebTest {
         }
 
         @Test
-        public void testUntitled() throws Exception {
+        public void testUntitled() throws Exception{
 
             setConfiguration();
-            ////////////////////////////////////
-            // Browser and Test Configuration //
-            ////////////////////////////////////
-            //selenium.getEval("document.body.style.backgroundColor='#000000'");
-            //selenium.getEval("document.body.style.background='#000'");
-
-            //This could select the window but first we need to test without eclipse on.
-            //String test = selenium.getAllWindowTitles()[0];
-            //selenium.selectWindow(test);
-
-            getBrowserInformation();
-
-            //complete path to save screenshot to
-            path = "/Users/hh354/Documents/screenshots/"+ os + "/" + browser + "/";
 
 
             ////////////////////
@@ -159,8 +165,9 @@ public class TestA extends SimpliumWebTest {
             //Assert.assertTrue(selenium.isTextPresent("Search results"));
 
             //PhysX Test
-            /*selenium.open("/");
-            selenium.type("searchinput", "3d");
+            //selenium.open("/");
+            
+            /*selenium.type("searchinput", "3d");
             selenium.click("searchsubmit");
             selenium.waitForPageToLoad("30000");
             selenium.click("link=PhysX");
@@ -168,7 +175,10 @@ public class TestA extends SimpliumWebTest {
 
             //HenryHoudmont Test
             selenium.open("/");
-            
+            takeScreenshot();
+        }
+
+        private void takeScreenshot() throws Exception{
             int i = 0;
             //capture a screenshot of the webpage
             //the testid will be added to the filename later on
@@ -179,9 +189,16 @@ public class TestA extends SimpliumWebTest {
 
             //take screenshots of the full page and compare each time with the previous screenshot
             do{
+                //Remember scroll offset
+                int offset = getOffset();
+                if((offset - i*viewportHeight) != 0 && offset != 0){
+                    lastOffset = offset - ((i-1)*viewportHeight);
+                }
+
                 i++;
-                //Page down (500 must be changed to resolution dependent value)
-                selenium.getEval("window.scrollTo(0,"+ (i * 500) +");");
+
+                //Page down
+                selenium.getEval("window.scrollTo(0,"+ (i * (viewportHeight)) +");");
                 Thread.sleep(500);
                 //Take new screenshot
                 selenium.captureScreenshot(path + "screenshot" + i + ".png");
@@ -193,73 +210,30 @@ public class TestA extends SimpliumWebTest {
             files = NaiveSimilarityFinder.getOtherImageFiles(new File(path + "cropped/screenshot" + i + ".png"));
             files = bubbleSort(files);
 
-            //Take the first two screenshots
-            BufferedImage a = ImageIO.read(files[0]);
-            BufferedImage b = ImageIO.read(files[1]);
-            //Loop over all screenshots
-            for(int j = 1, jl = files.length; j < jl; j++){
-            	//Take a box of (1000,30) at the top of the second image 
-                BufferedImage subB = b.getSubimage((b.getWidth()/2)-500, 0, 1000, 30);
-
-                //Loop over the first image
-                for(int k = 0, kl = a.getHeight() -30; k < kl; k++){
-
-            		//take a snippet of (1000,30) of image a, start at descending Y-position
-                    BufferedImage subA = a.getSubimage((a.getWidth()/2)-500, k, 1000, 30);
-
-                    //compare the two snippets
-                    double distance = NaiveSimilarityFinder.TestTwoImages(subB, subA);
-
-                    if(distance < 5){
-                    	//if the two snippets are equal we remember the position of where they have to merge (Y-position)
-                        mergePositions.add(k);
-                        //if we aren't at the bottom image, we continue comparing
-                        if(j < files.length-1){
-
-                        	//put the latter image as the first image
-                            a = b;
-                            System.out.println(files[j]);
-                            System.out.println(files[j+1]);
-
-                            //Put the next image as reference image
-                            b = ImageIO.read(files[j+1]);
-                        }
-                        break;
-                    }
-                }
-            }
             try {
                 //merge all the files
-                //The total length of the image: sum of the Y-positions + height of last picture
-                int totalHeight = 0;
-                for (int height : mergePositions){
-                    totalHeight += height;
-                }
-                totalHeight += ImageIO.read(files[files.length - 1]).getHeight();
+                //The total length of the image: sum of the heights of all the pictures + part of last one
+                int totalHeight = ((files.length-1) * (viewportHeight)) + lastOffset;
 
                 BufferedImage mergedImage = null;
                 //Create a new image with the height we just calculated  
-                mergedImage = new BufferedImage(a.getWidth(), totalHeight,BufferedImage.TYPE_4BYTE_ABGR);
+                mergedImage = new BufferedImage(ImageIO.read(files[0]).getWidth(), totalHeight,BufferedImage.TYPE_4BYTE_ABGR);
 
                 //Create a Graphics object to be able to draw something
                 Graphics2D graph = mergedImage.createGraphics();
 
                 //Loop over all images and add them to the big image
-                int pos = 0;
-                for(int l = 0, ll = mergePositions.size(); l < ll; l++){
+                for(int l = 0, ll = files.length-1; l < ll; l++){
 
                     //Take a screenshot from the list
                     BufferedImage img = ImageIO.read(files[l]);
 
-                    //Draw the screenshot on its position in the big image but cut the screenshot where it has to be merged
-                    graph.drawImage(img.getSubimage(0, 0, img.getWidth(), mergePositions.get(l)),null, 0, pos);
-
-                    //Add the calculated Y-position of the previous image to the position to know where the next file should come
-                    pos += mergePositions.get(l);
+                    //Draw the screenshot on its position in the big image
+                    graph.drawImage(img,null, 0, l*viewportHeight);
                 }
 
-                //In the end, add the last screenshot completely
-                graph.drawImage(ImageIO.read(files[files.length-1]), null, 0, pos);
+                //In the end, add the last screenshot (the last part) 
+                graph.drawImage(ImageIO.read(files[files.length-1]).getSubimage(0, viewportHeight-lastOffset, viewportWidth, lastOffset), null, 0, (files.length-1)*viewportHeight);
 
                 //make sure the 'merged' dir has been created
                 if(!new File(path + "merged/").exists()){
@@ -274,7 +248,25 @@ public class TestA extends SimpliumWebTest {
             } catch (IOException e) {
                 System.out.println(e);
             }
+        }
 
+        private int getOffset(){
+    		  int scrOfY = 0;
+    		  String test = selenium.getEval("typeof(window.pageYOffset)");
+    		  if(test.equals("number")) {
+    		    //Netscape compliant
+    		    scrOfY = Integer.parseInt(selenium.getEval("window.pageYOffset;"));
+    		    //scrOfX = window.pageXOffset;
+    		  } else if( Boolean.parseBoolean(selenium.getEval("document.body != null")) && Boolean.parseBoolean(selenium.getEval("document.body.scrollTop != null"))) {
+    		    //DOM compliant
+    		    scrOfY = Integer.parseInt(selenium.getEval("document.body.scrollTop;"));
+    		    //scrOfX = document.body.scrollLeft;
+    		  } else if( Boolean.parseBoolean(selenium.getEval("document.documentElement != null")) && Boolean.parseBoolean(selenium.getEval("document.documentElement.scrollTop != null") )) {
+    		    //IE6 standards compliant mode
+    		    scrOfY = Integer.parseInt(selenium.getEval("document.documentElement.scrollTop;"));
+    		    //scrOfX = document.documentElement.scrollLeft;
+    		  }
+    		  return scrOfY;
         }
 
         private void cropImage(int id){
@@ -282,7 +274,7 @@ public class TestA extends SimpliumWebTest {
             if(f.exists()){
                 try {
                     //crop the screenshot (-15 for the scrollbars (don't know how to find the scrollbar width))
-                    BufferedImage img = ImageIO.read(f).getSubimage(topPosX, topPosY, bottomPosX - topPosX - 15, bottomPosY - topPosY);
+                    BufferedImage img = ImageIO.read(f).getSubimage(topPosX, topPosY,viewportWidth, viewportHeight);
                     //make sure the 'cropped' dir has been created
                     if(!new File(path + "cropped/").exists()){
                         new File(path + "cropped/").mkdir();
