@@ -129,6 +129,8 @@ public class TestA extends SimpliumWebTest {
             ////////////////////////////////////
             // Browser and Test Configuration //
             ////////////////////////////////////
+            //selenium.getEval("document.body.style.backgroundColor='#000000'");
+            //selenium.getEval("document.body.style.background='#000'");
 
             //This could select the window but first we need to test without eclipse on.
             //String test = selenium.getAllWindowTitles()[0];
@@ -157,17 +159,21 @@ public class TestA extends SimpliumWebTest {
             //Assert.assertTrue(selenium.isTextPresent("Search results"));
 
             //PhysX Test
-            selenium.open("/");
+            /*selenium.open("/");
             selenium.type("searchinput", "3d");
             selenium.click("searchsubmit");
             selenium.waitForPageToLoad("30000");
             selenium.click("link=PhysX");
-            selenium.waitForPageToLoad("30000");
+            selenium.waitForPageToLoad("30000");*/
 
+            //HenryHoudmont Test
+            selenium.open("/");
+            
             int i = 0;
             //capture a screenshot of the webpage
             //the testid will be added to the filename later on
             selenium.captureScreenshot(path + "screenshot" + i + ".png");
+            //selenium.captureEntirePageScreenshot(path + "test.png", "#000000");
             //crop it
             cropImage(i);
 
@@ -187,50 +193,44 @@ public class TestA extends SimpliumWebTest {
             files = NaiveSimilarityFinder.getOtherImageFiles(new File(path + "cropped/screenshot" + i + ".png"));
             files = bubbleSort(files);
 
-            for(File of : files){
-            	System.out.println(of.getName());
-            }
-            
+            //Take the first two screenshots
             BufferedImage a = ImageIO.read(files[0]);
             BufferedImage b = ImageIO.read(files[1]);
-            System.out.println(files[0]);
-            System.out.println(files[1]);
+            //Loop over all screenshots
             for(int j = 1, jl = files.length; j < jl; j++){
+            	//Take a box of (1000,30) at the top of the second image 
                 BufferedImage subB = b.getSubimage((b.getWidth()/2)-500, 0, 1000, 30);
-                //File outputfile = new File(path + "cropped/reference.png");
-                //ImageIO.write(subB, "png", outputfile);
-                
-                for(int k = 0, kl = a.getHeight(); k < kl; k++){
-                	//try{
-                		//take a snippet of image a
-                        BufferedImage subA = a.getSubimage((a.getWidth()/2)-500, k, 1000, 30);
-                        //outputfile = new File(path + "cropped/shot" + k + ".png");
-                        //ImageIO.write(subA, "png", outputfile);
-                        
-                        //compare it to image subB
-                        double distance = NaiveSimilarityFinder.TestTwoImages(subB, subA);
-                        if(distance < 5){
-                            System.out.println("two equals");
-                            mergePositions.add(k);
+
+                //Loop over the first image
+                for(int k = 0, kl = a.getHeight() -30; k < kl; k++){
+
+            		//take a snippet of (1000,30) of image a, start at descending Y-position
+                    BufferedImage subA = a.getSubimage((a.getWidth()/2)-500, k, 1000, 30);
+
+                    //compare the two snippets
+                    double distance = NaiveSimilarityFinder.TestTwoImages(subB, subA);
+
+                    if(distance < 5){
+                    	//if the two snippets are equal we remember the position of where they have to merge (Y-position)
+                        mergePositions.add(k);
+                        //if we aren't at the bottom image, we continue comparing
+                        if(j < files.length-1){
+
+                        	//put the latter image as the first image
                             a = b;
                             System.out.println(files[j]);
-                            b = ImageIO.read(files[j++]);
-                            System.out.println(files[j]);
-                            break;
-                        }else{
-                            System.out.println(k);
+                            System.out.println(files[j+1]);
+
+                            //Put the next image as reference image
+                            b = ImageIO.read(files[j+1]);
                         }
-                	/*}catch(Exception ex){
-                		System.out.println(k);
-                		System.out.println(ex);
-                		break;
-                	}*/
+                        break;
+                    }
                 }
             }
             try {
                 //merge all the files
-                //mergeFile();
-                //sum ofthe k's is total length + height of last picture
+                //The total length of the image: sum of the Y-positions + height of last picture
                 int totalHeight = 0;
                 for (int height : mergePositions){
                     totalHeight += height;
@@ -238,22 +238,28 @@ public class TestA extends SimpliumWebTest {
                 totalHeight += ImageIO.read(files[files.length - 1]).getHeight();
 
                 BufferedImage mergedImage = null;
-                try{
-                    mergedImage = new BufferedImage(a.getWidth(), totalHeight,BufferedImage.TYPE_4BYTE_ABGR);
-                    Graphics2D graph = mergedImage.createGraphics();
+                //Create a new image with the height we just calculated  
+                mergedImage = new BufferedImage(a.getWidth(), totalHeight,BufferedImage.TYPE_4BYTE_ABGR);
 
-                    //Loop over all images and add them to the big image
-                    int pos = 0;
-                    for(int l = 0, ll = mergePositions.size(); l < ll; l++){
-                        BufferedImage img = ImageIO.read(files[l]);
-                        graph.drawImage(img.getSubimage(0, 0, img.getWidth(), mergePositions.get(l)),null, 0, pos);
-                        pos += mergePositions.get(l);
-                    }
-                    graph.drawImage(ImageIO.read(files[files.length-1]), null, 0, pos);
-                }catch(Exception ex){
-                    System.out.println(ex);
+                //Create a Graphics object to be able to draw something
+                Graphics2D graph = mergedImage.createGraphics();
+
+                //Loop over all images and add them to the big image
+                int pos = 0;
+                for(int l = 0, ll = mergePositions.size(); l < ll; l++){
+
+                    //Take a screenshot from the list
+                    BufferedImage img = ImageIO.read(files[l]);
+
+                    //Draw the screenshot on its position in the big image but cut the screenshot where it has to be merged
+                    graph.drawImage(img.getSubimage(0, 0, img.getWidth(), mergePositions.get(l)),null, 0, pos);
+
+                    //Add the calculated Y-position of the previous image to the position to know where the next file should come
+                    pos += mergePositions.get(l);
                 }
 
+                //In the end, add the last screenshot completely
+                graph.drawImage(ImageIO.read(files[files.length-1]), null, 0, pos);
 
                 //make sure the 'merged' dir has been created
                 if(!new File(path + "merged/").exists()){
