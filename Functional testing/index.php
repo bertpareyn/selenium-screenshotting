@@ -12,8 +12,8 @@
 		<div id="menubuttons">
 			<ul>
 				<li class="activebutton">About</li>
-				<li><a href="test.htm" title="Test your page">Test</a></li>
-				<li><a href="results.htm" title="Watch your results">Results</a></li>
+				<li><a href="test.php" title="Test your page">Test</a></li>
+				<li><a href="results.php" title="Watch your results">Results</a></li>
 			</ul>
 		</div>
 	</div>

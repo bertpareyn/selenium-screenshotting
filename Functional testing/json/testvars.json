@@ -1,0 +1,50 @@
+{
+    "browser": [
+        {
+            "browserName": "Firefox",
+            "isSupported": "true" 
+        },
+        {
+            "browserName": "Chrome",
+            "isSupported": "true" 
+        },
+        {
+            "browserName": "Safari",
+            "isSupported": "true" 
+        },
+        {
+            "browserName": "IE6",
+            "isSupported": "true" 
+        },
+        {
+            "browserName": "IE7",
+            "isSupported": "true" 
+        },
+        {
+            "browserName": "IE8",
+            "isSupported": "true" 
+        }
+    ],
+    "os": [
+        {
+            "osName": "WindowsXP",
+            "isSupported": "true" 
+        },
+        {
+            "osName": "WindowsVista",
+            "isSupported": "true" 
+        },
+        {
+            "osName": "Windows7",
+            "isSupported": "true" 
+        },
+        {
+            "osName": "MAC OSX",
+            "isSupported": "true" 
+        },
+        {
+            "osName": "Debian",
+            "isSupported": "true" 
+        }
+    ]
+}
