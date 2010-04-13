@@ -3,6 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="screen.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/roundedcorners.js"></script>
+<script type="text/javascript" src="js/jquery.template.js"></script>
 <title>Functionality testing</title>
 </head>
 <body>
@@ -40,13 +43,14 @@
     //
     // Check if this page has been posted, if so process it and act accordingly
     // I check on the code input field as this one is the most important one to be filled in
+    // If this is a POST then fill the test info fields (browsers, OS's,...)
     if(!empty($_POST['codeInput'])){
         // Read the JSON file and parse it into a JSON Object
         $json_o=json_decode(file_get_contents("json/testvars.json"));
         //
         // Loop all browsers and check if they are ticked off
         // Display all in an overview
-        $testvars = "<h1>Test settings</h1 class="testHeader"><h2>Browsers</h2> <ul class=testinput>";
+        $testvars = "<div class=testcontainer><div class=testHeader id=testSettings><h1>+ Test settings</h1></div><div class=testcontent id=settingsDiv><h2>Browsers</h2> <ul class=testinput>";
         for ($i = 0; $i <= count($json_o->browser) -1; $i++) {
         $browser = $json_o->browser[$i]->browserName;
             if (!empty($_POST[$json_o->browser[$i]->browserName])){
@@ -74,7 +78,11 @@
         //
         // Test input
         $testvars = $testvars . "<h2>Test input</h2> <ul class=testinput><li>" . $_POST["codeInput"] ."</li></ul>";
-        
+        // Close the settingsDiv tag and then the settingsContainer tag
+        $testvars = $testvars . "</div></div>";
+        // Put everything on the screen
         echo("<script>document.getElementById('contentcontent').innerHTML ='" . $testvars . "'</script>");
     }
 ?>
+
+<script type="text/javascript" src="js/functionaltesting.js"></script>

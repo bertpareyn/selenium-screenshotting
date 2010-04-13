@@ -58,7 +58,6 @@
 </body>
 </html>
 <?php
-
     // Read the JSON file and parse it into a JSON Object
     $json_o=json_decode(file_get_contents("json/testvars.json"));
     // Get all supported browsers from the JSON file

@@ -1,0 +1,127 @@
+{
+    "tests": [
+        {
+            "testId" : "0001",
+            "testresults" : [
+                {
+                    "os" : "Mac OSX",
+                    "osresults" : [
+                        {
+                            "browserId" : "0001",
+                            "browser" : "Firefox 3.6",
+                            "browserpic" : "firefox.png",
+                            "tests" : [
+                                {
+                                    "testId" : "0001",
+                                    "description" : "verify text"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "description" : "verify text"
+                                }
+                            ],
+                            "browserresults" : [
+                                {
+                                    "testId" : "0001",
+                                    "screenshot" : "null",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "null",
+                                    "success" : "true"
+                                }
+                            ]
+                        },
+                        {
+                            "browserId" : "0002",
+                            "browser" : "Safari 4.0.2",
+                            "browserpic" : "safari.png",
+                            "tests" : [
+                                {
+                                    "testId" : "0001",
+                                    "description" : "verify text"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "description" : "verify text"
+                                }
+                            ],
+                            "browserresults" : [
+                                {
+                                    "testId" : "0001",
+                                    "screenshot" : "null",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "null",
+                                    "success" : "true"
+                                }
+                            ]
+                        },
+                        {
+                            "browserId" : "0003",
+                            "browser" : "Opera",
+                            "browserpic" : "opera.png",
+                            "tests" : [
+                                {
+                                    "testId" : "0001",
+                                    "description" : "verify text"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "description" : "verify text"
+                                }
+                            ],
+                            "browserresults" : [
+                                {
+                                    "testId" : "0001",
+                                    "screenshot" : "null",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "null",
+                                    "success" : "true"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "os" : "Windows 7",
+                    "osresults" : [
+                        {
+                            "browserId" : "0001",
+                            "browser" : "Firefox 3.6",
+                            "browserpic" : "firefox.png",
+                            "tests" : [
+                                {
+                                    "testId" : "0001",
+                                    "description" : "verify text"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "description" : "verify text"
+                                }
+                            ],
+                            "browserresults" : [
+                                {
+                                    "testId" : "0001",
+                                    "screenshot" : "null",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "null",
+                                    "success" : "true"
+                                }
+                            ]
+                        }
+                    ]
+                }   
+            ]
+        }
+    ]
+}
