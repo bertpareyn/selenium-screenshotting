@@ -27,15 +27,15 @@
     ],
     "os": [
         {
-            "osName": "WindowsXP",
+            "osName": "Windows XP",
             "isSupported": "true" 
         },
         {
-            "osName": "WindowsVista",
+            "osName": "Windows Vista",
             "isSupported": "true" 
         },
         {
-            "osName": "Windows7",
+            "osName": "Windows 7",
             "isSupported": "true" 
         },
         {
@@ -43,7 +43,7 @@
             "isSupported": "true" 
         },
         {
-            "osName": "Debian",
+            "osName": "Ubuntu",
             "isSupported": "true" 
         }
     ]

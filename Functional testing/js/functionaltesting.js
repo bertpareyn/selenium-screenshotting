@@ -15,34 +15,82 @@ $testSettings.click(function() {
     $settingsDiv.animate({height: "toggle", opacity: "toggle"});
 });
 
+function showHideTest(ev){
+    ev.siblings().animate({height: "toggle", opacity: "toggle"});
+    ev.children('.browserImagesContainer').animate({opacity: "toggle"},function(){
+        var browser = ev.children('h1').html().substring(2);
+        if (ev.siblings().is(":hidden")) {
+            ev.children('h1').html("+ " + browser); 
+        } else {
+            ev.children('h1').html("- " + browser);  
+        }
+    });
+}
+
+// All testcontainers have the testHeader class.
+$(".testHeader").live("click", function(){showHideTest($(this));});
+
 // ROUNDED CORNERS
 $testSettings.corners("top 13px");
-$settingsDiv.corners("bottom 13px");
 
 /* Create a template with JQuery Template
  * http://plugins.jquery.com/project/jquerytemplate for more information
  */
+
 var template;
 var createTable = function(results){
     // For every OS create a testContainer
-    for (var i = 0; i < results.tests[0].testresults.length; i++) { //1
+    for (var i = 0; i < results.tests[0].testresults.length; i++) {
         // Add the testContainer div
         template = '<div class="testcontainer">';
         // Add a div that contains the clickable part of the header
         template += '<div class="testHeader">';
         // Add a header for this testContainer
         template += '<h1>+ ' + results.tests[0].testresults[i].os + '</h1>';
+        // Add browser images on top of the list
+        template += '<div class="browserImagesContainer">';
+        for (var m = 0; m < results.tests[0].testresults[i].osresults.length; m++) {
+            template += '<img src="images/browsers/' + results.tests[0].testresults[i].osresults[m].browserpic + '" class="browserImages" alt="' + results.tests[0].testresults[i].osresults[m].browser + '" title="' + results.tests[0].testresults[i].osresults[m].browser + '"/>';
+        }
+        // Close browserImagesContainer div
+        template += '</div>';
         // Close the testHeader div
         template += '</div>';
         // Add testcontent
         template += '<div class=testcontent>';
-        // Add browser images on top of the list
-        for (var j = 0; j < results.tests[0].testresults[i].osresults.length; j++){
-            template += '<img src="images/browsers/' + results.tests[0].testresults[i].osresults[j].browserpic + '" class="browserImages"/>';
+        // Add the description column first
+        template += '<div class="descriptionColumn">';
+        for (var j = 0; j < results.tests[0].testresults[i].ostests.length; j++) {
+            template += '<div class="descriptionColumnContent"><p>' + results.tests[0].testresults[i].ostests[j].description + '</p></div>';
+        }
+        template += '</div>';
+        for (var k = 0; k < results.tests[0].testresults[i].osresults.length; k++){
             // Add testresults for this browser to the list
-            for (var k = 0; k < results.tests[0].testresults[i].osresults[j].tests.length; k++){
-                template += '<div class="descriptionColumn">' + results.tests[0].testresults[i].osresults[j].tests[k].description + '</div>';
+            template += '<div class="testContentColumn">';
+            for (var l = 0; l < results.tests[0].testresults[i].ostests.length; l++){
+                // Check if there is a screenshot attached and display it if there is one
+                if (results.tests[0].testresults[i].osresults[k].browserresults[l].screenshot == 'null') {
+                    // There is no screenshot, show OK of ERROR sign
+                    if (results.tests[0].testresults[i].osresults[k].browserresults[l].success == 'true'){
+                        template += '<div class="testContentColumnContent"><img src="images/testok.png" alt="Test OK" title="Test OK"></img></div>';
+                    }
+                    else {
+                        template += '<div class="testContentColumnContent"><img src="images/testerror.png" alt="Test Error" title="Test Error"></img></div>';
+                    }
+                }
+                else {
+                    // There is a screenshot, display it
+                    template += '<div class="testContentColumnContent"><img src="images/screenshots/' + results.tests[0].testresults[i].osresults[k].browserresults[l].screenshot + '"';
+                    // Check if the error is OK or ERROR
+                    if (results.tests[0].testresults[i].osresults[k].browserresults[l].success == 'true'){
+                        template += 'alt="OK screenshot" title="OK screenshot" class="okcompareimg"></img></div>';
+                    } else {
+                        template += 'alt="Error in screenshot" title="Error in screenshot"class="errorcompareimg"></img></div>';
+                    }
+                }
             }
+            // Close testContentColumn div
+            template += '</div>';
         }
         template += '<hr/>';
         // Close testcontent
