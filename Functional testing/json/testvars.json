@@ -2,49 +2,127 @@
     "browser": [
         {
             "browserName": "Firefox",
+            "browserId": "firefox",
             "isSupported": "true" 
         },
         {
             "browserName": "Chrome",
+            "browserId": "chrome",
             "isSupported": "true" 
         },
         {
             "browserName": "Safari",
+            "browserId": "safari",
             "isSupported": "true" 
         },
         {
             "browserName": "IE6",
+            "browserId": "ie6",
             "isSupported": "true" 
         },
         {
             "browserName": "IE7",
+            "browserId": "ie7",
             "isSupported": "true" 
         },
         {
             "browserName": "IE8",
+            "browserId": "ie8",
             "isSupported": "true" 
         }
     ],
     "os": [
         {
             "osName": "Windows XP",
-            "isSupported": "true" 
+            "osId" : "windowsxp",
+            "isSupported": "true",
+            "supportedBrowsers" : [
+                {
+                    "browserName":"Firefox"
+                },
+                {
+                    "browserName":"Chrome"
+                },
+                {
+                    "browserName":"IE6"
+                },
+                {
+                    "browserName":"IE7"
+                },
+                {
+                    "browserName":"IE8"
+                }
+            ] 
         },
         {
             "osName": "Windows Vista",
-            "isSupported": "true" 
+            "osId" : "windowsvista",
+            "isSupported": "true",
+            "supportedBrowsers" : [
+                {
+                    "browserName":"Firefox"
+                },
+                {
+                    "browserName":"Chrome"
+                },
+                {
+                    "browserName":"IE6"
+                },
+                {
+                    "browserName":"IE7"
+                },
+                {
+                    "browserName":"IE8"
+                }
+            ] 
         },
         {
             "osName": "Windows 7",
-            "isSupported": "true" 
+            "osId" : "windowsseven",
+            "isSupported": "true",
+            "supportedBrowsers" : [
+                {
+                    "browserName":"Firefox"
+                },
+                {
+                    "browserName":"Chrome"
+                },
+                {
+                    "browserName":"IE6"
+                },
+                {
+                    "browserName":"IE7"
+                },
+                {
+                    "browserName":"IE8"
+                }
+            ] 
         },
         {
-            "osName": "MAC OSX",
-            "isSupported": "true" 
+            "osName": "Mac OSX",
+            "osId" : "macosx",
+            "isSupported": "true",
+            "supportedBrowsers" : [
+                {
+                    "browserName":"Firefox"
+                },
+                {
+                    "browserName":"Chrome"
+                }
+            ] 
         },
         {
             "osName": "Ubuntu",
-            "isSupported": "true" 
+            "osId" : "ubuntu",
+            "isSupported": "true",
+            "supportedBrowsers" : [
+                {
+                    "browserName":"Firefox"
+                },
+                {
+                    "browserName":"Safari"
+                }
+            ] 
         }
     ]
 }

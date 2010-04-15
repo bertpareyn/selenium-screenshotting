@@ -41,6 +41,14 @@ h2 {color:#dfe3e5; padding:10px 0; margin:0; font-size: 16px;}
 
 label {padding-left:7px;}
 
+#testpreview {display:block; clear:left; padding:10px;}
+#testpreview ul {margin:7px;}
+#testpreview ul li {float:left; margin-right:20px; list-style:none;}
+#testpreview ul li ul{padding-left:7px;}
+#testpreview ul li ul li{float:none; margin-right:0; list-style:disc;}
+.supportedbrowser {color:#00CC00;}
+.notsupportedbrowser {color:#CC0000;}
+
 /* RESULTS */
 .resulttable {width:683px; height:328px; margin-left:auto; margin-right:auto;}
 .testcontainer {width:800px; margin-left:auto; margin-right:auto;}

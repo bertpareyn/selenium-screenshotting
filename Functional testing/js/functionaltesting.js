@@ -4,6 +4,10 @@ $testSettings = $('#testSettings');
 $settingsDiv = $('#settingsDiv');
 // contentcontent: Contains all content data
 $contentcontent = $('#contentcontent');
+// testpreview: shows what will be tested on browsers and os's
+$testpreview = $('#testpreview');
+// Holds an array of supported browsers on OS's
+var supportedBrowsersArr = Array();
 
 // CLICK HANDLERS
 $testSettings.click(function() {
@@ -27,8 +31,68 @@ function showHideTest(ev){
     });
 }
 
+var browsersChecked = new Array();
+var osChecked = new Array();
+var supported = false;
+function displayChecked(){
+            var temp = '<ul>';
+            for (i in osChecked){ 
+                temp += '<li>' + osChecked[i] +'<ul>';
+                for (j in browsersChecked){
+                    // check the supported browsers array for the right os and loop it
+                    for (k in supportedBrowsersArr[i]){
+                        // if the current supported browser in the os is the browser that has been checked
+                        // set variable supported to true and break out of the loop
+                        if (supportedBrowsersArr[i][k].browserName == browsersChecked[j]){
+                            supported = true;
+                        }
+                    }
+                    // If the OS is contained in the array of supported browsers
+                    // Give it a green color, else red
+                    if (supported == true){
+                        temp += '<li class="supportedbrowser">' + browsersChecked[j] +'</li>';
+                        supported = false;
+                    } else {
+                        temp += '<li class="notsupportedbrowser">' + browsersChecked[j] +'</li>';
+                        supported = false;
+                    }
+                }
+                temp += '</ul></li>';
+            }
+            temp += '</ul>';
+            $testpreview.html(temp);
+}
+
+function showTestPreview(ev){
+    // If a browser was selected add it to the browserlist
+    // If a os was selected add it to the os list
+    if ($(ev).parent().attr('id')==="browsers"){
+        if (ev[0].checked) {
+            browsersChecked[ev[0].name] = ev[0].name;
+            //displaybrowsersChecked();
+            displayChecked();
+        } else {
+            delete browsersChecked[ev[0].name];
+            //displaybrowsersChecked();
+            displayChecked();
+        }
+    } else {
+        if (ev[0].checked) {
+            osChecked[ev[0].name] = ev[0].name;
+            displayChecked();
+        } else {
+            delete osChecked[ev[0].name];
+            displayChecked();
+        }
+    }
+}
+
 // All testcontainers have the testHeader class.
 $(".testHeader").live("click", function(){showHideTest($(this));});
+// Add handlers to the checkboxes to choose OS and browsers
+$(".browserandosinputchk").live("click", function(){showTestPreview(
+    $(this));
+ });
 
 // ROUNDED CORNERS
 $testSettings.corners("top 13px");
@@ -163,4 +227,53 @@ var getResults = function(){
     });
 };
 
-getResults();
+var createTestCheckboxes = function (results){
+    // Get all supported browsers from the JSON file
+    // Create var that contains all checkboxes
+    var browsers = "<h1>Browser</h1>";
+    for (var i = 0; i < results.browser.length ; i++) {
+        // If the Browser is supported then create a checkbox for it
+        if (results.browser[i].isSupported == 'true'){
+            // Current browser
+            browser = results.browser[i].browserName;
+            browserId = results.browser[i].browserId;
+            // Add to all browsers
+            browsers = browsers + "<input type ='checkbox' id='" + browserId + "' name='" + browser + "' class='browserandosinputchk'><label for='" + browserId + "'>" + browser + "</label><br/>";
+        }
+    };
+    $('#browsers').append($.template(browsers));
+    // Get all supported browsers from the JSON file
+    // Create var that contains all checkboxes
+    var oss = "<h1>Operating Systems</h1>";
+    for (var j = 0; j < results.os.length; j++) {
+        // If the OS is supported then create a checkbox for it
+        if (results.os[j].isSupported == 'true'){
+            // Current os
+            var os = results.os[j].osName;
+            var osId = results.os[j].osId;
+            var supportedBrowsers = results.os[j].supportedBrowsers;
+            // Add to all OS's
+            oss = oss + "<input type ='checkbox' name='" + os + "' id='" + osId + "' class='browserandosinputchk'><label for='" + osId + "'>" + os + "</label><br/>";
+            // Add supported browsers to the array
+            supportedBrowsersArr[os] = supportedBrowsers;
+            //alert(supportedBrowsersArr["Mac OSX"][0].browserName);
+        }
+    };
+    $('#operatingsystems').append($.template(oss));
+};
+
+var getBrowserSettings = function(){
+    //Make the ajax call
+    $.ajax({
+        url: 'json/testvars.json',
+        cache: false,
+        success: function(data){
+            createTestCheckboxes(data);
+        },
+        error: function(error){
+            alert(error);
+        }
+    });
+};
+getBrowserSettings();
+//getResults();

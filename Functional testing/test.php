@@ -3,6 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="CSS/screen.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/roundedcorners.js"></script>
+<script type="text/javascript" src="js/jquery.template.js"></script>
 <title>Functionality testing</title>
 </head>
 <body>
@@ -31,6 +34,9 @@
 		        <div id="operatingsystems">
 
 		        </div>
+		        <div id="testpreview">
+		            
+                </div>
 		        <div id="codeInput">
 		            <h1>Website to check</h1>
 		            <input type="text" id="siteToCheck" name="siteToCheck">
@@ -57,34 +63,4 @@
 </div>
 </body>
 </html>
-<?php
-    // Read the JSON file and parse it into a JSON Object
-    $json_o=json_decode(file_get_contents("json/testvars.json"));
-    // Get all supported browsers from the JSON file
-    // Create var that contains all checkboxes
-    $browsers = "<h1>Browser</h1>";
-    for ($i = 0; $i <= count($json_o->browser) -1; $i++) {
-        // If the Browser is supported then create a checkbox for it
-        if ($json_o->browser[$i]->isSupported == 'true'){
-            // Current browser
-            $browser = $json_o->browser[$i]->browserName;
-            // Add to all browsers
-            $browsers = $browsers . "<input type =\'checkbox\' id=\'$browser\' name=\'$browser\'><label for=\'$browser\'>$browser</label><br/>";
-        }
-    };
-    echo ("<script> document.getElementById('browsers').innerHTML = '" . $browsers . "'</script>");
-
-    // Get all supported browsers from the JSON file
-    // Create var that contains all checkboxes
-    $oss = "<h1>Operating Systems</h1>";
-    for ($j = 0; $j <= count($json_o->os) -1; $j++) {
-        // If the OS is supported then create a checkbox for it
-        if ($json_o->os[$j]->isSupported == 'true'){
-            // Current os
-            $os = $json_o->os[$j]->osName;
-            // Add to all OS's
-            $oss = $oss . "<input type =\'checkbox\' id=\'$os\' name=\'$os\'><label for=\'$os\'>$os</label><br/>";
-        }
-    };
-    echo ("<script> document.getElementById('operatingsystems').innerHTML = '" . $oss . "'</script>");
-?>
+<script type="text/javascript" src="js/functionaltesting.js"></script>
