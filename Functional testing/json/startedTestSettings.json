@@ -1,0 +1,65 @@
+{
+    "testId" : "0001",
+    "description" : "Testdescription",
+    "url" : "http://www.physx.be/",
+    "codeInput" : [
+                {
+                    "codeName" : "AssertTrue"
+                },
+                {
+                    "codeName" : "TakeScreenshot"
+                },
+                {
+                    "codeName" : "AssertTrue"
+                }
+            ],
+    "operatingsystems" : [
+        {
+            "osName" : "Mac OSX",
+            "osId" : "macosx",
+            "browsers" : [
+                {
+                    "browserName" : "Firefox 3.6",
+                    "browserId" : "firefox",
+                    "browserPic" : "firefox.png"
+                },
+                {
+                    "browserName" : "Safari",
+                    "browserId" : "safari",
+                    "browserPic" : "safari.png"
+                }
+            ]
+        },
+        {
+            "osName" : "Windows 7",
+            "osId" : "windowsseven",
+            "browsers" : [
+                {
+                    "browserName" : "Firefox 3.6",
+                    "browserId" : "firefox",
+                    "browserPic" : "firefox.png"
+                },
+                {
+                    "browserName" : "Safari",
+                    "browserId" : "safari",
+                    "browserPic" : "safari.png"
+                },
+                {
+                    "browserName" : "IE6",
+                    "browserId" : "ie6",
+                    "browserPic" : "ie6.png"
+                },
+                {
+                    "browserName" : "IE7",
+                    "browserId" : "ie7",
+                    "browserPic" : "ie7.png"
+                },
+                {
+                    "browserName" : "IE8",
+                    "browserId" : "ie8",
+                    "browserPic" : "ie8.png"
+                }
+            ]
+        }
+    ]
+}

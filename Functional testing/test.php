@@ -15,9 +15,9 @@
 		<img src="images/functionaltestinglogo.png" alt="functional testing logo" id="logo"/>
 		<div id="menubuttons">
 			<ul>
-				<li><a href="index.php" title="About the functional tester">About</a></li>
 				<li class="activebutton">Test</li>
 				<li><a href="results.php" title="Watch your results">Results</a></li>
+				<li><a href="index.php" title="About the functional tester">About</a></li>
 			</ul>
 		</div>
 	</div>
@@ -28,12 +28,6 @@
 		<p>You can test your webpages for inconsistencies on this page. Once the test is submitted you will be redirected to the results page were your results will appear as soon as they are ready.</p>
 		<div id="testcontainer">
 		    <form name ="checkboxform" method="POST" action="results.php">
-		        <div id="browsers">
-		            
-		        </div>
-		        <div id="operatingsystems">
-
-		        </div>
 		        <div id="testpreview">
 		            
                 </div>
@@ -51,9 +45,9 @@
 		        </div>
 		    </form>
 		</div>
+		<hr/>
 	</div>
 </div>
-
 <div id="footer">
 	<div id="footercontent">
 		<div id="footershadow">
@@ -63,4 +57,4 @@
 </div>
 </body>
 </html>
-<script type="text/javascript" src="js/functionaltesting.js"></script>
+<script type="text/javascript" src="js/test.js"></script>

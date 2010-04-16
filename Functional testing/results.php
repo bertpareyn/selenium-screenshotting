@@ -14,9 +14,9 @@
 		<img src="images/functionaltestinglogo.png" alt="functional testing logo" id="logo"/>
 		<div id="menubuttons">
 			<ul>
-				<li><a href="index.php" title="About the functional tester">About</a></li>
 				<li><a href="test.php" title="Test your page">Test</a></li>
 				<li class="activebutton">Results</li>
+                <li><a href="index.php" title="About the functional tester">About</a></li>
 			</ul>
 		</div>
 	</div>
@@ -24,7 +24,7 @@
 
 <div id="content">
 	<div id="contentcontent">
-
+        <div id="resultContainer"></div>
 	</div>
 </div>
 
@@ -37,52 +37,4 @@
 </div>
 </body>
 </html>
-
-<?php
-    // INIT //
-    //
-    // Check if this page has been posted, if so process it and act accordingly
-    // I check on the code input field as this one is the most important one to be filled in
-    // If this is a POST then fill the test info fields (browsers, OS's,...)
-    if(!empty($_POST['codeInput'])){
-        // Read the JSON file and parse it into a JSON Object
-        $json_o=json_decode(file_get_contents("json/testvars.json"));
-        //
-        // Loop all browsers and check if they are ticked off
-        // Display all in an overview
-        $testvars = "<div class=testcontainer><div class=testHeader id=testSettings><h1>+ Test settings</h1></div><div class=testcontent id=settingsDiv><h2>Browsers</h2> <ul class=testinput>";
-        for ($i = 0; $i <= count($json_o->browser) -1; $i++) {
-        $browser = $json_o->browser[$i]->browserName;
-            if (!empty($_POST[$json_o->browser[$i]->browserName])){
-                $testvars = $testvars . "<li>" . $browser . "</li>";
-            }
-        }
-        $testvars = $testvars . "</ul>";
-        //
-        // Loop all OS's and check if they are ticked off
-        $testvars = $testvars . "<h2>Operating systems</h2>";
-        $testvars = $testvars . "<ul class=testinput>";
-        for ($i = 0; $i <= count($json_o->os) -1; $i++) {
-            if (!empty($_POST[$json_o->os[$i]->osName])){
-                $os = $json_o->os[$i]->osName;
-                $testvars = $testvars . "<li>" . $os . "</li>";
-            }
-        }
-        $testvars = $testvars . "</ul>";
-        //
-        // Website to check
-        $testvars = $testvars . "<h2>Website to check</h2> <ul class=testinput><li>" . $_POST["siteToCheck"] ."</li></ul>";
-        //
-        // Description
-        $testvars = $testvars . "<h2>Description</h2> <ul class=testinput><li>" . $_POST["description"] ."</li></ul>";
-        //
-        // Test input
-        $testvars = $testvars . "<h2>Test input</h2> <ul class=testinput><li>" . $_POST["codeInput"] ."</li></ul>";
-        // Close the settingsDiv tag and then the settingsContainer tag
-        $testvars = $testvars . "</div></div>";
-        // Put everything on the screen
-        echo("<script>document.getElementById('contentcontent').innerHTML ='" . $testvars . "'</script>");
-    }
-?>
-
-<script type="text/javascript" src="js/functionaltesting.js"></script>
+<script type="text/javascript" src="js/results.js"></script>

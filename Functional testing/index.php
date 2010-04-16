@@ -11,9 +11,9 @@
 		<img src="images/functionaltestinglogo.png" alt="functional testing logo" id="logo"/>
 		<div id="menubuttons">
 			<ul>
-				<li class="activebutton">About</li>
 				<li><a href="test.php" title="Test your page">Test</a></li>
 				<li><a href="results.php" title="Watch your results">Results</a></li>
+				<li class="activebutton">About</li>
 			</ul>
 		</div>
 	</div>
