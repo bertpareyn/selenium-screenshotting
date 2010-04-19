@@ -19,7 +19,7 @@
             "osId" : "macosx",
             "browsers" : [
                 {
-                    "browserName" : "Firefox 3.6",
+                    "browserName" : "Firefox",
                     "browserId" : "firefox",
                     "browserPic" : "firefox.png"
                 },
@@ -35,7 +35,7 @@
             "osId" : "windowsseven",
             "browsers" : [
                 {
-                    "browserName" : "Firefox 3.6",
+                    "browserName" : "Firefox",
                     "browserId" : "firefox",
                     "browserPic" : "firefox.png"
                 },

@@ -1,7 +1,6 @@
 /* GENERAL */
 * {margin:0; padding:0; font-family: sans-serif; color:#2a3c4f; font-size:14px;}
 body {background-color:#2a3c4f;}
-p {width:500px; padding-left:7px;}
 
 /* STRUCTURAL DIVS */
 #header {background-image:url(../images/headerbg.png); background-repeat:repeat-x;}
@@ -27,6 +26,7 @@ h1 {color:#dfe3e5;padding:10px 0; margin:0;font-size: 17px;}
 h2 {color:#dfe3e5; padding:10px 0; margin:0; font-size: 16px;}
 #contentcontent .testinput li{display:block; list-style:none;}
 hr {display: block; clear:left; margin:0; visibility: hidden;}
+#testExplanation {width:500px; padding-left:7px;}
 
 /* TESTFORM */
 #testcontainer { padding:7px; font-size:13px;clear:both;}
@@ -66,7 +66,7 @@ label {padding-left:7px;}
 
 #resultContainer .descriptionColumn {float:left; border-right:2px dashed #DFE3E5;}
 #resultContainer .descriptionColumn p, .testContentColumnContent img{vertical-align:middle; color:#dfe3e5;}
-#resultContainer .testContentColumn {float:left; border-right:2px dashed #DFE3E5;}
+#resultContainer .testContentColumn {width:110px; float:left; border-right:2px dashed #DFE3E5;}
 #resultContainer .descriptionColumnContent {width:136px; height:56px; clear:left; display:block; margin-bottom:7px; padding:5px;}
 #resultContainer .testContentColumnContent {width:100px; height:56px; clear:left; display:block; margin-bottom:7px; padding:5px; text-align:center;}
 #resultContainer .testContentColumnContent img {max-width: 130px; max-height:50px;}
@@ -80,3 +80,17 @@ hr {display: block; clear: left; margin:0; visibility: hidden;}
 .os_test_list_item {list-style:none; padding-top:7px; padding-bottom:3px;}
 .browser_test_list_item {margin-left:13px;}
 #code_input_list {margin-left:18px;}
+
+/* OVERLAY */
+#displayBox {
+    z-index: 10000;
+    filter: alpha(opacity=80); /*older IE*/
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=80); /* IE */
+    -moz-opacity: .80; /*older Mozilla*/
+    -khtml-opacity: 0.8;   /*older Safari*/
+    opacity: 0.8;   /*supported by current Mozilla, Safari, and Opera*/
+    background-color:#000000;
+    position:fixed; top:0px; left:0px; width:100%; height:100%; cursor:pointer;
+}
+#overlay_content {padding:50px 10px 10px; width:600px; height:100%; background-color:#2f2f2f; margin-left:auto; margin-right:auto; color:#dfe3e5;}
+#overlay_content p {color:#dfe3e5;}
