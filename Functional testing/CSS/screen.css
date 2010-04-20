@@ -43,7 +43,6 @@ hr {display: block; clear:left; margin:0; visibility: hidden;}
 label {padding-left:7px;}
 
 /* TESTCHECKBOXES */
-#testpreview .testcontainer {margin-left:auto; margin-right:auto;}
 #testpreview .testHeader {height:21px; background-image:url(../images/testsheader.png); padding:10px;}
 #testpreview .testHeader h1 {padding:5px 0;}
 #testpreview .browserImagesContainer {position:relative; top:-30px; left:146px; overflow:hidden;}
@@ -58,39 +57,38 @@ label {padding-left:7px;}
 #testpreview .osdescription {cursor:pointer;}
 
 /* RESULTS */
-#resultContainer .testcontainer {width:800px; margin-left:auto; margin-right:auto;}
-#resultContainer .testHeader {width:800px; height:41px; background-image:url(../images/testsheader.png); padding:10px; cursor:pointer;}
-#resultContainer .testcontent {width:800px; padding:10px; background-image:url(../images/testscontentbg.png);}
-#resultContainer .browserImagesContainer {position:relative; top:-42px; left:146px;}
-#resultContainer .browserImages {width:50px; height:50px; padding:0 31px;}
+#resultContainer .testcontainer {margin-left:auto; margin-right:auto;}
+#resultContainer .testHeader {height:41px; background-image:url(../images/testsheader.png); padding:10px; cursor:pointer;}
+#resultContainer .testcontent {padding:10px; background-image:url(../images/testscontentbg.png);}
+#resultContainer .browserImagesContainer {height:0;}
+#resultContainer .browserImages {width:50px; height:50px; padding:0 31px; position:relative; top:6px; left:156px; cursor:pointer;}
 
 #resultContainer .descriptionColumn {float:left; border-right:2px dashed #DFE3E5;}
 #resultContainer .descriptionColumn p, .testContentColumnContent img{vertical-align:middle; color:#dfe3e5;}
 #resultContainer .testContentColumn {width:110px; float:left; border-right:2px dashed #DFE3E5;}
-#resultContainer .descriptionColumnContent {width:136px; height:56px; clear:left; display:block; margin-bottom:7px; padding:5px;}
+#resultContainer .descriptionColumnContent {width:136px; height:56px; clear:left; display:block; margin-bottom:7px; padding:5px; cursor:pointer}
 #resultContainer .testContentColumnContent {width:100px; height:56px; clear:left; display:block; margin-bottom:7px; padding:5px; text-align:center;}
 #resultContainer .testContentColumnContent img {max-width: 130px; max-height:50px;}
 
-#resultContainer .okcompareimg, #resultContainer .errorcompareimg {border:solid; border-width:3px;}
-#resultContainer .okcompareimg {border-color:green;}
-#resultContainer .errorcompareimg {border-color:#BB0000;}
+.okcompareimg, .errorcompareimg, .okcompareimgbig, .errorcompareimgbig {border:solid; border-width:3px; cursor:pointer}
+.okcompareimg, .okcompareimgbig {border-color:green;}
+.errorcompareimg, .errorcompareimgbig {border-color:#BB0000;}
 
 hr {display: block; clear: left; margin:0; visibility: hidden;}
 
 .os_test_list_item {list-style:none; padding-top:7px; padding-bottom:3px;}
-.browser_test_list_item {margin-left:13px;}
-#code_input_list {margin-left:18px;}
+.browser_test_list_item {margin-left:17px;}
+#code_input_list {margin-left:22px;}
 
 /* OVERLAY */
-#displayBox {
-    z-index: 10000;
-    filter: alpha(opacity=80); /*older IE*/
-    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=80); /* IE */
-    -moz-opacity: .80; /*older Mozilla*/
-    -khtml-opacity: 0.8;   /*older Safari*/
-    opacity: 0.8;   /*supported by current Mozilla, Safari, and Opera*/
-    background-color:#000000;
-    position:fixed; top:0px; left:0px; width:100%; height:100%; cursor:pointer;
-}
-#overlay_content {padding:50px 10px 10px; width:600px; height:100%; background-color:#2f2f2f; margin-left:auto; margin-right:auto; color:#dfe3e5;}
-#overlay_content p {color:#dfe3e5;}
+#fancyBoxContent {padding:30px;}
+#fancyBoxContent h1 {color:#2a3c4f; margin-bottom:0px; top:-20px; position:relative;}
+#fancyBoxContent .browser_image {float:right; position:absolute; top:0; right:10px; width:50px; height:50px;}
+#fancyBoxContent .okcompareimgbig, #fancyBoxContent .errorcompareimgbig {width:700px;}
+
+#fancyBoxContent .descriptionColumn {float:left; border-right:2px dashed #2a3c4f; margin-bottom:30px;}
+#fancyBoxContent .descriptionColumn p, .testContentColumnContent img{vertical-align:middle; color:#2a3c4f;}
+#fancyBoxContent .testContentColumn {width:210px; float:left; border-right:2px dashed #2a3c4f;}
+#fancyBoxContent .descriptionColumnContent {width:136px; height:56px; clear:left; display:block; margin-bottom:7px; padding:5px;}
+#fancyBoxContent .testContentColumnContent {width:200px; height:56px; clear:left; display:block; margin-bottom:7px; padding:5px; text-align:center;}
+#fancyBoxContent .testContentColumnContent img {max-width: 130px; max-height:50px;}

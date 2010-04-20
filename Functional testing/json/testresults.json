@@ -9,15 +9,18 @@
                     "ostests" : [
                                 {
                                     "testId" : "0001",
-                                    "description" : "AssertTrue"
+                                    "description" : "AssertTrue",
+                                    "tooltip" : "assertTrue(isTextPresent('you can test your webpages'));"
                                 },
                                 {
                                     "testId" : "0002",
-                                    "description" : "TakeScreenshot"
+                                    "description" : "TakeScreenshot",
+                                    "tooltip" : "Take a screenshot"
                                 },
                                 {
                                     "testId" : "0002",
-                                    "description" : "AssertTrue"
+                                    "description" : "AssertTrue",
+                                    "tooltip" : "assertTrue(isTextPresent('on this page you can submit your test'));"
                                 }
                             ],
                     "osresults" : [
@@ -51,17 +54,17 @@
                                 {
                                     "testId" : "0001",
                                     "screenshot" : "null",
-                                    "success" : "true"
+                                    "tooltip" : "assertTrue(isTextPresent('you can test your webpages'));"
                                 },
                                 {
                                     "testId" : "0002",
                                     "screenshot" : "screenshot.png",
-                                    "success" : "true"
+                                    "tooltip" : "Take a screenshot"
                                 },
                                 {
                                     "testId" : "0003",
                                     "screenshot" : "null",
-                                    "success" : "false"
+                                    "tooltip" : "assertTrue(isTextPresent('you can test your webpages'));"
                                 }
                             ]
                         }

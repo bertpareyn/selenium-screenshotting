@@ -4,13 +4,16 @@
     "url" : "http://www.physx.be/",
     "codeInput" : [
                 {
-                    "codeName" : "AssertTrue"
+                    "codeName" : "AssertTrue",
+                    "tooltip" : "assertTrue(isTextPresent('you can test your webpages'));"
                 },
                 {
-                    "codeName" : "TakeScreenshot"
+                    "codeName" : "TakeScreenshot",
+                    "tooltip" : "Take a screenshot"
                 },
                 {
-                    "codeName" : "AssertTrue"
+                    "codeName" : "AssertTrue",
+                    "tooltip" : "assertTrue(isTextPresent('on this page you can submit your test'));"
                 }
             ],
     "operatingsystems" : [

@@ -27,7 +27,7 @@ function selectCheckboxesForBrowser(ev){
     var clickedBrowser = ev[0].id;
     $testpreview.find("input").each(function(){
         if ($(this)[0].id == clickedBrowser){
-            if ($(this)[0].disabled == false){
+            if ($(this)[0].disabled === false){
                 if ($(this)[0].toggleBrowserCheck == "off"){
                     $(this)[0].checked = true;
                     $(this)[0].toggleBrowserCheck = "on";
@@ -44,7 +44,7 @@ function selectCheckboxesForOS(ev){
     var clickedOS = ev[0].id;
     $testpreview.find("input").each(function(){
         if ($(this).attr('class').split(' ')[1] == clickedOS){
-            if ($(this)[0].disabled == false){
+            if ($(this)[0].disabled === false){
                 if ($(this)[0].toggleOSCheck == "off"){
                     $(this)[0].checked = true;
                     $(this)[0].toggleOSCheck = "on";
@@ -76,7 +76,9 @@ var createTableWithCheckboxes = function (results){
         // Add browser images on top of the list
         template += '<div class="browserImagesContainer">';
         for (var m = 0; m < results.browser.length; m++) {
-            template += '<img src="images/browsers/' + results.browser[m].browserName + '.png" id="' + results.browser[m].browserId + '" alt="' + results.browser[m].browserName + '" title="' + results.browser[m].browserName + '" class="browserImages"/>';
+            if (results.browser[m].isSupported == 'true') {
+                template += '<img src="images/browsers/' + results.browser[m].browserName + '.png" id="' + results.browser[m].browserId + '" alt="' + results.browser[m].browserName + '" title="' + results.browser[m].browserName + '" class="browserImages"/>';
+            }
         }
         // Close browserImagesContainer div
         template += '</div>';
@@ -87,37 +89,48 @@ var createTableWithCheckboxes = function (results){
         // Add the description column first
         template += '<div class="descriptionColumn">';
         for (var j = 0; j < results.os.length; j++) {
-            template += '<div class="descriptionColumnContent"><p class="osdescription" id="' + results.os[j].osId + '">' + results.os[j].osName + '</p></div>';
+            if (results.os[j].isSupported == 'true') {
+                template += '<div class="descriptionColumnContent"><p class="osdescription" id="' + results.os[j].osId + '">' + results.os[j].osName + '</p></div>';
+            }
         }
         template += '</div>';
+        // Create variable to calculate the max width of the content page
+        var NumberOfColumns = 0;
         for (var k = 0; k < results.browser.length; k++){
-            // Add testresults for this browser to the list
-            template += '<div class="testContentColumn">';
-            for (var l = 0; l < results.os.length; l++){
-                // Create checkbox
-                template += '<div class="testContentColumnContent">' + '<input type ="checkbox" id="' + results.browser[k].browserId + '" name="' + results.browser[k].browserName + '" class="' + results.browser[k].browserId + ' ' + results.os[l].osId + ' ' + ' browserandosinputchk';
-                // Check if the checkbox should be enabled
-                // If the browser is not supported on this OS then disable it
-                for (m in results.os[l].supportedBrowsers){
+            if (results.browser[k].isSupported == 'true') {
+                // Add testresults for this browser to the list
+                template += '<div class="testContentColumn">';
+                for (var l = 0; l < results.os.length; l++) {
+                    if (results.os[l].isSupported == 'true') {
+                        // Create checkbox
+                        template += '<div class="testContentColumnContent">' + '<input type ="checkbox" id="' + results.browser[k].browserId + '" name="' + results.browser[k].browserName + '" class="' + results.browser[k].browserId + ' ' + results.os[l].osId + ' ' + ' browserandosinputchk';
+                        // Check if the checkbox should be enabled
+                        // If the browser is not supported on this OS then disable it
                         // if the current supported browser in the os is the browser that has been checked
                         // set variable supported to true and break out of the loop
                         var enabled = false;
-                        if (results.os[l].supportedBrowsers[m].browserName == results.browser[k].browserName){
-                            // Enabled
-                            enabled = true;
-                            break;
+                        for (m in results.os[l].supportedBrowsers) {
+                            if (results.os[l].supportedBrowsers[m].browserName == results.browser[k].browserName) {
+                                // Enabled
+                                enabled = true;
+                                break;
+                            }
                         }
+                        // If the browser is supported let it be enabled
+                        // otherwise disable it
+                        if (enabled === true) {
+                            template += '"></div>';
+                        }
+                        else {
+                            template += '"disabled></div>';
+                        }
+                    }
                 }
-                // If the browser is supported let it be enabled
-                // otherwise disable it
-                if (enabled == true){
-                    template +=  '"></div>';
-                } else {
-                    template +=  '"disabled></div>';
-                }
+                // Close testContentColumn div
+                template += '</div>';
+                // Add an extra column to the counter
+                NumberOfColumns++;
             }
-            // Close testContentColumn div
-            template += '</div>';
         }
         template += '<hr/>';
         // Close testcontent
@@ -138,6 +151,8 @@ var createTableWithCheckboxes = function (results){
                 $(this.toggleOSCheck="off");
             }
         });
+        // Calculate the width of the contentpage
+        $(".testcontainer").width(186+NumberOfColumns*(60));
 };
 
 var getBrowserSettings = function(){
