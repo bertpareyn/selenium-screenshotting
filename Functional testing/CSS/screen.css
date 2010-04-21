@@ -2,6 +2,7 @@
 * {margin:0; padding:0; font-family: sans-serif; color:#2a3c4f; font-size:14px;}
 body {background-color:#2a3c4f;}
 
+
 /* STRUCTURAL DIVS */
 #header {background-image:url(../images/headerbg.png); background-repeat:repeat-x;}
 #headercontent {height:133px; margin-left:auto; margin-right:auto; background-image:url(../images/reflect.png); background-repeat:no-repeat; background-position:center;}
