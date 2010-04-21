@@ -2,19 +2,17 @@
  * Declare some variables to be used in the document
  */
 // testSettings: header, clickable for settings
-$testSettings = $('#testSettings');
+$testSettings = $('#test_settings');
 // settingsDiv: div containing settings data
 $settingsDiv = $('#settingsDiv');
 // contentcontent: Contains all content data
-$contentcontent = $('#resultContainer');
-// resultcontainer: contains all results from the test
-$resultContainer = $('#resultContainer');
+$contentcontent = $('#result_container');
 // displayBox: Overlay that shows more information about the topic clicked
 $displayBox = $('#displayBox');
 // hiddenClicker: simulates click on a link
 $hiddenClicker = $("#hiddenclicker");
 // fancyBoxContent: Content to be shown in the fancybox component
-$fancyBoxContent = $("#fancyBoxContent");
+$fancyBoxContent = $("#fancy_box_content");
 
 /**
  * Show the fancybox and give some parameters to go with it
@@ -32,10 +30,10 @@ var resizeFancyBox = function(){
 /**
  * Add clickhandlers
  */
-$(".testHeader").live("click", function(){showHideTest($(this));});
-$(".browserImages").live("click", function(){showReport($(this));});
-$(".okcompareimg").live("click", function(){showReport($(this));});
-$(".errorcompareimg").live("click", function(){showReport($(this));});
+$(".test_header").live("click", function(){showHideTest($(this));});
+$(".browser_images").live("click", function(){showReport($(this));});
+$(".ok_compare_img").live("click", function(){showReport($(this));});
+$(".error_compare_img").live("click", function(){showReport($(this));});
 $("#show_browser_results").live("click", function(){showReport($(this));});
 
 /**
@@ -64,18 +62,18 @@ var showBrowserReport = function(ev){
     // Add browser title and os to title tag
     var template = '<h1>' + ev.context.title + '</h1>';
     // Add browser image to the right top corner
-    template += '<img class="browser_image" src="' + ev.context.src + '" class="browserImages" alt="' + ev.context.alt + '" title="' + ev.context.title + '"/>';
+    template += '<img class="browser_image" src="' + ev.context.src + '" class="browser_images" alt="' + ev.context.alt + '" title="' + ev.context.title + '"/>';
     // Add description of the test
-    $descriptionColumn = $("div.descriptionColumn." + ev.context.className.split(' ')[1]);
-    template += '<div class="descriptionColumn">';
+    $descriptionColumn = $("div.description_column." + ev.context.className.split(' ')[1]);
+    template += '<div class="description_column">';
     $descriptionColumn.children().each(function(){
-        template += '<div class="descriptionColumnContent"><p>' + $(this).children('p').html() + '</p></div>';
+        template += '<div class="description_column_content"><p>' + $(this).children('p').html() + '</p></div>';
     });
     template += '</div>';
     // Add the whole description next to the short description
-    template += '<div class="testContentColumn">';
+    template += '<div class="test_content_column">';
     $descriptionColumn.children().each(function(){
-        template += '<div class="testContentColumnContent">';
+        template += '<div class="test_content_column_content">';
         template += $(this).children('p')[0].title;
         template += '</div>';
     });
@@ -83,10 +81,10 @@ var showBrowserReport = function(ev){
     template += '</div>';
     // Add the testresults next to the description
     // Get the contentcolumn with results
-    $contentcolumn = $("div.testContentColumn." + ev.context.className.split(' ')[1] + '.' + ev.context.className.split(' ')[2]);
-    template += '<div class="testContentColumn">';
+    $contentcolumn = $("div.test_content_column." + ev.context.className.split(' ')[1] + '.' + ev.context.className.split(' ')[2]);
+    template += '<div class="test_content_column">';
     $contentcolumn.children().each(function(){
-        template += '<div class="testContentColumnContent">';
+        template += '<div class="test_content_column_content">';
         template += '<img src="' + $(this).children('img')[0].src + '" alt="' + $(this).children('img')[0].alt + '" class="' + $(this).children('img')[0].className + '"/>';
         template += '</div>';
     });
@@ -110,7 +108,7 @@ var showBrowserReport = function(ev){
 var showOkScreenshot = function(ev) {
     $fancyBoxContent.width("");
     var template = '<h1>Screenshot successful</h1>';
-    template += '<a href="' + ev.context.src + '" title="Show full screenshot" target="_blank"><img src="' + ev.context.src + '" class="okcompareimgbig"></a>';
+    template += '<a href="' + ev.context.src + '" title="Show full screenshot" target="_blank"><img src="' + ev.context.src + '" class="ok_compare_img_big"></a>';
     // Add the template to the html
     $fancyBoxContent.html(template);
 
@@ -126,8 +124,8 @@ var showOkScreenshot = function(ev) {
 var showErrorScreenshot = function(ev) {
     $fancyBoxContent.width("");
     var template = '<h1>Screenshot error</h1>';
-    template += '<p id="show_browser_results" class="' + ev.context.className.split("errorcompareimg ")[1] + '">Show browser results</p>';
-    template += '<a href="' + ev.context.src + '" title="Show full screenshot" target="_blank"><img src="' + ev.context.src + '" class="errorcompareimgbig"></a>';
+    template += '<p id="show_browser_results" class="' + ev.context.className.split("error_compare_img ")[1] + '">Show browser results</p>';
+    template += '<a href="' + ev.context.src + '" title="Show full screenshot" target="_blank"><img src="' + ev.context.src + '" class="error_compare_img_big"></a>';
     
     // Add the template to the html
     $fancyBoxContent.html(template);
@@ -142,17 +140,17 @@ var showErrorScreenshot = function(ev) {
  * @param {Object} ev Clickevent
  */
 var showReport = function (ev){
-    if (ev.context.className.split(' ')[0] == 'browserImages'){
+    if (ev.context.className.split(' ')[0] == 'browser_images'){
         // Execute function to show information about a specific browser on a specific os
         showBrowserReport(ev);
-    } else if (ev.context.className.split(' ')[0] == 'okcompareimg'){
+    } else if (ev.context.className.split(' ')[0] == 'ok_compare_img'){
         // Execute function to show information about a specific browser on a specific os
         showOkScreenshot(ev);
-    } else if (ev.context.className.split(' ')[0] == 'errorcompareimg'){
+    } else if (ev.context.className.split(' ')[0] == 'error_compare_img'){
         // Execute function to show information about a specific browser on a specific os
         showErrorScreenshot(ev);
     } else if (ev.context.id == 'show_browser_results'){
-        $('.browserImages.' + ev.context.className.split(' ')[0] + '.' + ev.context.className.split(' ')[1]).trigger("click");
+        $('.browser_images.' + ev.context.className.split(' ')[0] + '.' + ev.context.className.split(' ')[1]).trigger("click");
     }
 };
 
@@ -171,14 +169,14 @@ var fillTableWithResults = function(results) {
                 // If the content holder is empty then the test has to be shown
                 // otherwise a repeat would occur
                 if (testContentHolder.children().size() < results.tests[0].testresults[i].ostests.length ) {
-                    template = '<div class="testContentColumnContent">';
+                    template = '<div class="test_content_column_content">';
                     if (results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot == 'null') {
                         // There is no screenshot, show OK of ERROR sign
                         if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == 'true'){
-                            template += '<img src="images/testok.png" alt="Test OK" title="Test OK"></img>';
+                            template += '<img src="images/testok.png" alt="Test OK" title="Test OK" class="test_ok_check"></img>';
                         }
                         else {
-                            template += '<img src="images/testerror.png" alt="Test Error" title="Test Error"></img>';
+                            template += '<img src="images/testerror.png" alt="Test Error" title="Test Error" class="test_error_cross"></img>';
                         }
                     }
                     else {
@@ -186,9 +184,9 @@ var fillTableWithResults = function(results) {
                         template += '<img src="images/screenshots/' + results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot + '"';
                         // Check if the error is OK or ERROR
                         if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == 'true'){
-                            template += 'alt="OK screenshot" title="screenshot OK" class="okcompareimg ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId +'"></img>';
+                            template += 'alt="OK screenshot" title="screenshot OK" class="ok_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId +'"></img>';
                         } else {
-                            template += 'alt="Error in screenshot" title="Screenshot error"class="errorcompareimg ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId +'"></img>';
+                            template += 'alt="Error in screenshot" title="Screenshot error"class="error_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId +'"></img>';
                         }
                     }
                     // Close testContentColumn div
@@ -270,30 +268,30 @@ var createTable = function(results){
     var tempNumberOfColumns = 0;
     for (var i = 0; i < results.operatingsystems.length; i++){
         // Add the testContainer div
-        template = '<div class="testcontainer">';
+        template = '<div class="test_container">';
                 // Add browser images on top of the list
-        template += '<div class="browserImagesContainer">';
+        template += '<div class="browser_images_container">';
         for (var j = 0; j < results.operatingsystems[i].browsers.length; j++) {
-            template += '<img src="images/browsers/' + results.operatingsystems[i].browsers[j].browserPic + '" class="browserImages ' + results.operatingsystems[i].osId + ' ' + results.operatingsystems[i].browsers[j].browserId + '" alt="' + results.operatingsystems[i].browsers[j].browserName + '" title="' + results.operatingsystems[i].osName + ' - '  + results.operatingsystems[i].browsers[j].browserName + '"/>';
+            template += '<img src="images/browsers/' + results.operatingsystems[i].browsers[j].browserPic + '" class="browser_images ' + results.operatingsystems[i].osId + ' ' + results.operatingsystems[i].browsers[j].browserId + '" alt="' + results.operatingsystems[i].browsers[j].browserName + '" title="' + results.operatingsystems[i].osName + ' - '  + results.operatingsystems[i].browsers[j].browserName + '"/>';
         }
         // Close browserImagesContainer div
         template += '</div>';
         // Add a div that contains the clickable part of the header
-        template += '<div class="testHeader">';
+        template += '<div class="test_header">';
         // Add a header for this testContainer
         template += '<h1>- ' + results.operatingsystems[i].osName + '</h1>';
         // Close the testContainer div
         template += '</div>';
         // Add testcontent
-        template += '<div class="testcontent ' + results.operatingsystems[i].osId + '">';
+        template += '<div class="test_content ' + results.operatingsystems[i].osId + '">';
         // Add the description column first
-        template += '<div class="descriptionColumn ' + results.operatingsystems[i].osId + '">';
+        template += '<div class="description_column ' + results.operatingsystems[i].osId + '">';
         for (var k = 0; k < results.codeInput.length; k++) {
-            template += '<div class="descriptionColumnContent"><p title="' + results.codeInput[k].tooltip + '">' + results.codeInput[k].codeName + '</p></div>';
+            template += '<div class="description_column_content"><p title="' + results.codeInput[k].tooltip + '">' + results.codeInput[k].codeName + '</p></div>';
         }
         template += '</div>';
         for (var l = 0; l < results.operatingsystems[i].browsers.length; l++) {
-            template += '<div class="testContentColumn ' + results.operatingsystems[i].osId + ' ' + results.operatingsystems[i].browsers[l].browserId + '">';
+            template += '<div class="test_content_column ' + results.operatingsystems[i].osId + ' ' + results.operatingsystems[i].browsers[l].browserId + '">';
             // Close testContentColumn div
             template += '</div>';
             // Add an extra column to the counter
@@ -306,11 +304,11 @@ var createTable = function(results){
         $contentcontent.append($.template(template));
         // Set all contentcolumns equal to the description column
         // If a column is empty at least his height will be there and the dashed line on the right too
-        $('.testContentColumn').height($('.descriptionColumn').height());
+        $('.test_content_column').height($('.description_column').height());
         // Check if this is the last item to be put on stage
         // If it is set its bottom corners rounded
         if (i == results.operatingsystems.length -1){
-            $("div.testcontent." + results.operatingsystems[i].osId).corners("bottom 13px");
+            $("div.test_content." + results.operatingsystems[i].osId).corners("bottom 13px");
         }
         // Check if this OS has the highest number of tests on browsers
         // This means there are more columns and the width has to be wider
@@ -320,7 +318,7 @@ var createTable = function(results){
         }
     }
     // Calculate the width of the contentpage
-    $(".testcontainer").width(25+136+20+(highestNumberOfColumns*110));
+    $(".test_container").width(25+136+20+(highestNumberOfColumns*110));
     // Request the results
     getResults();
 };
@@ -333,7 +331,7 @@ var createTable = function(results){
 var CreateSettingsTable = function(results) {
         // Loop all browsers and check if they are ticked off
         // Display all in an overview
-        var testvars = '<div class=testcontainer><div class="testHeader" id="testSettings"><h1>- Test settings</h1></div><div class="testcontent" id="settingsDiv"><h2>Operating systems and browsers</h2>';
+        var testvars = '<div class=test_container><div class="test_header" id="test_settings"><h1>- Test settings</h1></div><div class="test_content" id="settingsDiv"><h2>Operating systems and browsers</h2>';
         testvars += '<ul>';
         for (var i = 0; i < results.operatingsystems.length; i++) {
             testvars += '<li class="os_test_list_item">' + results.operatingsystems[i].osName + '</li>';
@@ -347,10 +345,10 @@ var CreateSettingsTable = function(results) {
         testvars += '</ul>';
         //
         // Website to check
-        testvars += "<h2>Website to check</h2> <ul class=testinput><li>" + results.url + "</li></ul>";
+        testvars += "<h2>Website to check</h2> <ul class=test_input><li>" + results.url + "</li></ul>";
         //
         // Description
-        testvars += "<h2>Description</h2> <ul class=testinput><li>" + results.description + "</li></ul>";
+        testvars += "<h2>Description</h2> <ul class=test_input><li>" + results.description + "</li></ul>";
         //
         // Test input
         testvars += "<h2>Test input</h2> <ol id='code_input_list'>";
@@ -364,7 +362,7 @@ var CreateSettingsTable = function(results) {
         $contentcontent.append($.template(testvars));
         
         // Add corners
-        $testSettings = $('#testSettings');
+        $testSettings = $('#test_settings');
         $settingsDiv = $('#settingsDiv');
         $testSettings.corners("top 13px");
         

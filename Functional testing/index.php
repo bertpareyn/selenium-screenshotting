@@ -7,9 +7,9 @@
 </head>
 <body>
 <div id="header">
-	<div id="headercontent">
+	<div id="header_content">
 		<img src="images/functionaltestinglogo.png" alt="functional testing logo" id="logo"/>
-		<div id="menubuttons">
+		<div id="menu_buttons">
 			<ul>
 				<li><a href="test.php" title="Test your page">Test</a></li>
 				<li><a href="results.php" title="Watch your results">Results</a></li>
@@ -20,13 +20,13 @@
 </div>
 
 <div id="content">
-	<div id="contentcontent">
+	<div id="content_content">
 	</div>
 </div>
 
 <div id="footer">
-	<div id="footercontent">
-		<div id="footershadow">
+	<div id="footer_content">
+		<div id="footer_shadow">
 		</div>
 		
 	</div>

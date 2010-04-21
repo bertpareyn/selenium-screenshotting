@@ -14,17 +14,17 @@
 </head>
 <body>
 <div style="display:none">
-    <a id="hidden_clicker" href="#fancyBoxContent">fancybox</a>
+    <a id="hidden_clicker" href="#fancy_box_content">fancybox</a>
 </div>
 <div style="display:none;">
-    <div id="fancyBoxContent">
+    <div id="fancy_box_content">
     </div>
 </div>
 
 <div id="header">
-	<div id="headercontent">
+	<div id="header_content">
 		<img src="images/functionaltestinglogo.png" alt="functional testing logo" id="logo"/>
-		<div id="menubuttons">
+		<div id="menu_buttons">
 			<ul>
 				<li><a href="test.php" title="Test your page">Test</a></li>
 				<li class="activebutton">Results</li>
@@ -35,14 +35,14 @@
 </div>
 
 <div id="content">
-	<div id="contentcontent">
-        <div id="resultContainer"></div>
+	<div id="content_content">
+        <div id="result_container"></div>
 	</div>
 </div>
 
 <div id="footer">
-	<div id="footercontent">
-		<div id="footershadow">
+	<div id="footer_content">
+		<div id="footer_shadow">
 		</div>
 		
 	</div>

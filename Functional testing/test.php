@@ -11,9 +11,9 @@
 <body>
 
 <div id="header">
-	<div id="headercontent">
+	<div id="header_content">
 		<img src="images/functionaltestinglogo.png" alt="functional testing logo" id="logo"/>
-		<div id="menubuttons">
+		<div id="menu_buttons">
 			<ul>
 				<li class="activebutton">Test</li>
 				<li><a href="results.php" title="Watch your results">Results</a></li>
@@ -24,24 +24,24 @@
 </div>
 
 <div id="content">
-	<div id="contentcontent">
-		<p id="testExplanation">You can test your webpages for inconsistencies on this page. Once the test is submitted you will be redirected to the results page were your results will appear as soon as they are ready.</p>
-		<div id="testcontainer">
+	<div id="content_content">
+		<p id="test_explanation">You can test your webpages for inconsistencies on this page. Once the test is submitted you will be redirected to the results page were your results will appear as soon as they are ready.</p>
+		<div id="test_container">
 		    <form name ="checkboxform" method="POST" action="results.php">
-		        <div id="testpreview">
+		        <div id="test_preview">
 		            
                 </div>
-		        <div id="codeInput">
+		        <div id="code_input">
 		            <h1>Website to check</h1>
-		            <input type="text" id="siteToCheck" name="siteToCheck">
+		            <input type="text" id="site_to_check" name="siteToCheck">
 		            <h1>Description</h1>
 		            <input type="text" id="description" name="description">
 		            <h1>Test input</h1>
 		            <textarea name="codeInput" cols="70" rows="8"></textarea>
 		        </div>
-		        <div id="submitTestForm">
-		            <input id="submitFormButton" type="Submit" name="submitCheckboxes" value="Start test">
-		            <input id="resetFormButton" type="Reset" name="resetForm" value="Reset form">
+		        <div id="submit_test_form">
+		            <input id="submit_form_button" type="Submit" name="submitCheckboxes" value="Start test">
+		            <input id="reset_form_button" type="Reset" name="resetForm" value="Reset form">
 		        </div>
 		    </form>
 		</div>
@@ -49,8 +49,8 @@
 	</div>
 </div>
 <div id="footer">
-	<div id="footercontent">
-		<div id="footershadow">
+	<div id="footer_content">
+		<div id="footer_shadow">
 		</div>
 		
 	</div>
