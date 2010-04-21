@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="CSS/screen.css" rel="stylesheet" type="text/css" media="screen">
+<link href="css/screen.css" rel="stylesheet" type="text/css" media="screen">
 <link rel="stylesheet" href="libs/fancybox/jquery.fancybox-1.3.1.css" type="text/css" media="screen" />
 <script type="text/javascript" src="libs/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="libs/roundedcorners.js"></script>

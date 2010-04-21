@@ -248,7 +248,7 @@ var fillTableWithResults = function(results) {
 var getResults = function(){
     //Make the ajax call
     $.ajax({
-        url: 'json/testresults.json',
+        url: 'json/testresults.php',
         cache: false,
         success: function(data){
             fillTableWithResults(data);
@@ -424,7 +424,7 @@ var CreateSettingsTable = function(results) {
 var getSettings = function(){
     //Make the ajax call
     $.ajax({
-        url: 'json/startedTestSettings.json',
+        url: 'json/startedTestSettings.php',
         cache: false,
         success: function(data){
             CreateSettingsTable(data);

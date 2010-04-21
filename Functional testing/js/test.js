@@ -77,7 +77,7 @@ var createTableWithCheckboxes = function (results){
         template += '<div class="browserImagesContainer">';
         for (var m = 0; m < results.browser.length; m++) {
             if (results.browser[m].isSupported == 'true') {
-                template += '<img src="images/browsers/' + results.browser[m].browserName + '.png" id="' + results.browser[m].browserId + '" alt="' + results.browser[m].browserName + '" title="' + results.browser[m].browserName + '" class="browserImages"/>';
+                template += '<img src="images/browsers/' + results.browser[m].browserpic + '" id="' + results.browser[m].browserId + '" alt="' + results.browser[m].browserName + '" title="' + results.browser[m].browserName + '" class="browserImages"/>';
             }
         }
         // Close browserImagesContainer div
@@ -158,7 +158,7 @@ var createTableWithCheckboxes = function (results){
 var getBrowserSettings = function(){
     //Make the ajax call
     $.ajax({
-        url: 'json/testvars.json',
+        url: 'json/testvars.php',
         cache: false,
         success: function(data){
             createTableWithCheckboxes(data);

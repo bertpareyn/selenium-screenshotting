@@ -3,31 +3,37 @@
         {
             "browserName": "Firefox",
             "browserId": "firefox",
+            "browserpic" : "firefox.png",
             "isSupported": "true" 
         },
         {
             "browserName": "Chrome",
             "browserId": "chrome",
+            "browserpic" : "chrome.png",
             "isSupported": "true" 
         },
         {
             "browserName": "Safari",
             "browserId": "safari",
+            "browserpic" : "safari.png",
             "isSupported": "true" 
         },
         {
             "browserName": "IE6",
             "browserId": "ie6",
+            "browserpic" : "ie6.png",
             "isSupported": "true" 
         },
         {
             "browserName": "IE7",
             "browserId": "ie7",
+            "browserpic" : "ie7.png",
             "isSupported": "true" 
         },
         {
             "browserName": "IE8",
             "browserId": "ie8",
+            "browserpic" : "ie8.png",
             "isSupported": "true" 
         }
     ],
