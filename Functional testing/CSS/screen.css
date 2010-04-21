@@ -27,6 +27,7 @@ h2 {color:#dfe3e5; padding:10px 0; margin:0; font-size: 16px;}
 #content_content .test_input li{display:block; list-style:none;}
 hr {display: block; clear:left; margin:0; visibility: hidden;}
 #test_explanation {width:500px; padding-left:7px;}
+#settings_div {display:none;}
 
 /* TESTFORM */
 #test_container { padding:7px; font-size:13px;clear:both;}
@@ -63,9 +64,10 @@ label {padding-left:7px;}
 #result_container .test_content_column_content img {height:50px;}
 
 .test_error_cross, .test_ok_check {width:38px !important; height:38px !important;}
-.ok_compare_img, .error_compare_img, .ok_compare_img_big, .error_compare_img_big {border:solid; border-width:3px; cursor:pointer}
+.ok_compare_img, .error_compare_img, .ok_compare_img_big, .error_compare_img_big, .no_reference_screenshot,.no_reference_screenshot_big {border:solid; border-width:3px; cursor:pointer}
 .ok_compare_img, .ok_compare_img_big {border-color:green;}
 .error_compare_img, .error_compare_img_big {border-color:#BB0000;}
+.no_reference_screenshot, .no_reference_screenshot_big {border-color:#4b6988;}
 
 hr {display: block; clear: left; margin:0; visibility: hidden;}
 
@@ -77,7 +79,8 @@ hr {display: block; clear: left; margin:0; visibility: hidden;}
 #fancy_box_content {padding:30px;}
 #fancy_box_content h1 {color:#2a3c4f; margin-bottom:0px; top:-20px; position:relative;}
 #fancy_box_content .browser_image {float:right; position:absolute; top:0; right:10px; width:50px; height:50px;}
-#fancy_box_content .ok_compare_img_big, #fancy_box_content .error_compare_img_big {width:700px;}
+#fancy_box_content .ok_compare_img_big, #fancy_box_content .error_compare_img_big, #fancy_box_content .no_reference_screenshot_big, #fancy_box_content .reference_image {width:500px;}
+#fancy_box_content .reference_image {clear:left; float:left; margin-right:15px; border-color:#FFF;}
 
 #fancy_box_content .description_column {float:left; border-right:2px dashed #2a3c4f; margin-bottom:30px;}
 #fancy_box_content .description_column p, .test_content_column_content img{vertical-align:middle; color:#2a3c4f;}
@@ -85,3 +88,4 @@ hr {display: block; clear: left; margin:0; visibility: hidden;}
 #fancy_box_content .description_column_content {width:136px; height:56px; clear:left; display:block; margin-bottom:7px; padding:5px;}
 #fancy_box_content .test_content_column_content {width:200px; height:56px;}
 #fancy_box_content .test_content_column_content img {max-width: 130px; max-height:50px; height:50px;}
+#fancy_box_content #show_browser_results {float:right; position:absolute; top:22px; right:30px; cursor:pointer;}

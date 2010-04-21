@@ -4,7 +4,7 @@
 // testSettings: header, clickable for settings
 $testSettings = $('#test_settings');
 // settingsDiv: div containing settings data
-$settingsDiv = $('#settingsDiv');
+$settingsDiv = $('#settings_div');
 // contentcontent: Contains all content data
 $contentcontent = $('#result_container');
 // displayBox: Overlay that shows more information about the topic clicked
@@ -23,10 +23,6 @@ $("#hidden_clicker").fancybox({
     'transitionOut':'fade'
 });
 
-var resizeFancyBox = function(){
-    alert("test");
-};
-
 /**
  * Add clickhandlers
  */
@@ -34,6 +30,7 @@ $(".test_header").live("click", function(){showHideTest($(this));});
 $(".browser_images").live("click", function(){showReport($(this));});
 $(".ok_compare_img").live("click", function(){showReport($(this));});
 $(".error_compare_img").live("click", function(){showReport($(this));});
+$(".no_reference_screenshot").live("click", function(){showReport($(this));});
 $("#show_browser_results").live("click", function(){showReport($(this));});
 
 /**
@@ -93,11 +90,23 @@ var showBrowserReport = function(ev){
     
     // Add the template to the html
     $fancyBoxContent.html(template);
+    
+    // Loop all children of the testcontencolumn
+    $contentcolumn.children().each(function(){
+        // If there is a child that is a screenshot get his data and add it to the same screenshot on the fancybox page
+        if ($(this).children('img')[0].className.split(' ')[0] == "error_compare_img"){
+            // Give the browser header the same data as the image
+            $fancyBoxContent.children('div').children('div').children("img."+$(this).children('img')[0].className.split(' ')[0]+"."+$(this).children('img')[0].className.split(' ')[1]+"."+$(this).children('img')[0].className.split(' ')[2]).data("reference", $(this).children('img').data("reference"));
+        }
+    });
+    
     // Trigger click to show fancybox
     $("#hidden_clicker").trigger("click");
     if ($.browser.mozilla) {
         $fancyBoxContent.width("");
     }
+    
+    //alert(ev.data("reference")); 
 };
 
 /**
@@ -108,6 +117,7 @@ var showBrowserReport = function(ev){
 var showOkScreenshot = function(ev) {
     $fancyBoxContent.width("");
     var template = '<h1>Screenshot successful</h1>';
+    template += '<p id="show_browser_results" class="' + ev.context.className.split("ok_compare_img ")[1] + '">Show browser results</p>';
     template += '<a href="' + ev.context.src + '" title="Show full screenshot" target="_blank"><img src="' + ev.context.src + '" class="ok_compare_img_big"></a>';
     // Add the template to the html
     $fancyBoxContent.html(template);
@@ -125,7 +135,32 @@ var showErrorScreenshot = function(ev) {
     $fancyBoxContent.width("");
     var template = '<h1>Screenshot error</h1>';
     template += '<p id="show_browser_results" class="' + ev.context.className.split("error_compare_img ")[1] + '">Show browser results</p>';
-    template += '<a href="' + ev.context.src + '" title="Show full screenshot" target="_blank"><img src="' + ev.context.src + '" class="error_compare_img_big"></a>';
+    //template += '<a href="' + ev.context.nextSibling.innerHTML + '" title="Reference Image" target="_blank"><img src="images/screenshots/' + ev.context.nextSibling.innerHTML + '" class="reference_image"></a>';
+    template += '<img src="images/screenshots/' + ev.data("reference") + '" class="reference_image">';
+    template += '<a href="' + ev.context.src + '" title="Show full screenshot" target="_blank"><img src="' + ev.context.src + '" class="error_compare_img_big ' + ev.context.className.split("error_compare_img ")[1] + '"></a>';
+    
+    var reference = ev.data("reference");
+    
+    // Add the template to the html
+    $fancyBoxContent.html(template);
+    
+    // Put the arbitrary data in the image on the Fancybox
+    // It will be needed when going back to the browser overview
+    $fancyBoxContent.children('a').children('img').data("reference", reference); 
+    // Trigger click to show fancybox
+    $("#hidden_clicker").trigger("click");
+};
+
+/**
+ * Show screenshots that have errors.
+ * Function will show the reference screenshot if it's present
+ * @param {Object} ev event that came in after click
+ */
+var showNoReferenceScreenshot = function(ev) {
+    $fancyBoxContent.width("");
+    var template = '<h1>No screenshot to compare with</h1>';
+    template += '<p id="show_browser_results" class="' + ev.context.className.split("no_reference_screenshot ")[1] + '">Show browser results</p>';
+    template += '<a href="' + ev.context.src + '" title="Show full screenshot" target="_blank"><img src="' + ev.context.src + '" class="no_reference_screenshot_big"></a>';
     
     // Add the template to the html
     $fancyBoxContent.html(template);
@@ -142,6 +177,7 @@ var showErrorScreenshot = function(ev) {
 var showReport = function (ev){
     if (ev.context.className.split(' ')[0] == 'browser_images'){
         // Execute function to show information about a specific browser on a specific os
+        // Is called when a browser header is clicked and when a user wants more browser information coming from screenshots
         showBrowserReport(ev);
     } else if (ev.context.className.split(' ')[0] == 'ok_compare_img'){
         // Execute function to show information about a specific browser on a specific os
@@ -150,7 +186,12 @@ var showReport = function (ev){
         // Execute function to show information about a specific browser on a specific os
         showErrorScreenshot(ev);
     } else if (ev.context.id == 'show_browser_results'){
+        // Trigger click of browser header
+        // This sets all settings correct at once with the same function
         $('.browser_images.' + ev.context.className.split(' ')[0] + '.' + ev.context.className.split(' ')[1]).trigger("click");
+    } else if (ev.context.className.split(' ')[0] == 'no_reference_screenshot'){
+        // Show a screenshot that hasn't got any reference image
+        showNoReferenceScreenshot(ev);
     }
 };
 
@@ -159,6 +200,8 @@ var showReport = function (ev){
  * @param {Object} results Results from the Ajax call that contain results from the test
  */
 var fillTableWithResults = function(results) {
+    // Unique ID to give to each image on the gui
+    var uidForEveryImage = 0;
     // Loop through all tests
     for (var i = 0; i < results.tests[0].testresults.length; i++) { 
         // Loop through all results (eg. firefox and safari)
@@ -184,15 +227,27 @@ var fillTableWithResults = function(results) {
                         template += '<img src="images/screenshots/' + results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot + '"';
                         // Check if the error is OK or ERROR
                         if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == 'true'){
-                            template += 'alt="OK screenshot" title="screenshot OK" class="ok_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId +'"></img>';
+                            template += 'alt="OK screenshot" title="screenshot OK" class="ok_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
                         } else {
-                            template += 'alt="Error in screenshot" title="Screenshot error"class="error_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId +'"></img>';
+                            // Check if there is a reference screenshot available
+                            if (results.tests[0].testresults[i].osresults[j].browserresults[k].reference == 'null') {
+                                template += 'alt="Screenshot without reference" title="Screenshot without reference" class="no_reference_screenshot ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
+                            } else {
+                                template += 'alt="Error in screenshot" title="Screenshot error"class="error_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
+                            }
                         }
                     }
                     // Close testContentColumn div
                     template += '</div>';
                     testContentHolder.append(template);
+                    // Put arbitrary data in the images tag
+                    // The reference screenshot will be kept in this arbitrary data
+                    var referenceData = results.tests[0].testresults[i].osresults[j].browserresults[k].reference;
+                    var image = null;
+                    image = $("img.error_compare_img." + results.tests[0].testresults[i].osId + "." + results.tests[0].testresults[i].osresults[j].browserId + '.' + uidForEveryImage);
+                    image.data("reference", referenceData);
                 }
+                uidForEveryImage ++;
             }
         }
     }
@@ -331,7 +386,7 @@ var createTable = function(results){
 var CreateSettingsTable = function(results) {
         // Loop all browsers and check if they are ticked off
         // Display all in an overview
-        var testvars = '<div class=test_container><div class="test_header" id="test_settings"><h1>- Test settings</h1></div><div class="test_content" id="settingsDiv"><h2>Operating systems and browsers</h2>';
+        var testvars = '<div class=test_container><div class="test_header" id="test_settings"><h1>+ Test settings</h1></div><div class="test_content" id="settings_div"><h2>Operating systems and browsers</h2>';
         testvars += '<ul>';
         for (var i = 0; i < results.operatingsystems.length; i++) {
             testvars += '<li class="os_test_list_item">' + results.operatingsystems[i].osName + '</li>';
@@ -363,7 +418,7 @@ var CreateSettingsTable = function(results) {
         
         // Add corners
         $testSettings = $('#test_settings');
-        $settingsDiv = $('#settingsDiv');
+        $settingsDiv = $('#settings_div');
         $testSettings.corners("top 13px");
         
         // Show hide testsettings
@@ -434,4 +489,4 @@ var getSettings = function(){
 };
 
 getSettings();
-var id = setInterval(getResults, 3000);
+var id = setInterval(getResults, 5000);
