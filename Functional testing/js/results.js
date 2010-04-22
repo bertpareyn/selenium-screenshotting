@@ -15,12 +15,23 @@ $hiddenClicker = $("#hiddenclicker");
 $fancyBoxContent = $("#fancy_box_content");
 
 /**
+ * With scrollbars floats can become messy
+ * If you add some extra width this is fixed but still dynamic
+ */
+var setFancyBoxWidth = function(){
+    $("#fancybox-inner").width($("#fancybox-inner").width() + 40);
+};
+
+/**
  * Show the fancybox and give some parameters to go with it
  */
 $("#hidden_clicker").fancybox({
     'titlePosition':'inside',
     'transitionIn':'fade',
-    'transitionOut':'fade'
+    'transitionOut':'fade',
+    'onComplete' : function() {
+       var t=setTimeout("setFancyBoxWidth()",1);
+    }
 });
 
 /**
@@ -102,11 +113,6 @@ var showBrowserReport = function(ev){
     
     // Trigger click to show fancybox
     $("#hidden_clicker").trigger("click");
-    if ($.browser.mozilla) {
-        $fancyBoxContent.width("");
-    }
-    
-    //alert(ev.data("reference")); 
 };
 
 /**
@@ -342,7 +348,7 @@ var createTable = function(results){
         // Add the description column first
         template += '<div class="description_column ' + results.operatingsystems[i].osId + '">';
         for (var k = 0; k < results.codeInput.length; k++) {
-            template += '<div class="description_column_content"><p title="' + results.codeInput[k].tooltip + '">' + results.codeInput[k].codeName + '</p></div>';
+            template += '<div class="description_column_content"><p title="' + results.codeInput[k].tooltip + '">' + (k+1) + '. ' + results.codeInput[k].codeName + '</p></div>';
         }
         template += '</div>';
         for (var l = 0; l < results.operatingsystems[i].browsers.length; l++) {

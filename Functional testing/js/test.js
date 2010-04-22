@@ -103,7 +103,7 @@ var createTableWithCheckboxes = function (results){
                 for (var l = 0; l < results.os.length; l++) {
                     if (results.os[l].isSupported == 'true') {
                         // Create checkbox
-                        template += '<div class="test_content_column_content">' + '<input type ="checkbox" id="' + results.browser[k].browserId + '" name="' + results.browser[k].browserName + '" class="' + results.browser[k].browserId + ' ' + results.os[l].osId + ' ' + ' browserandosinputchk';
+                        template += '<div class="test_content_column_content">' + '<input type ="checkbox" id="' + results.browser[k].browserId + '" name="' + results.browser[k].browserId + "_" + results.os[l].osId + '" class="' + results.browser[k].browserId + ' ' + results.os[l].osId + ' ' + ' browserandosinputchk';
                         // Check if the checkbox should be enabled
                         // If the browser is not supported on this OS then disable it
                         // if the current supported browser in the os is the browser that has been checked

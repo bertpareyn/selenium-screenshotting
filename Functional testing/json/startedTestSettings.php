@@ -13,6 +13,46 @@
                     "tooltip" : "Take a screenshot"
                 },
                 {
+                    "codeName" : "TakeScreenshot",
+                    "tooltip" : "Take a screenshot"
+                },
+                {
+                    "codeName" : "TakeScreenshot",
+                    "tooltip" : "Take a screenshot"
+                },
+                {
+                    "codeName" : "TakeScreenshot",
+                    "tooltip" : "Take a screenshot"
+                },
+                {
+                    "codeName" : "TakeScreenshot",
+                    "tooltip" : "Take a screenshot"
+                },
+                {
+                    "codeName" : "TakeScreenshot",
+                    "tooltip" : "Take a screenshot"
+                },
+                {
+                    "codeName" : "TakeScreenshot",
+                    "tooltip" : "Take a screenshot"
+                },
+                {
+                    "codeName" : "TakeScreenshot",
+                    "tooltip" : "Take a screenshot"
+                },
+                {
+                    "codeName" : "TakeScreenshot",
+                    "tooltip" : "Take a screenshot"
+                },
+                {
+                    "codeName" : "TakeScreenshot",
+                    "tooltip" : "Take a screenshot"
+                },
+                {
+                    "codeName" : "TakeScreenshot",
+                    "tooltip" : "Take a screenshot"
+                },
+                {
                     "codeName" : "AssertTrue",
                     "tooltip" : "assertTrue(isTextPresent('on this page you can submit your test'));"
                 }

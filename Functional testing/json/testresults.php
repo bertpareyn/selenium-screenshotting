@@ -19,6 +19,56 @@
                                 },
                                 {
                                     "testId" : "0002",
+                                    "description" : "TakeScreenshot",
+                                    "tooltip" : "Take a screenshot"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "description" : "TakeScreenshot",
+                                    "tooltip" : "Take a screenshot"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "description" : "TakeScreenshot",
+                                    "tooltip" : "Take a screenshot"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "description" : "TakeScreenshot",
+                                    "tooltip" : "Take a screenshot"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "description" : "TakeScreenshot",
+                                    "tooltip" : "Take a screenshot"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "description" : "TakeScreenshot",
+                                    "tooltip" : "Take a screenshot"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "description" : "TakeScreenshot",
+                                    "tooltip" : "Take a screenshot"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "description" : "TakeScreenshot",
+                                    "tooltip" : "Take a screenshot"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "description" : "TakeScreenshot",
+                                    "tooltip" : "Take a screenshot"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "description" : "TakeScreenshot",
+                                    "tooltip" : "Take a screenshot"
+                                },
+                                {
+                                    "testId" : "0002",
                                     "description" : "AssertTrue",
                                     "tooltip" : "assertTrue(isTextPresent('on this page you can submit your test'));"
                                 }
@@ -36,8 +86,68 @@
                                 {
                                     "testId" : "0002",
                                     "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
                                     "reference" : "null",
                                     "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "true"
                                 },
                                 {
                                     "testId" : "0003",
@@ -61,6 +171,66 @@
                                     "screenshot" : "screenshot.png",
                                     "reference" : "screenshot.png",
                                     "tooltip" : "Take a screenshot"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
                                 },
                                 {
                                     "testId" : "0003",
@@ -87,6 +257,66 @@
                                 },
                                 {
                                     "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
                                     "description" : "AssertTrue",
                                     "tooltip" : "assertTrue(isTextPresent('on this page you can submit your test'));"
                                 }
@@ -100,6 +330,66 @@
                                     "screenshot" : "null",
                                     "reference" : "null",
                                     "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "true"
                                 },
                                 {
                                     "testId" : "0002",
@@ -122,7 +412,67 @@
                                     "testId" : "0001",
                                     "screenshot" : "null",
                                     "reference" : "null",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
                                     "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "true"
                                 },
                                 {
                                     "testId" : "0002",
@@ -154,6 +504,66 @@
                                     "success" : "true"
                                 },
                                 {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
                                     "testId" : "0003",
                                     "screenshot" : "null",
                                     "reference" : "null",
@@ -168,6 +578,66 @@
                                     "testId" : "0001",
                                     "screenshot" : "null",
                                     "reference" : "null",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
                                     "success" : "true"
                                 },
                                 {
@@ -198,6 +668,66 @@
                                     "screenshot" : "screenshot.png",
                                     "reference" : "screenshot.png",
                                     "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "true"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "null",
+                                    "success" : "false"
+                                },
+                                {
+                                    "testId" : "0002",
+                                    "screenshot" : "screenshot.png",
+                                    "reference" : "screenshot.png",
+                                    "success" : "false"
                                 },
                                 {
                                     "testId" : "0003",

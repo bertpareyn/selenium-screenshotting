@@ -76,11 +76,11 @@ hr {display: block; clear: left; margin:0; visibility: hidden;}
 #code_input_list {margin-left:22px;}
 
 /* OVERLAY */
-#fancy_box_content {padding:30px;}
+#fancy_box_content {padding:30px 30px 30px 30px;}
 #fancy_box_content h1 {color:#2a3c4f; margin-bottom:0px; top:-20px; position:relative;}
-#fancy_box_content .browser_image {float:right; position:absolute; top:0; right:10px; width:50px; height:50px;}
+#fancy_box_content .browser_image {float:right; position:absolute; top:0; right:30px; width:50px; height:50px;}
 #fancy_box_content .ok_compare_img_big, #fancy_box_content .error_compare_img_big, #fancy_box_content .no_reference_screenshot_big, #fancy_box_content .reference_image {width:500px;}
-#fancy_box_content .reference_image {clear:left; float:left; margin-right:15px; border-color:#FFF;}
+#fancy_box_content .reference_image {clear:left; float:left; margin-right:15px; border:2px solid #fff; padding-bottom:13px;}
 
 #fancy_box_content .description_column {float:left; border-right:2px dashed #2a3c4f; margin-bottom:30px;}
 #fancy_box_content .description_column p, .test_content_column_content img{vertical-align:middle; color:#2a3c4f;}
@@ -88,4 +88,4 @@ hr {display: block; clear: left; margin:0; visibility: hidden;}
 #fancy_box_content .description_column_content {width:136px; height:56px; clear:left; display:block; margin-bottom:7px; padding:5px;}
 #fancy_box_content .test_content_column_content {width:200px; height:56px;}
 #fancy_box_content .test_content_column_content img {max-width: 130px; max-height:50px; height:50px;}
-#fancy_box_content #show_browser_results {float:right; position:absolute; top:22px; right:30px; cursor:pointer;}
+#fancy_box_content #show_browser_results {float:right; position:absolute; top:22px; right:60px; cursor:pointer;}
