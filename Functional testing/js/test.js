@@ -57,15 +57,24 @@ function selectCheckboxesForOS(ev){
     });
 }
 
-// Add handlers to the checkboxes to choose OS and browsers
+/**
+ * Add handlers to the checkboxes to choose OS and browsers
+ */
+
 $(".browserandosinputchk").live("click", function(){showTestPreview($(this));});
 $(".browser_images").live("click", function(){
     selectCheckboxesForBrowser($(this));
 });
+
 $(".os_description").live("click", function(){
     selectCheckboxesForOS($(this));
 });
 
+/**
+ * Create the table that will hold the checkboxes
+ * These checkboxes are enabled or disabled (according to support)
+ * @param {Object} results Results from the Ajax call with information about supported OS's and browsers
+ */
 var createTableWithCheckboxes = function (results){
         // Add the testContainer div
         template = '<div class="test_container">';
@@ -110,7 +119,7 @@ var createTableWithCheckboxes = function (results){
                         // set variable supported to true and break out of the loop
                         var enabled = false;
                         for (m in results.os[l].supportedBrowsers) {
-                            if (results.os[l].supportedBrowsers[m].browserName == results.browser[k].browserName) {
+                            if (results.os[l].supportedBrowsers[m].browserId == results.browser[k].browserId) {
                                 // Enabled
                                 enabled = true;
                                 break;
@@ -152,14 +161,17 @@ var createTableWithCheckboxes = function (results){
             }
         });
         // Calculate the width of the contentpage
-        $(".test_container").width(186+NumberOfColumns*(60));
+        $(".test_container").width(50+$(".description_column").width()+NumberOfColumns*(60));
+        $(".browser_images_container").css("left", $(".description_column").width());
 };
 
 var getBrowserSettings = function(){
     //Make the ajax call
     $.ajax({
-        url: 'json/testvars.php',
+        //url: 'json/testvars.php',
+        url: 'proxy/pollforsupportedproxy.php',
         cache: false,
+        dataType: "json",
         success: function(data){
             createTableWithCheckboxes(data);
         },

@@ -41,10 +41,10 @@ label {padding-left:7px;}
 #test_preview .test_header {height:21px;}
 #test_preview .test_header, #result_container .test_header {background-image:url(../images/testsheader.png); padding:10px;}
 #test_preview .test_header h1 {padding:5px 0;}
-#test_preview .browser_images_container {position:relative; top:-30px; left:146px; overflow:hidden;}
+#test_preview .browser_images_container {position:relative; top:-30px; overflow:hidden;}
 #test_preview .test_content, #result_container .test_content { padding:10px; background-image:url(../images/testscontentbg.png);}
 #test_preview .description_column, #result_container .description_column {float:left; border-right:2px dashed #DFE3E5;}
-#test_preview .description_column_content {width:136px; height:26px; clear:left; display:block; margin-bottom:7px; padding:5px; line-height:26px;}
+#test_preview .description_column_content {height:26px; clear:left; display:block; margin-bottom:7px; padding:5px; line-height:26px;}
 #test_preview .test_content_column_content, #result_container .test_content_column_content, #fancy_box_content .test_content_column_content {width:50px; height:26px; clear:left; display:block; margin-bottom:7px; padding:5px; text-align:center;}
 #test_preview .browser_images {width:26px; height:25px; padding:0 18px; cursor:pointer;}
 #test_preview .description_column p {color:#dfe3e5;}

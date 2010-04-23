@@ -483,12 +483,11 @@ var CreateSettingsTable = function(results) {
 var getSettings = function(){
     //Make the ajax call
     $.ajax({
-        url: 'proxy/proxy.php',
+        url: 'proxy/pollforsetupproxy.php',
         cache: false,
         dataType: "json",
         success: function(data){
             CreateSettingsTable(data);
-            //alert(data);
         },
         error: function(error){
             alert(error.responseText);
