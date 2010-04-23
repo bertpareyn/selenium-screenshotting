@@ -21,56 +21,6 @@
                                     "testId" : "0002",
                                     "description" : "TakeScreenshot",
                                     "tooltip" : "Take a screenshot"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "description" : "TakeScreenshot",
-                                    "tooltip" : "Take a screenshot"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "description" : "TakeScreenshot",
-                                    "tooltip" : "Take a screenshot"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "description" : "TakeScreenshot",
-                                    "tooltip" : "Take a screenshot"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "description" : "TakeScreenshot",
-                                    "tooltip" : "Take a screenshot"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "description" : "TakeScreenshot",
-                                    "tooltip" : "Take a screenshot"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "description" : "TakeScreenshot",
-                                    "tooltip" : "Take a screenshot"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "description" : "TakeScreenshot",
-                                    "tooltip" : "Take a screenshot"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "description" : "TakeScreenshot",
-                                    "tooltip" : "Take a screenshot"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "description" : "TakeScreenshot",
-                                    "tooltip" : "Take a screenshot"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "description" : "AssertTrue",
-                                    "tooltip" : "assertTrue(isTextPresent('on this page you can submit your test'));"
                                 }
                             ],
                     "osresults" : [
@@ -92,66 +42,6 @@
                                 {
                                     "testId" : "0002",
                                     "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0003",
-                                    "screenshot" : "null",
                                     "reference" : "null",
                                     "success" : "true"
                                 }
@@ -177,66 +67,6 @@
                                     "screenshot" : "screenshot.png",
                                     "reference" : "null",
                                     "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0003",
-                                    "screenshot" : "null",
-                                    "reference" : "null",
-                                    "tooltip" : "assertTrue(isTextPresent('you can test your webpages'));"
                                 }
                             ]
                         }
@@ -260,65 +90,6 @@
                                     "screenshot" : "screenshot.png",
                                     "reference" : "screenshot.png",
                                     "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "description" : "AssertTrue",
-                                    "tooltip" : "assertTrue(isTextPresent('on this page you can submit your test'));"
                                 }
                             ],
                     "osresults" : [
@@ -340,66 +111,6 @@
                                 {
                                     "testId" : "0002",
                                     "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0003",
-                                    "screenshot" : "null",
                                     "reference" : "null",
                                     "success" : "false"
                                 }
@@ -425,66 +136,6 @@
                                     "screenshot" : "screenshot.png",
                                     "reference" : "screenshot.png",
                                     "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0003",
-                                    "screenshot" : "null",
-                                    "reference" : "null",
-                                    "success" : "false"
                                 }
                             ]
                         },
@@ -508,66 +159,6 @@
                                     "screenshot" : "screenshot.png",
                                     "reference" : "screenshot.png",
                                     "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0003",
-                                    "screenshot" : "null",
-                                    "reference" : "null",
-                                    "success" : "true"
                                 }
                             ]
                         },
@@ -591,66 +182,6 @@
                                     "screenshot" : "screenshot.png",
                                     "reference" : "null",
                                     "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0003",
-                                    "screenshot" : "null",
-                                    "reference" : "null",
-                                    "success" : "true"
                                 }
                             ]
                         },
@@ -673,66 +204,6 @@
                                     "testId" : "0002",
                                     "screenshot" : "screenshot.png",
                                     "reference" : "screenshot.png",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0003",
-                                    "screenshot" : "null",
-                                    "reference" : "null",
                                     "success" : "true"
                                 }
                             ]

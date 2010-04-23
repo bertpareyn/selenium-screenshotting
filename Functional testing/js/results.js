@@ -483,13 +483,15 @@ var CreateSettingsTable = function(results) {
 var getSettings = function(){
     //Make the ajax call
     $.ajax({
-        url: 'json/startedTestSettings.php',
+        url: 'proxy/proxy.php',
         cache: false,
+        dataType: "json",
         success: function(data){
             CreateSettingsTable(data);
+            //alert(data);
         },
         error: function(error){
-            alert(error);
+            alert(error.responseText);
         }
     });
 };
