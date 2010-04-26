@@ -9,7 +9,7 @@ if(mysqli_connect_errno()){
 
 $query = "SELECT t.id, t.description, t.url, t.subTests, o.osId, o.browserId, os.name as osName, os.version as osVersion, b.name as browserName, b.version as browserVersion, b.icon 
 FROM Tests t, OSTests o, OperatingSystems os, Browsers b 
-WHERE t.id = '1' AND o.testId = t.id AND os.id = o.osId AND b.id = o.browserId";
+WHERE t.id = '" . $_GET['testid'] .  "' AND o.testId = t.id AND os.id = o.osId AND b.id = o.browserId";
 
 if($result = $db->query($query)){
 

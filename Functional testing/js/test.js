@@ -10,7 +10,9 @@ $testpreview = $('#test_preview');
 // Holds an array of supported browsers on OS's
 var selectedTestOSAndBrowsers = Array();
 
-// CLICK HANDLERS
+/**
+ * Click the header of the settings div
+ */ 
  $testSettings.click(function() {
     if ($settingsDiv.is(":hidden")){
         $testSettings.html("<h1>- Test settings</h1>"); 
@@ -20,6 +22,9 @@ var selectedTestOSAndBrowsers = Array();
     $settingsDiv.animate({height: "toggle", opacity: "toggle"});
 });
 
+/**
+ * Check or uncheck boxes in the array of boxes on the screen
+ */
 var browsersChecked = new Array();
 var osChecked = new Array();
 var supported = false;
@@ -40,6 +45,11 @@ function selectCheckboxesForBrowser(ev){
     });
 }
 
+/**
+ * If an operating system row is clicked
+ * check or uncheck the boxes that are enabled
+ * @param {Object} ev event fired (os row)
+ */
 function selectCheckboxesForOS(ev){
     var clickedOS = ev[0].id;
     $testpreview.find("input").each(function(){
@@ -60,8 +70,6 @@ function selectCheckboxesForOS(ev){
 /**
  * Add handlers to the checkboxes to choose OS and browsers
  */
-
-$(".browserandosinputchk").live("click", function(){showTestPreview($(this));});
 $(".browser_images").live("click", function(){
     selectCheckboxesForBrowser($(this));
 });
@@ -165,6 +173,113 @@ var createTableWithCheckboxes = function (results){
         $(".browser_images_container").css("left", $(".description_column").width());
 };
 
+/**
+ * {
+    "browser": [
+        {
+            "browserId": "opera",
+            "browserName": "Opera 4",
+            "browserpic": "opera-icon.png",
+            "isSupported": "false"
+        },
+        {
+            "browserId": "googlechrome",
+            "browserName": "Google Chrome 3",
+            "browserpic": "chrome-icon.png",
+            "isSupported": "true"
+        },
+        {
+            "browserId": "safari",
+            "browserName": "Safari 4",
+            "browserpic": "safari-icon.png",
+            "isSupported": "true"
+        },
+        {
+            "browserId": "iexplore8",
+            "browserName": "Internet Explorer 8",
+            "browserpic": "ie8-icon.png",
+            "isSupported": "true"
+        },
+        {
+            "browserId": "iexplore7",
+            "browserName": "Internet Explorer 7",
+            "browserpic": "ie7-icon.png",
+            "isSupported": "true"
+        },
+        {
+            "browserId": "iexplore6",
+            "browserName": "Internet Explorer 6",
+            "browserpic": "ie6-icon.png",
+            "isSupported": "true"
+        },
+        {
+            "browserId": "firefox",
+            "browserName": "Mozilla Firefox 3.5",
+            "browserpic": "firefox-icon.png",
+            "isSupported": "true"
+        }
+    ],
+    "os": [
+        {
+            "osId": "macosx",
+            "osName": "MAC OSX 10.6",
+            "isSupported": "true",
+            "supportedBrowsers": [
+                
+            ]
+        },
+        {
+            "osId": "Linux",
+            "osName": "Linux 10",
+            "isSupported": "true",
+            "supportedBrowsers": [
+                {
+                    "browserId": "firefox"
+                }
+            ]
+        },
+        {
+            "osId": "Windows7",
+            "osName": "Microsoft Windows 7",
+            "isSupported": "true",
+            "supportedBrowsers": [
+                {
+                    "browserId": "firefox"
+                },
+                {
+                    "browserId": "googlechrome"
+                },
+                {
+                    "browserId": "opera"
+                },
+                {
+                    "browserId": "safari"
+                },
+                {
+                    "browserId": "iexplore8"
+                },
+                {
+                    "browserId": "iexplore7"
+                },
+                {
+                    "browserId": "iexplore6"
+                }
+            ]
+        },
+        {
+            "osId": "WindowsVista",
+            "osName": "Microsoft Windows Vista",
+            "isSupported": "false",
+            "supportedBrowsers": [ 
+            ]
+        }
+    ]
+}
+ */
+/**
+ * Get the settings that the user put in the database for a test
+ * Above is an example of the JSON file that is returned
+ */
 var getBrowserSettings = function(){
     //Make the ajax call
     $.ajax({

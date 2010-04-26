@@ -219,7 +219,7 @@ var fillTableWithResults = function(results) {
                 // otherwise a repeat would occur
                 if (testContentHolder.children().size() < results.tests[0].testresults[i].ostests.length ) {
                     template = '<div class="test_content_column_content">';
-                    if (results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot == 'null') {
+                    if (results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot == '') {
                         // There is no screenshot, show OK of ERROR sign
                         if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == 'true'){
                             template += '<img src="images/testok.png" alt="Test OK" title="Test OK" class="test_ok_check"></img>';
@@ -230,13 +230,13 @@ var fillTableWithResults = function(results) {
                     }
                     else {
                         // There is a screenshot, display it
-                        template += '<img src="images/screenshots/' + results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot + '"';
+                        template += '<img src="http://10.0.0.49:8888/' + (results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot).split('Sites/')[1] + '"';
                         // Check if the error is OK or ERROR
                         if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == 'true'){
                             template += 'alt="OK screenshot" title="screenshot OK" class="ok_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
                         } else {
                             // Check if there is a reference screenshot available
-                            if (results.tests[0].testresults[i].osresults[j].browserresults[k].reference == 'null') {
+                            if (results.tests[0].testresults[i].osresults[j].browserresults[k].reference == null) {
                                 template += 'alt="Screenshot without reference" title="Screenshot without reference" class="no_reference_screenshot ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
                             } else {
                                 template += 'alt="Error in screenshot" title="Screenshot error"class="error_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
@@ -260,60 +260,78 @@ var fillTableWithResults = function(results) {
 };
 
 /**
- * {
+ {
     "tests": [
         {
-            "testId" : "0001",
-            "testresults" : [
+            "testId": 1,
+            "testresults": [
                 {
-                    "os" : "Windows 7",
-                    "osresults" : [
+                    "osId": "macosx",
+                    "ostests": [
                         {
-                            "browserId" : "0001",
-                            "browser" : "Firefox 3.6",
-                            "browserpic" : "firefox.png",
-                            "tests" : [
+                            "testId": "1",
+                            "description": "assertTrue(isTextPresent(\\\"News\\\"))",
+                            "tooltip": "assertTrue"
+                        },
+                        {
+                            "testId": "1",
+                            "description": "assertTrue(isTextPresent(\\\"Page last updated\\\"))",
+                            "tooltip": "assertTrue"
+                        },
+                        {
+                            "testId": "1",
+                            "description": "takeScreenshot",
+                            "tooltip": "takeScreenshot"
+                        }
+                    ],
+                    "osresults": [
+                        {
+                            "browserId": "firefox",
+                            "browserresults": [
                                 {
-                                    "testId" : "0001",
-                                    "description" : "verify text"
+                                    "testId": "1",
+                                    "screenshot": "",
+                                    "reference": null,
+                                    "success": "1"
                                 },
                                 {
-                                    "testId" : "0002",
-                                    "description" : "verify text"
-                                }
-                            ],
-                            "browserresults" : [
-                                {
-                                    "testId" : "0001",
-                                    "screenshot" : "null",
-                                    "success" : "true"
+                                    "testId": "1",
+                                    "screenshot": "",
+                                    "reference": null,
+                                    "success": "1"
                                 },
                                 {
-                                    "testId" : "0002",
-                                    "screenshot" : "null",
-                                    "success" : "true"
+                                    "testId": "1",
+                                    "screenshot": "\/Users\/hh354\/Sites\/php-src\/screenshots\/2010\/4\/26\/_Intel_Mac_OS_X_10_6\/Firefox\/merged\/merged0.png",
+                                    "reference": null,
+                                    "success": "1"
                                 }
                             ]
                         }
                     ]
-                }   
+                }
             ]
         }
     ]
 }
  * Get the results from the database
- * The above JSON file is an example of the returned datafeed
+ * Above is an example of the JSON file that is returned
  */
 var getResults = function(){
     //Make the ajax call
     $.ajax({
-        url: 'json/testresults.php',
+        //url: 'json/testresults.php',
+        url: 'proxy/pollforresultsproxy.php',
         cache: false,
+        dataType:"json",
         success: function(data){
             fillTableWithResults(data);
         },
         error: function(error){
             alert(error);
+        },
+        data : {
+            "testid" : testId
         }
     });
 };
@@ -348,7 +366,7 @@ var createTable = function(results){
         // Add the description column first
         template += '<div class="description_column ' + results.operatingsystems[i].osId + '">';
         for (var k = 0; k < results.codeInput.length; k++) {
-            template += '<div class="description_column_content"><p title="' + results.codeInput[k].tooltip + '">' + (k+1) + '. ' + results.codeInput[k].codeName + '</p></div>';
+            template += "<div class='description_column_content'><p title='" + results.codeInput[k].tooltip + "'>" + (k+1) + '. ' + results.codeInput[k].codeName + '</p></div>';
         }
         template += '</div>';
         for (var l = 0; l < results.operatingsystems[i].browsers.length; l++) {
@@ -382,6 +400,7 @@ var createTable = function(results){
     $(".test_container").width(25+136+20+(highestNumberOfColumns*110));
     // Request the results
     getResults();
+    var id = setInterval(getResults, 5000);  
 };
 
 /**
@@ -390,6 +409,7 @@ var createTable = function(results){
  * @param {Object} results Results from the Ajax call
  */
 var CreateSettingsTable = function(results) {
+    if (results.testId) {
         // Loop all browsers and check if they are ticked off
         // Display all in an overview
         var testvars = '<div class=test_container><div class="test_header" id="test_settings"><h1>+ Test settings</h1></div><div class="test_content" id="settings_div"><h2>Operating systems and browsers</h2>';
@@ -406,7 +426,7 @@ var CreateSettingsTable = function(results) {
         testvars += '</ul>';
         //
         // Website to check
-        testvars += "<h2>Website to check</h2> <ul class=test_input><li>" + results.url + "</li></ul>";
+        testvars += "<h2>Website to check</h2> <ul class=test_input><li><a href='" + results.url + "' target='_blank' title='Visit the website that's tested'>" + results.url + "</a></li></ul>";
         //
         // Description
         testvars += "<h2>Description</h2> <ul class=test_input><li>" + results.description + "</li></ul>";
@@ -428,57 +448,73 @@ var CreateSettingsTable = function(results) {
         $testSettings.corners("top 13px");
         
         // Show hide testsettings
-        $testSettings.click(function() {
-        if ($settingsDiv.is(":hidden")){
-            $testSettings.html("<h1>- Test settings</h1>");
-        } else {
-            $testSettings.html("<h1>+ Test settings</h1>");
-        }
-        $settingsDiv.animate({height: "toggle", opacity: "toggle"});
+        $testSettings.click(function(){
+            if ($settingsDiv.is(":hidden")) {
+                $testSettings.html("<h1>- Test settings</h1>");
+            }
+            else {
+                $testSettings.html("<h1>+ Test settings</h1>");
+            }
+            $settingsDiv.animate({
+                height: "toggle",
+                opacity: "toggle"
+            });
         });
         
         // Create the result tables
         createTable(results);
+    } else {
+        // Place template to show search box to search for tests on ID
+        var result = TrimPath.processDOMTemplate("search_test_template");
+        $contentcontent.html(result);
+    }
 };
 
 /**
  * {
-    "testId" : "0001",
-    "description" : "Testdescription",
-    "url" : "http://www.physx.be/",
-    "codeInput" : [
-                {
-                    "codeName" : "AssertTrue"
-                },
-                {
-                    "codeName" : "TakeScreenshot"
-                },
-                {
-                    "codeName" : "AssertTrue"
-                }
-            ],
-    "operatingsystems" : [
-        {
-            "osName" : "Mac OSX",
-            "osId" : "macosx",
-            "browsers" : [
-                {
-                    "browserName" : "Firefox 3.6",
-                    "browserId" : "firefox",
-                    "browserPic" : "firefox.png"
-                },
-                {
-                    "browserName" : "Safari",
-                    "browserId" : "safari",
-                    "browserPic" : "safari.png"
-                }
-            ]
-        }
+
+    testId: "1"
+    description: "test bbc"
+    url: http://news.bbc.co.uk/
+    codeInput: [
+            {
+                codeName: "AssertTrue"
+                tooltip: "assertTrue(isTextPresent(\"News\"))"
+            }
+            {
+                codeName: "AssertTrue"
+                tooltip: "assertTrue(isTextPresent(\"Page last updated\"))"
+            }
+            {
+                codeName: "TakeScreenshot"
+                tooltip: "takeScreenshot"
+            }
     ]
+    operatingsystems: [
+            {
+                osName: "MAC OSX 10.6"
+                osId: "macosx"
+                osVersion: "",
+                browsers: [
+                        {
+                            browserName: "Mozilla Firefox 3.5"
+                            browserId: "firefox"
+                            browserVersion: "3.5"
+                            browserPic: "firefox-icon.png"
+                        }
+                        {
+                            browserName: "Safari 4"
+                            browserId: "safari"
+                            browserVersion: "4"
+                            browserPic: "safari-icon.png"
+                        }
+                  ]
+            }
+      ]
 }
  * 
  * Get the test settings from the database
- * The above JSON file is an example of the returned datafeed
+ * Above is an example of the JSON file that is returned
  */
 var getSettings = function(){
     //Make the ajax call
@@ -491,9 +527,18 @@ var getSettings = function(){
         },
         error: function(error){
             alert(error.responseText);
+        },
+        data : {
+            "testid" : testId
         }
     });
 };
 
-getSettings();
-var id = setInterval(getResults, 5000);
+/**
+ * Init function that gets the settings of the test or shows a search page
+ */
+var init = function(){
+    getSettings(); 
+};
+
+init();

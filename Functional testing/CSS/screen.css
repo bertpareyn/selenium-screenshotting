@@ -15,10 +15,10 @@ body {background-color:#2a3c4f;}
 #menu_buttons ul li {font-size:16px; display:block; float:left; list-style:none; background-image:url(../images/menubutton.png); background-repeat:no-repeat; width:172px; height:32px; text-align:center; text-transform:uppercase; font-weight:bold; padding-top:9px; margin:0 1px; color:#b4c4d4;}
 #menu_buttons ul li:hover {background-image:url(../images/menubuttonhover.png);}
 #menu_buttons ul .activebutton:hover {background-image:url(../images/menubuttonselected.png);}
-#menu_buttons ul {width:522px; margin-left:auto; margin-right:auto;}
+#menu_buttons ul {width:696px; margin-left:auto; margin-right:auto;}
 #menu_buttons {margin-top:-17px;}
-#menu_buttons ul li a {text-decoration:none; color:#b4c4d4; padding:7px 60px;}
-#menu_buttons .activebutton {background-image:url(../images/menubuttonselected.png); height:42px; position:relative; top:-10px;}
+#menu_buttons ul li a {text-decoration:none; color:#b4c4d4; padding:7px 50px;}
+#menu_buttons .activebutton {background-image:url(../images/menubuttonselected.png); height:42px; background-repeat:no-repeat; position:relative; top:-10px;}
 
 /* CONTENT */
 #logo {width:83px; height:103px; padding-top:13px;}
@@ -31,11 +31,11 @@ hr {display: block; clear:left; margin:0; visibility: hidden;}
 
 /* TESTFORM */
 #test_container { padding:7px; font-size:13px;clear:both;}
-#code_input {clear:both; margin-bottom:10px;}
-#site_to_check, #description {width:300px;}
-#submit_form_button, #reset_form_button {border:1px solid #AAA;cursor:pointer;float:left;padding:5px;display:block;}
+#code_input {clear:both; margin-bottom:5px;}
+#site_to_check, #description, #search_test_input {width:300px;}
+#submit_form_button, #reset_form_button, #submit_search_test_button {border:1px solid #AAA;cursor:pointer;float:left;padding:5px; margin-top:5px; display:block;}
 #reset_form_button {margin-left:10px;}
-label {padding-left:7px;}
+label {color:#dfe3e5; padding:6px 0 6px 0; font-size: 17px; font-weight:bold; font-family:sans-serif; display:block;}
 
 /* TABLES */
 #test_preview .test_header {height:21px;}

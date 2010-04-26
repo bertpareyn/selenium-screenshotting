@@ -8,7 +8,7 @@ if(mysqli_connect_errno()){
 }
 
 
-$query = "SELECT os.Id, os.testId, os.osId, os.browserId FROM OSTests os WHERE os.testId =" . 1;
+$query = "SELECT os.Id, os.testId, os.osId, os.browserId FROM OSTests os WHERE os.testId =" . $_GET['testid'];
 if($result = $db->query($query)){
     while ($row = $result->fetch_object()) {
         $testresult = array();
@@ -34,11 +34,12 @@ $testresult["ostests"] = $ostests;
 
 if($result = $db->query($query)){
     $osresults = array();
+    $i = 1;
     while ($row = $result->fetch_object()) {
-        $osresult["browserid"] = $row->browserId;
+        $osresult["browserId"] = $row->browserId;
 
         $browserresultsQuery = "SELECT * FROM Results r,OSTests ost, SubTests st
-WHERE r.osTestId = ost.id AND ost.id = st.osTestId AND st.id = 1";
+WHERE r.osTestId = ost.id AND ost.id = st.osTestId AND st.id =" . $i;
         $browserresults = array();
         if($browserresultresult = $db->query($browserresultsQuery)){
             while ($browserresultRow = $browserresultresult->fetch_object()) {
@@ -51,8 +52,9 @@ WHERE r.osTestId = ost.id AND ost.id = st.osTestId AND st.id = 1";
         }
         $osresult["browserresults"] = $browserresults;
 
-
         $osresults[] = $osresult;
+        
+        $i ++;
     }
 }
 $testresult["osresults"] = $osresults;

@@ -3,7 +3,7 @@
 header('Content-type: application/xml');
 
 // Website url to open
-$daurl = 'http://10.0.0.60:8888/polldbforsupported.php';
+$daurl = 'http://10.0.0.49:8888/polldbforsupported.php';
 
 // Get that website's content
 $handle = fopen($daurl, "r");

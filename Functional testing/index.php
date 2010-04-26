@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="css/screen.css" rel="stylesheet" type="text/css">
+<link href="css/screen.css" rel="stylesheet" type="text/css" media="screen">
 <title>Functionality testing</title>
 </head>
 <body>
@@ -14,6 +14,7 @@
 				<li><a href="test.php" title="Test your page">Test</a></li>
 				<li><a href="results.php" title="Watch your results">Results</a></li>
 				<li class="activebutton">About</li>
+				<li><a href="mytests.php" title="About the functional tester">My tests</a></li>
 			</ul>
 		</div>
 	</div>

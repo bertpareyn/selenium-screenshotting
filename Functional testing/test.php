@@ -2,11 +2,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="css/screen.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="libs/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="libs/roundedcorners.js"></script>
-<script type="text/javascript" src="libs/jquery.template.js"></script>
-<title>Functionality testing</title>
+<link href="css/screen.css" rel="stylesheet" type="text/css" media="screen">
+<title>Functionality testing - test</title>
 </head>
 <body>
 
@@ -18,6 +15,7 @@
 				<li class="activebutton">Test</li>
 				<li><a href="results.php" title="Watch your results">Results</a></li>
 				<li><a href="index.php" title="About the functional tester">About</a></li>
+				<li><a href="mytests.php" title="About the functional tester">My tests</a></li>
 			</ul>
 		</div>
 	</div>
@@ -27,17 +25,17 @@
 	<div id="content_content">
 		<p id="test_explanation">You can test your webpages for inconsistencies on this page. Once the test is submitted you will be redirected to the results page were your results will appear as soon as they are ready.</p>
 		<div id="test_container">
-		    <form name ="checkboxform" method="GET" action="testSubmit.php">
+		    <form name ="checkboxform" method="GET" action="http://10.0.0.49:8888/testSubmit.php">
 		        <div id="test_preview">
 		            
                 </div>
 		        <div id="code_input">
-		            <h1>Website to check</h1>
+		            <label for="site_to_check">Website to check</label>
 		            <input type="text" id="site_to_check" name="siteToCheck">
-		            <h1>Description</h1>
+		            <label for="description">Description</label>
 		            <input type="text" id="description" name="description">
-		            <h1>Test input</h1>
-		            <textarea name="codeInput" cols="70" rows="8"></textarea>
+		            <label for="code_input">Test input</label>
+		            <textarea name="codeInput" id="code_input" cols="70" rows="15"></textarea>
 		        </div>
 		        <div id="submit_test_form">
 		            <input id="submit_form_button" type="Submit" name="submitCheckboxes" value="Start test">
@@ -56,5 +54,7 @@
 	</div>
 </div>
 </body>
-</html>
+<script type="text/javascript" src="libs/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="libs/roundedcorners.js"></script>
 <script type="text/javascript" src="js/test.js"></script>
+</html>
