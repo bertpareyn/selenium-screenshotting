@@ -13,8 +13,8 @@
 			<ul>
 				<li><a href="test.php" title="Test your page">Test</a></li>
 				<li><a href="results.php" title="Watch your results">Results</a></li>
-				<li class="activebutton">About</li>
 				<li><a href="mytests.php" title="About the functional tester">My tests</a></li>
+				<li class="activebutton">About</li>
 			</ul>
 		</div>
 	</div>

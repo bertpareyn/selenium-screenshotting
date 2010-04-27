@@ -1,107 +1,43 @@
 <?php header('Content-type: application/json'); ?>
 {
-    "testId" : "0001",
-    "description" : "Testdescription",
-    "url" : "http://www.physx.be/",
-    "codeInput" : [
-                {
-                    "codeName" : "AssertTrue",
-                    "tooltip" : "assertTrue(isTextPresent('you can test your webpages'));"
-                },
-                {
-                    "codeName" : "TakeScreenshot",
-                    "tooltip" : "Take a screenshot"
-                },
-                {
-                    "codeName" : "TakeScreenshot",
-                    "tooltip" : "Take a screenshot"
-                },
-                {
-                    "codeName" : "TakeScreenshot",
-                    "tooltip" : "Take a screenshot"
-                },
-                {
-                    "codeName" : "TakeScreenshot",
-                    "tooltip" : "Take a screenshot"
-                },
-                {
-                    "codeName" : "TakeScreenshot",
-                    "tooltip" : "Take a screenshot"
-                },
-                {
-                    "codeName" : "TakeScreenshot",
-                    "tooltip" : "Take a screenshot"
-                },
-                {
-                    "codeName" : "TakeScreenshot",
-                    "tooltip" : "Take a screenshot"
-                },
-                {
-                    "codeName" : "TakeScreenshot",
-                    "tooltip" : "Take a screenshot"
-                },
-                {
-                    "codeName" : "TakeScreenshot",
-                    "tooltip" : "Take a screenshot"
-                },
-                {
-                    "codeName" : "TakeScreenshot",
-                    "tooltip" : "Take a screenshot"
-                },
-                {
-                    "codeName" : "TakeScreenshot",
-                    "tooltip" : "Take a screenshot"
-                },
-                {
-                    "codeName" : "AssertTrue",
-                    "tooltip" : "assertTrue(isTextPresent('on this page you can submit your test'));"
-                }
-            ],
-    "operatingsystems" : [
+    "testId": "1",
+    "description": "Sakai test",
+    "url": "http:\/\/3akai.sakaiproject.org\/dev\/",
+    "codeInput": [
         {
-            "osName" : "Mac OSX",
-            "osId" : "macosx",
-            "browsers" : [
-                {
-                    "browserName" : "Firefox",
-                    "browserId" : "firefox",
-                    "browserPic" : "firefox.png"
-                },
-                {
-                    "browserName" : "Safari",
-                    "browserId" : "safari",
-                    "browserPic" : "safari.png"
-                }
-            ]
+            "codeName": "AssertTrue",
+            "tooltip": "assertTrue(isTextPresent(\\\"Hi admin!\\\"))"
         },
         {
-            "osName" : "Windows 7",
-            "osId" : "windowsseven",
-            "browsers" : [
+            "codeName": "TakeScreenshot",
+            "tooltip": "takeScreenshot"
+        },
+        {
+            "codeName": "AssertTrue",
+            "tooltip": "assertTrue(isTextPresent(\\\"newts live longer\\\"))"
+        },
+        {
+            "codeName": "TakeScreenshot",
+            "tooltip": "takeScreenshot"
+        }
+    ],
+    "operatingsystems": [
+        {
+            "osName": "MAC OSX 10.6",
+            "osId": "macosx",
+            "osVersion": "",
+            "browsers": [
                 {
-                    "browserName" : "Firefox",
-                    "browserId" : "firefox",
-                    "browserPic" : "firefox.png"
+                    "browserName": "Mozilla Firefox 3.5",
+                    "browserId": "firefox",
+                    "browserVersion": "",
+                    "browserPic": "firefox-icon.png"
                 },
                 {
-                    "browserName" : "Safari",
-                    "browserId" : "safari",
-                    "browserPic" : "safari.png"
-                },
-                {
-                    "browserName" : "IE6",
-                    "browserId" : "ie6",
-                    "browserPic" : "ie6.png"
-                },
-                {
-                    "browserName" : "IE7",
-                    "browserId" : "ie7",
-                    "browserPic" : "ie7.png"
-                },
-                {
-                    "browserName" : "IE8",
-                    "browserId" : "ie8",
-                    "browserPic" : "ie8.png"
+                    "browserName": "Safari 4",
+                    "browserId": "safari",
+                    "browserVersion": "",
+                    "browserPic": "safari-icon.png"
                 }
             ]
         }

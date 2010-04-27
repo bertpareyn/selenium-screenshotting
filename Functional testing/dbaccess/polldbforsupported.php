@@ -36,7 +36,7 @@ if($result = $db->query($query)){
         $os["osId"] = $row->id;
         $os["osName"] = $row->name;
         
-        if($row->name == '0'){
+        if($row->isSupported == 0){
             $os["isSupported"] = 'false';
         }else {
             $os["isSupported"] = 'true';

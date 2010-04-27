@@ -1,4 +1,5 @@
-var $selectOldTestTemplate = $("#select_old_test_template");
+// contentcontent: Contains all content data
+var $contentcontent = $('#content_content');
 
 /**
  * Fill the old tests in the combobox
@@ -7,8 +8,7 @@ var $selectOldTestTemplate = $("#select_old_test_template");
  */
 var fillOldTestBox = function(results){
     // Place template to show old tests and give Ajax call results with it
-    var result = TrimPath.processDOMTemplate("select_old_test_template");
-    $contentcontent.html(result, results);
+    $.TemplateRenderer("select_old_test_template", results, $contentcontent);
 };
 
 /**

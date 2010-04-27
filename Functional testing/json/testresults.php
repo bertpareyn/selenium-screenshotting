@@ -2,214 +2,101 @@
 {
     "tests": [
         {
-            "testId" : "0001",
-            "testresults" : [
+            "testId": 1,
+            "testresults": [
                 {
-                    "osId" : "macosx",
-                    "ostests" : [
-                                {
-                                    "testId" : "0001",
-                                    "description" : "AssertTrue",
-                                    "tooltip" : "assertTrue(isTextPresent('you can test your webpages'));"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "description" : "TakeScreenshot",
-                                    "tooltip" : "Take a screenshot"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "description" : "TakeScreenshot",
-                                    "tooltip" : "Take a screenshot"
-                                }
-                            ],
-                    "osresults" : [
+                    "osId": "macosx",
+                    "ostests": [
                         {
-                            "browserId" : "firefox",
-                            "browserresults" : [
+                            "testId": "1",
+                            "description": "assertTrue(isTextPresent(\\\"Hi admin!\\\"))",
+                            "tooltip": "assertTrue"
+                        },
+                        {
+                            "testId": "1",
+                            "description": "takeScreenshot",
+                            "tooltip": "takeScreenshot"
+                        },
+                        {
+                            "testId": "1",
+                            "description": "assertTrue(isTextPresent(\\\"newts live longer\\\"))",
+                            "tooltip": "assertTrue"
+                        },
+                        {
+                            "testId": "1",
+                            "description": "takeScreenshot",
+                            "tooltip": "takeScreenshot"
+                        }
+                    ],
+                    "osresults": [
+                        {
+                            "browserId": "firefox",
+                            "browserresults": [
                                 {
-                                    "testId" : "0001",
-                                    "screenshot" : "null",
-                                    "reference" : "null",
-                                    "success" : "true"
+                                    "testId": "1",
+                                    "subTestId": "1",
+                                    "screenshot": "",
+                                    "reference": null,
+                                    "success": "1"
                                 },
                                 {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
+                                    "testId": "1",
+                                    "subTestId": "2",
+                                    "screenshot": "\/Users\/hh354\/Sites\/php-src\/screenshots\/2010\/4\/27\/osTest_1\/macosx\/firefox\/merged\/merged0.png",
+                                    "reference": "",
+                                    "success": "1"
                                 },
                                 {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "true"
+                                    "testId": "1",
+                                    "subTestId": "3",
+                                    "screenshot": "",
+                                    "reference": "",
+                                    "success": "1"
+                                },
+                                {
+                                    "testId": "1",
+                                    "subTestId": "4",
+                                    "screenshot": "\/Users\/hh354\/Sites\/php-src\/screenshots\/2010\/4\/27\/osTest_1\/macosx\/firefox\/merged\/merged1.png",
+                                    "reference": "",
+                                    "success": "1"
                                 }
                             ]
                         },
-                         {
-                            "browserId" : "safari",
-                            "browserresults" : [
+                        {
+                            "browserId": "safari",
+                            "browserresults": [
                                 {
-                                    "testId" : "0001",
-                                    "screenshot" : "null",
-                                    "reference" : "null",
-                                    "tooltip" : "assertTrue(isTextPresent('you can test your webpages'));"
+                                    "testId": "1",
+                                    "subTestId": "1",
+                                    "screenshot": "",
+                                    "reference": null,
+                                    "success": "1"
                                 },
                                 {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "tooltip" : "Take a screenshot"
+                                    "testId": "1",
+                                    "subTestId": "2",
+                                    "screenshot": "\/Users\/hh354\/Sites\/php-src\/screenshots\/2010\/4\/27\/osTest_1\/macosx\/firefox\/merged\/merged0.png",
+                                    "reference": "",
+                                    "success": "1"
                                 },
                                 {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
+                                    "testId": "1",
+                                    "subTestId": "3",
+                                    "screenshot": "",
+                                    "reference": "",
+                                    "success": "1"
+                                },
+                                {
+                                    "testId": "1",
+                                    "subTestId": "4",
+                                    "screenshot": "\/Users\/hh354\/Sites\/php-src\/screenshots\/2010\/4\/27\/osTest_1\/macosx\/firefox\/merged\/merged1.png",
+                                    "reference": "",
+                                    "success": "1"
                                 }
                             ]
                         }
                     ]
-                },
-                {
-                    "osId" : "windowsseven",
-                    "ostests" : [
-                                {
-                                    "testId" : "0001",
-                                    "description" : "AssertTrue",
-                                    "tooltip" : "assertTrue(isTextPresent('you can test your webpages'));"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "description" : "TakeScreenshot",
-                                    "tooltip" : "Take a screenshot"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                }
-                            ],
-                    "osresults" : [
-                        {
-                            "browserId" : "firefox",
-                            "browserresults" : [
-                                {
-                                    "testId" : "0001",
-                                    "screenshot" : "null",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                }
-                            ]
-                        },
-                        {
-                            "browserId" : "safari",
-                            "browserresults" : [
-                                {
-                                    "testId" : "0001",
-                                    "screenshot" : "null",
-                                    "reference" : "null",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                }
-                            ]
-                        },
-                        {
-                            "browserId" : "ie6",
-                            "browserresults" : [
-                                {
-                                    "testId" : "0001",
-                                    "screenshot" : "null",
-                                    "reference" : "null",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "false"
-                                }
-                            ]
-                        },
-                        {
-                            "browserId" : "ie7",
-                            "browserresults" : [
-                                {
-                                    "testId" : "0001",
-                                    "screenshot" : "null",
-                                    "reference" : "null",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "null",
-                                    "success" : "false"
-                                }
-                            ]
-                        },
-                        {
-                            "browserId" : "ie8",
-                            "browserresults" : [
-                                {
-                                    "testId" : "0001",
-                                    "screenshot" : "null",
-                                    "reference" : "null",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "true"
-                                },
-                                {
-                                    "testId" : "0002",
-                                    "screenshot" : "screenshot.png",
-                                    "reference" : "screenshot.png",
-                                    "success" : "true"
-                                }
-                            ]
-                        }
-                    ]
-                }     
+                }
             ]
         }
     ]

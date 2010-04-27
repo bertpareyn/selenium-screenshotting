@@ -33,7 +33,7 @@ hr {display: block; clear:left; margin:0; visibility: hidden;}
 #test_container { padding:7px; font-size:13px;clear:both;}
 #code_input {clear:both; margin-bottom:5px;}
 #site_to_check, #description, #search_test_input {width:300px;}
-#submit_form_button, #reset_form_button, #submit_search_test_button {border:1px solid #AAA;cursor:pointer;float:left;padding:5px; margin-top:5px; display:block;}
+#submit_form_button, #reset_form_button, #submit_search_test_button, #submit_old_test_button {border:1px solid #AAA;cursor:pointer;float:left;padding:5px; margin-top:5px; display:block;}
 #reset_form_button {margin-left:10px;}
 label {color:#dfe3e5; padding:6px 0 6px 0; font-size: 17px; font-weight:bold; font-family:sans-serif; display:block;}
 
@@ -46,7 +46,7 @@ label {color:#dfe3e5; padding:6px 0 6px 0; font-size: 17px; font-weight:bold; fo
 #test_preview .description_column, #result_container .description_column {float:left; border-right:2px dashed #DFE3E5;}
 #test_preview .description_column_content {height:26px; clear:left; display:block; margin-bottom:7px; padding:5px; line-height:26px;}
 #test_preview .test_content_column_content, #result_container .test_content_column_content, #fancy_box_content .test_content_column_content {width:50px; height:26px; clear:left; display:block; margin-bottom:7px; padding:5px; text-align:center;}
-#test_preview .browser_images {width:26px; height:25px; padding:0 18px; cursor:pointer;}
+#test_preview .browser_images {width:26px; height:25px; padding:0 16px; cursor:pointer;}
 #test_preview .description_column p {color:#dfe3e5;}
 #test_preview .test_content_column, #result_container .test_content_column {float:left; border-right:2px dashed #DFE3E5;}
 #test_preview input[type="checkbox"] {width:20px; height:20px;}
@@ -78,7 +78,7 @@ hr {display: block; clear: left; margin:0; visibility: hidden;}
 /* OVERLAY */
 #fancy_box_content {padding:30px 30px 30px 30px;}
 #fancy_box_content h1 {color:#2a3c4f; margin-bottom:0px; top:-20px; position:relative;}
-#fancy_box_content .browser_image {float:right; position:absolute; top:0; right:30px; width:50px; height:50px;}
+#fancy_box_content .browser_image {float:right; position:absolute; top:0; right:60px; width:50px; height:50px;}
 #fancy_box_content .ok_compare_img_big, #fancy_box_content .error_compare_img_big, #fancy_box_content .no_reference_screenshot_big, #fancy_box_content .reference_image {width:500px;}
 #fancy_box_content .reference_image {clear:left; float:left; margin-right:15px; border:2px solid #fff; padding-bottom:13px;}
 

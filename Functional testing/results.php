@@ -23,8 +23,8 @@
 			<ul>
 				<li><a href="test.php" title="Test your page">Test</a></li>
 				<li class="activebutton">Results</li>
+				<li><a href="mytests.php" title="About the functional tester">My tests</a></li>
                 <li><a href="index.php" title="About the functional tester">About</a></li>
-                <li><a href="mytests.php" title="About the functional tester">My tests</a></li>
 			</ul>
 		</div>
 	</div>
@@ -54,6 +54,71 @@
 	    <input id="submit_search_test_button" type="Submit" value="Search">
 	</form>
 	<hr>
+</div>
+
+<!-- SETTINGS TABLE -->
+<div id="settings_table_template" style="display:none;"><!--
+    <div class=test_container>
+        <div class="test_header" id="test_settings">
+            <h1>+ Test settings</h1>
+        </div>
+        <div class="test_content" id="settings_div">
+            <h2>Operating systems and browsers</h2>
+            <ul>
+                {for o in operatingsystems}
+                    <li class="os_test_list_item">${o.osName}</li>
+                    <ul>
+	                    {for b in o.browsers}
+                            <li class="browser_test_list_item">${b.browserName}</li>
+	                    {/for}
+                    </ul>
+                {/for}
+            </ul>
+            <h2>Website to check</h2>
+            <ul class=test_input>
+                <li><a href="${url}" target='_blank' title="Visit the website that's tested">${url}</a></li>
+            </ul>
+            <h2>Description</h2>
+            <ul class=test_input>
+                <li>${description}</li>
+            </ul>
+            <h2>Test input</h2>
+            <ol id='code_input_list'>
+                {for c in codeInput}
+                    <li>${c.codeName}</li>
+                {/for}
+            </ol>
+        </div>
+    </div>-->
+</div>
+
+<!-- RESULTS TABLE -->
+<div id="results_table_template" style="display:none;"><!--
+    {for o in operatingsystems}
+        <div class="test_container">
+            <div class="browser_images_container">
+                {for b in o.browsers}
+                    <img src="images/browsers/${b.browserPic}" class="browser_images ${o.osId} ${b.browserId}" alt="${b.browserName}" title="${o.osName} - ${b.browserName}"/>
+                {/for}
+            </div>
+            <div class="test_header">
+                <h1>- ${o.osName}</h1>
+            </div>
+            <div class="test_content ${o.osId}">
+            <div class="description_column ${o.osId}">
+                {for c in codeInput}
+                    <div class='description_column_content'><p title="${c.tooltip}">${c.codeName}</p></div>
+                {/for}
+            </div>
+            {for b in o.browsers}
+                <div class="test_content_column ${o.osId} ${b.browserId}">
+                
+                </div>
+            {/for}
+            <hr/>
+        </div>
+        </div>        
+    {/for}-->
 </div>
 </body>
 

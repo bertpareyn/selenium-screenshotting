@@ -17,9 +17,9 @@ if($result = $db->query($query)){
         $oldtest["subTests"] = $row->subTests;
         $oldtest["refTestId"] = $row->refTestId;
         
-        $oldtests["tests"] = $oldtest;
+        $oldtests["test"] = $oldtest;
     }
 }
-
-print json_encode($oldtests);
+$alloldtests["tests"] = $oldtests;
+print json_encode($alloldtests);
 ?>

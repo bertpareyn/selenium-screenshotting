@@ -13,6 +13,10 @@ $displayBox = $('#displayBox');
 $hiddenClicker = $("#hiddenclicker");
 // fancyBoxContent: Content to be shown in the fancybox component
 $fancyBoxContent = $("#fancy_box_content");
+// settings_table_template: Template to show the settings table
+settingsTableTemplate = "settings_table_template";
+// results_table_template
+resultsTableTemplate = "results_table_template";
 
 /**
  * With scrollbars floats can become messy
@@ -205,55 +209,81 @@ var showReport = function (ev){
  * Fills the table with results coming from the database
  * @param {Object} results Results from the Ajax call that contain results from the test
  */
-var fillTableWithResults = function(results) {
+var fillTableWithResults = function(results){
     // Unique ID to give to each image on the gui
     var uidForEveryImage = 0;
     // Loop through all tests
-    for (var i = 0; i < results.tests[0].testresults.length; i++) { 
+    for (var i = 0; i < results.tests[0].testresults.length; i++) {
         // Loop through all results (eg. firefox and safari)
         for (var j = 0; j < results.tests[0].testresults[i].osresults.length; j++) {
             // display the array on the results page
-            for (var k = 0; k < results.tests[0].testresults[i].ostests.length; k++) {
+            for (var k = 0; k < results.tests[0].testresults[i].osresults[j].browserresults.length; k++) {
                 var testContentHolder = $('div.' + results.tests[0].testresults[i].osId + '.' + results.tests[0].testresults[i].osresults[j].browserId);
-                // If the content holder is empty then the test has to be shown
-                // otherwise a repeat would occur
-                if (testContentHolder.children().size() < results.tests[0].testresults[i].ostests.length ) {
-                    template = '<div class="test_content_column_content">';
-                    if (results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot == '') {
-                        // There is no screenshot, show OK of ERROR sign
-                        if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == 'true'){
-                            template += '<img src="images/testok.png" alt="Test OK" title="Test OK" class="test_ok_check"></img>';
-                        }
-                        else {
-                            template += '<img src="images/testerror.png" alt="Test Error" title="Test Error" class="test_error_cross"></img>';
-                        }
-                    }
-                    else {
-                        // There is a screenshot, display it
-                        template += '<img src="http://10.0.0.49:8888/' + (results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot).split('Sites/')[1] + '"';
-                        // Check if the error is OK or ERROR
-                        if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == 'true'){
-                            template += 'alt="OK screenshot" title="screenshot OK" class="ok_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
-                        } else {
-                            // Check if there is a reference screenshot available
-                            if (results.tests[0].testresults[i].osresults[j].browserresults[k].reference == null) {
-                                template += 'alt="Screenshot without reference" title="Screenshot without reference" class="no_reference_screenshot ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
-                            } else {
-                                template += 'alt="Error in screenshot" title="Screenshot error"class="error_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
+                // check if there are results to start with
+                if (results.tests[0].testresults[i].osresults[j].browserresults.length > 0) {
+                    // If the content holder is empty then the test has to be shown
+                    // otherwise a repeat would occur
+                    if (testContentHolder.children().size() < results.tests[0].testresults[i].ostests.length) {
+                        // Variable to determine if the data can be added or is already present on the page
+                        var canBeAdded = true;
+                        // Loop all children and check if the item received is already in the list
+                        // If it's already in there it can not be added again
+                        testContentHolder.children().each(function(){
+                            if ($(this).hasClass(results.tests[0].testresults[i].osresults[j].browserresults[k].subTestId)) {
+                                // Can't be added because it already exists
+                                canBeAdded = false;
                             }
+                        });
+
+                        // If the content holder doesn't have any children then the first item
+                        // has to be added anywy
+                        if (testContentHolder.children().size() == 0) {
+                            canBeAdded = true;
+                        }
+
+                        // If the data may be added this will be executed
+                        if (canBeAdded) {
+                            template = '<div class="test_content_column_content ' + results.tests[0].testresults[i].osresults[j].browserresults[k].subTestId + '">';
+                            if (results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot == '') {
+                                // There is no screenshot, show OK of ERROR sign
+                                if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == 'true') {
+                                    template += '<img src="images/testok.png" alt="Test OK" title="Test OK" class="test_ok_check"></img>';
+                                }
+                                else {
+                                    template += '<img src="images/testerror.png" alt="Test Error" title="Test Error" class="test_error_cross"></img>';
+                                }
+                            }
+                            else {
+                                // There is a screenshot, display it
+                                template += '<img src="http://10.0.0.71:8888/' + (results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot).split('Sites/')[1] + '"';
+                                // Check if the error is OK or ERROR
+                                if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == 'true') {
+                                    template += 'alt="OK screenshot" title="screenshot OK" class="ok_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
+                                }
+                                else {
+                                    // Check if there is a reference screenshot available
+                                    if (results.tests[0].testresults[i].osresults[j].browserresults[k].reference == '') {
+                                        template += 'alt="Screenshot without reference" title="Screenshot without reference" class="no_reference_screenshot ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
+                                    }
+                                    else {
+                                        template += 'alt="Error in screenshot" title="Screenshot error"class="error_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
+                                    }
+                                }
+                            }
+
+                            // Close testContentColumn div
+                            template += '</div>';
+                            testContentHolder.append(template);
+                            // Put arbitrary data in the images tag
+                            // The reference screenshot will be kept in this arbitrary data
+                            var referenceData = results.tests[0].testresults[i].osresults[j].browserresults[k].reference;
+                            var image = null;
+                            image = $("img.error_compare_img." + results.tests[0].testresults[i].osId + "." + results.tests[0].testresults[i].osresults[j].browserId + '.' + uidForEveryImage);
+                            image.data("reference", referenceData);
                         }
                     }
-                    // Close testContentColumn div
-                    template += '</div>';
-                    testContentHolder.append(template);
-                    // Put arbitrary data in the images tag
-                    // The reference screenshot will be kept in this arbitrary data
-                    var referenceData = results.tests[0].testresults[i].osresults[j].browserresults[k].reference;
-                    var image = null;
-                    image = $("img.error_compare_img." + results.tests[0].testresults[i].osId + "." + results.tests[0].testresults[i].osresults[j].browserId + '.' + uidForEveryImage);
-                    image.data("reference", referenceData);
+                    uidForEveryImage++;
                 }
-                uidForEveryImage ++;
             }
         }
     }
@@ -342,53 +372,28 @@ var getResults = function(){
  * @param {Object} results Results from the Ajax call containing information the user inputted on the page
  */
 var createTable = function(results){
+    // Render the template
+    $contentcontent.append($.TemplateRenderer(resultsTableTemplate, results));
+ 
     // Create two variables to calculate the max width of the content page
     var highestNumberOfColumns = 0;
     var tempNumberOfColumns = 0;
     for (var i = 0; i < results.operatingsystems.length; i++){
-        // Add the testContainer div
-        template = '<div class="test_container">';
-                // Add browser images on top of the list
-        template += '<div class="browser_images_container">';
-        for (var j = 0; j < results.operatingsystems[i].browsers.length; j++) {
-            template += '<img src="images/browsers/' + results.operatingsystems[i].browsers[j].browserPic + '" class="browser_images ' + results.operatingsystems[i].osId + ' ' + results.operatingsystems[i].browsers[j].browserId + '" alt="' + results.operatingsystems[i].browsers[j].browserName + '" title="' + results.operatingsystems[i].osName + ' - '  + results.operatingsystems[i].browsers[j].browserName + '"/>';
-        }
-        // Close browserImagesContainer div
-        template += '</div>';
-        // Add a div that contains the clickable part of the header
-        template += '<div class="test_header">';
-        // Add a header for this testContainer
-        template += '<h1>- ' + results.operatingsystems[i].osName + '</h1>';
-        // Close the testContainer div
-        template += '</div>';
-        // Add testcontent
-        template += '<div class="test_content ' + results.operatingsystems[i].osId + '">';
-        // Add the description column first
-        template += '<div class="description_column ' + results.operatingsystems[i].osId + '">';
-        for (var k = 0; k < results.codeInput.length; k++) {
-            template += "<div class='description_column_content'><p title='" + results.codeInput[k].tooltip + "'>" + (k+1) + '. ' + results.codeInput[k].codeName + '</p></div>';
-        }
-        template += '</div>';
+        // Check how many columns there are to determine the width of the container
         for (var l = 0; l < results.operatingsystems[i].browsers.length; l++) {
-            template += '<div class="test_content_column ' + results.operatingsystems[i].osId + ' ' + results.operatingsystems[i].browsers[l].browserId + '">';
-            // Close testContentColumn div
-            template += '</div>';
-            // Add an extra column to the counter
             tempNumberOfColumns ++;
         }
-        template += '<hr/>';
-        // Close testcontent
-        template += '</div>';
-        // Insert template into body
-        $contentcontent.append($.template(template));
+
         // Set all contentcolumns equal to the description column
         // If a column is empty at least his height will be there and the dashed line on the right too
         $('.test_content_column').height($('.description_column').height());
+
         // Check if this is the last item to be put on stage
         // If it is set its bottom corners rounded
         if (i == results.operatingsystems.length -1){
             $("div.test_content." + results.operatingsystems[i].osId).corners("bottom 13px");
         }
+
         // Check if this OS has the highest number of tests on browsers
         // This means there are more columns and the width has to be wider
         if (highestNumberOfColumns < tempNumberOfColumns){
@@ -410,43 +415,14 @@ var createTable = function(results){
  */
 var CreateSettingsTable = function(results) {
     if (results.testId) {
-        // Loop all browsers and check if they are ticked off
-        // Display all in an overview
-        var testvars = '<div class=test_container><div class="test_header" id="test_settings"><h1>+ Test settings</h1></div><div class="test_content" id="settings_div"><h2>Operating systems and browsers</h2>';
-        testvars += '<ul>';
-        for (var i = 0; i < results.operatingsystems.length; i++) {
-            testvars += '<li class="os_test_list_item">' + results.operatingsystems[i].osName + '</li>';
-            testvars += '<ul>';
-            for (var j = 0; j < results.operatingsystems[i].browsers.length; j++) {
-                var browser = results.operatingsystems[i].browsers[j].browserName;
-                testvars += '<li class="browser_test_list_item">' + browser + '</li>';
-            }
-            testvars += '</ul>';
-        }
-        testvars += '</ul>';
-        //
-        // Website to check
-        testvars += "<h2>Website to check</h2> <ul class=test_input><li><a href='" + results.url + "' target='_blank' title='Visit the website that's tested'>" + results.url + "</a></li></ul>";
-        //
-        // Description
-        testvars += "<h2>Description</h2> <ul class=test_input><li>" + results.description + "</li></ul>";
-        //
-        // Test input
-        testvars += "<h2>Test input</h2> <ol id='code_input_list'>";
-        for (var l = 0; l < results.codeInput.length; l++) {
-            testvars += "<li>" + results.codeInput[l].codeName + "</li>";
-        }
-        testvars += "</ol>";
-        // Close the settingsDiv tag and then the settingsContainer tag
-        testvars += "</div></div>";
-        // Put everything on the screen
-        $contentcontent.append($.template(testvars));
-        
+        // Render the template
+        $.TemplateRenderer(settingsTableTemplate, results, $contentcontent);
+
         // Add corners
         $testSettings = $('#test_settings');
         $settingsDiv = $('#settings_div');
         $testSettings.corners("top 13px");
-        
+
         // Show hide testsettings
         $testSettings.click(function(){
             if ($settingsDiv.is(":hidden")) {
@@ -460,7 +436,7 @@ var CreateSettingsTable = function(results) {
                 opacity: "toggle"
             });
         });
-        
+
         // Create the result tables
         createTable(results);
     } else {
@@ -519,6 +495,7 @@ var CreateSettingsTable = function(results) {
 var getSettings = function(){
     //Make the ajax call
     $.ajax({
+        //url: 'json/startedTestSettings.php',
         url: 'proxy/pollforsetupproxy.php',
         cache: false,
         dataType: "json",

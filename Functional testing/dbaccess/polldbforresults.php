@@ -44,17 +44,19 @@ WHERE r.osTestId = ost.id AND ost.id = st.osTestId AND st.id =" . $i;
         if($browserresultresult = $db->query($browserresultsQuery)){
             while ($browserresultRow = $browserresultresult->fetch_object()) {
                 $browserresult["testId"] = $browserresultRow->osTestId;
+                $browserresult["subTestId"] = $browserresultRow->subTestId;
                 $browserresult["screenshot"] = $browserresultRow->screen;
                 $browserresult["reference"] = $browserresultRow->refScreen;
                 $browserresult["success"] = $browserresultRow->success;
                 $browserresults[] = $browserresult;
+                $i ++;
             }
         }
         $osresult["browserresults"] = $browserresults;
 
         $osresults[] = $osresult;
         
-        $i ++;
+        
     }
 }
 $testresult["osresults"] = $osresults;
