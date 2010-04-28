@@ -41,7 +41,11 @@ if($result = $db->query($query)){
     }
 }
 $test = $tests[0];
-$subtests = split(";",$test["subTests"]);
+
+$subtests = $test["subTests"];
+$subtests = preg_replace("/\\\/","",$subtests);
+$subtests = preg_replace("/\"/","'",$subtests);
+$subtests = split(";",$subtests);
 foreach($subtests as $st){
     $subtest = array();
     if($pos = strpos($st,"("))

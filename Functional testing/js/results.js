@@ -248,7 +248,7 @@ var fillTableWithResults = function(results){
                             template = '<div class="test_content_column_content ' + results.tests[0].testresults[i].osresults[j].browserresults[k].subTestId + '">';
                             if (results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot == '') {
                                 // There is no screenshot, show OK of ERROR sign
-                                if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == 'true') {
+                                if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == '1') {
                                     template += '<img src="images/testok.png" alt="Test OK" title="Test OK" class="test_ok_check"></img>';
                                 }
                                 else {
@@ -259,7 +259,7 @@ var fillTableWithResults = function(results){
                                 // There is a screenshot, display it
                                 template += '<img src="' + settings["server"] + (results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot).split('Sites/')[1] + '"';
                                 // Check if the error is OK or ERROR
-                                if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == 'true') {
+                                if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == '1') {
                                     template += 'alt="OK screenshot" title="screenshot OK" class="ok_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
                                 }
                                 else {
@@ -352,8 +352,8 @@ var fillTableWithResults = function(results){
 var getResults = function(){
     //Make the ajax call
     $.ajax({
-        //url: 'json/testresults.php',
-        url: settings["proxy"] + 'pollforresultsproxy.php',
+        url: 'json/testresults.php',
+        //url: settings["proxy"] + 'pollforresultsproxy.php',
         cache: false,
         dataType:"json",
         success: function(data){
@@ -408,7 +408,7 @@ var createTable = function(results){
     $(".test_container").width(25+136+20+(highestNumberOfColumns*110));
     // Request the results
     getResults();
-    var id = setInterval(getResults, 5000);  
+    var id = setInterval(getResults, 2000);  
 };
 
 /**
@@ -498,8 +498,8 @@ var CreateSettingsTable = function(results) {
 var getTestSettings = function(){
     //Make the ajax call
     $.ajax({
-        //url: 'json/startedTestSettings.php',
-        url: settings["proxy"] + 'pollforsetupproxy.php',
+        url: 'json/startedTestSettings.php',
+        //url: settings["proxy"] + 'pollforsetupproxy.php',
         cache: false,
         dataType: "json",
         success: function(data){

@@ -65,8 +65,8 @@ label {color:#dfe3e5; padding:6px 0 6px 0; font-size: 17px; font-weight:bold; fo
 
 .test_error_cross, .test_ok_check {width:38px !important; height:38px !important;}
 .ok_compare_img, .error_compare_img, .ok_compare_img_big, .error_compare_img_big, .no_reference_screenshot,.no_reference_screenshot_big {border:solid; border-width:3px; cursor:pointer}
-.ok_compare_img, .ok_compare_img_big {border-color:green;}
-.error_compare_img, .error_compare_img_big {border-color:#BB0000;}
+.ok_compare_img, .ok_compare_img_big {border-color:#46903e;}
+.error_compare_img, .error_compare_img_big {border-color:#bd4646;}
 .no_reference_screenshot, .no_reference_screenshot_big {border-color:#4b6988;}
 
 hr {display: block; clear: left; margin:0; visibility: hidden;}

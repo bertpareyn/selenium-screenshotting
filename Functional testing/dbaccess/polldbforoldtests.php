@@ -9,15 +9,14 @@ if(mysqli_connect_errno()){
 $query = "SELECT * FROM Tests";
 if($result = $db->query($query)){
     while ($row = $result->fetch_object()) {
-        $oldtest = array();
         $oldtest["testId"] = $row->id;
         $oldtest["description"] = $row->description;
         $oldtest["code"] = $row->code;
         $oldtest["url"] = $row->url;
         $oldtest["subTests"] = $row->subTests;
         $oldtest["refTestId"] = $row->refTestId;
-        
-        $oldtests["test"] = $oldtest;
+
+        $oldtests[] = $oldtest;
     }
 }
 $alloldtests["tests"] = $oldtests;
