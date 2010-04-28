@@ -17,6 +17,8 @@ $fancyBoxContent = $("#fancy_box_content");
 settingsTableTemplate = "settings_table_template";
 // results_table_template
 resultsTableTemplate = "results_table_template";
+// settings: Settings that contain the server ip
+settings = Array();
 
 /**
  * With scrollbars floats can become messy
@@ -255,7 +257,7 @@ var fillTableWithResults = function(results){
                             }
                             else {
                                 // There is a screenshot, display it
-                                template += '<img src="http://10.0.0.71:8888/' + (results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot).split('Sites/')[1] + '"';
+                                template += '<img src="' + settings["server"] + (results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot).split('Sites/')[1] + '"';
                                 // Check if the error is OK or ERROR
                                 if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == 'true') {
                                     template += 'alt="OK screenshot" title="screenshot OK" class="ok_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
@@ -351,7 +353,7 @@ var getResults = function(){
     //Make the ajax call
     $.ajax({
         //url: 'json/testresults.php',
-        url: 'proxy/pollforresultsproxy.php',
+        url: settings["proxy"] + 'pollforresultsproxy.php',
         cache: false,
         dataType:"json",
         success: function(data){
@@ -361,7 +363,8 @@ var getResults = function(){
             alert(error);
         },
         data : {
-            "testid" : testId
+            "testid" : testId,
+            "server" : settings["server"]
         }
     });
 };
@@ -492,11 +495,11 @@ var CreateSettingsTable = function(results) {
  * Get the test settings from the database
  * Above is an example of the JSON file that is returned
  */
-var getSettings = function(){
+var getTestSettings = function(){
     //Make the ajax call
     $.ajax({
         //url: 'json/startedTestSettings.php',
-        url: 'proxy/pollforsetupproxy.php',
+        url: settings["proxy"] + 'pollforsetupproxy.php',
         cache: false,
         dataType: "json",
         success: function(data){
@@ -506,16 +509,41 @@ var getSettings = function(){
             alert(error.responseText);
         },
         data : {
-            "testid" : testId
+            "testid" : testId,
+            "server" : settings["server"]
         }
     });
 };
 
 /**
- * Init function that gets the settings of the test or shows a search page
+ * Loads the settings form the settings.php file
+ * These settings are:
+ *      - URL for the server
+ *      - URL for the proxy directory
+ */
+var loadSettings = function(){
+    //Make the ajax call
+    $.ajax({
+        url: 'settings/settings.php',
+        cache: false,
+        dataType: "json",
+        success: function(data){
+            settings["server"] = data.server;
+            settings["proxy"] = data.proxy;
+            getTestSettings();
+        },
+        error: function(error){
+            alert(error);
+        }
+    });
+};
+
+/**
+ * Function that init's the page
+ * The settings file is loaded first
  */
 var init = function(){
-    getSettings(); 
+    loadSettings(); 
 };
 
 init();

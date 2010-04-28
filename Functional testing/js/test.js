@@ -1,3 +1,6 @@
+/**
+ * Declare some variables to be used in the document
+ */
 // testSettings: header, clickable for settings
 $testSettings = $('#testSettings');
 // settingsDiv: div containing settings data
@@ -6,7 +9,8 @@ $settingsDiv = $('#settingsDiv');
 $contentcontent = $('#content_content');
 // testpreview: shows what will be tested on browsers and os's
 $testpreview = $('#test_preview');
-
+// settings: Settings that contain the server ip
+settings = Array();
 // Holds an array of supported browsers on OS's
 var selectedTestOSAndBrowsers = Array();
 
@@ -237,7 +241,7 @@ var getBrowserSettings = function(){
     //Make the ajax call
     $.ajax({
         //url: 'json/testvars.php',
-        url: 'proxy/pollforsupportedproxy.php',
+        url: settings["proxy"] + 'pollforsupportedproxy.php',
         cache: false,
         dataType: "json",
         success: function(data){
@@ -245,7 +249,42 @@ var getBrowserSettings = function(){
         },
         error: function(error){
             alert(error);
+        },
+        data : {
+            "server" : settings["server"]
         }
     });
 };
-getBrowserSettings();
+
+/**
+ * Loads the settings form the settings.php file
+ * These settings are:
+ *      - URL for the server
+ *      - URL for the proxy directory
+ */
+var loadSettings = function(){
+    //Make the ajax call
+    $.ajax({
+        url: 'settings/settings.php',
+        cache: false,
+        dataType: "json",
+        success: function(data){
+            settings["server"] = data.server;
+            settings["proxy"] = data.proxy;
+            getBrowserSettings();
+        },
+        error: function(error){
+            alert(error);
+        }
+    });
+};
+
+/**
+ * Function that init's the page
+ * The settings file is loaded first
+ */
+var init = function(){
+    loadSettings();
+};
+
+init();

@@ -1,5 +1,10 @@
+/**
+ * Declare some variables to be used in the document
+ */
 // contentcontent: Contains all content data
 var $contentcontent = $('#content_content');
+// settings: Settings that contain the server ip
+settings = Array();
 
 /**
  * Fill the old tests in the combobox
@@ -17,7 +22,7 @@ var fillOldTestBox = function(results){
 var getOldTests = function(){
     //Make the ajax call
     $.ajax({
-        url: 'proxy/pollforoldtests.php',
+        url: settings["proxy"] + 'pollforoldtests.php',
         cache: false,
         dataType: "json",
         success: function(data){
@@ -25,15 +30,41 @@ var getOldTests = function(){
         },
         error: function(error){
             alert(error.responseText);
+        },
+        data : {
+            "server" : settings["server"]
         }
     });
 };
 /**
- * Init function that gets all the old tests from the user in the database
- * They are represented in a combobox
+ * Loads the settings form the settings.php file
+ * These settings are:
+ *      - URL for the server
+ *      - URL for the proxy directory
+ */
+var loadSettings = function(){
+    //Make the ajax call
+    $.ajax({
+        url: 'settings/settings.php',
+        cache: false,
+        dataType: "json",
+        success: function(data){
+            settings["server"] = data.server;
+            settings["proxy"] = data.proxy;
+            getOldTests();
+        },
+        error: function(error){
+            alert(error);
+        }
+    });
+};
+
+/**
+ * Function that init's the page
+ * The settings file is loaded first
  */
 var init = function(){
-    getOldTests();
+    loadSettings(); 
 };
 
 init();
