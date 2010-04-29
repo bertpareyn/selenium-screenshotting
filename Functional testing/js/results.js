@@ -19,6 +19,8 @@ settingsTableTemplate = "settings_table_template";
 resultsTableTemplate = "results_table_template";
 // settings: Settings that contain the server ip
 settings = Array();
+// noReferenceScreenshotTemplate: Template to show the screenshot without reference image
+noReferenceScreenshotTemplate = "no_reference_screenshot_fancybox_template";
 
 /**
  * With scrollbars floats can become messy
@@ -169,13 +171,8 @@ var showErrorScreenshot = function(ev) {
  * @param {Object} ev event that came in after click
  */
 var showNoReferenceScreenshot = function(ev) {
-    $fancyBoxContent.width("");
-    var template = '<h1>No screenshot to compare with</h1>';
-    template += '<p id="show_browser_results" class="' + ev.context.className.split("no_reference_screenshot ")[1] + '">Show browser results</p>';
-    template += '<a href="' + ev.context.src + '" title="Show full screenshot" target="_blank"><img src="' + ev.context.src + '" class="no_reference_screenshot_big"></a>';
-    
-    // Add the template to the html
-    $fancyBoxContent.html(template);
+    // Render the template
+    $.TemplateRenderer(noReferenceScreenshotTemplate, ev.context, $fancyBoxContent);
     
     // Trigger click to show fancybox
     $("#hidden_clicker").trigger("click");
@@ -250,8 +247,7 @@ var fillTableWithResults = function(results){
                                 // There is no screenshot, show OK of ERROR sign
                                 if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == '1') {
                                     template += '<img src="images/testok.png" alt="Test OK" title="Test OK" class="test_ok_check"></img>';
-                                }
-                                else {
+                                } else {
                                     template += '<img src="images/testerror.png" alt="Test Error" title="Test Error" class="test_error_cross"></img>';
                                 }
                             }
@@ -352,8 +348,8 @@ var fillTableWithResults = function(results){
 var getResults = function(){
     //Make the ajax call
     $.ajax({
-        url: 'json/testresults.php',
-        //url: settings["proxy"] + 'pollforresultsproxy.php',
+        //url: 'json/testresults.php',
+        url: settings["proxy"] + 'pollforresultsproxy.php',
         cache: false,
         dataType:"json",
         success: function(data){
@@ -364,7 +360,8 @@ var getResults = function(){
         },
         data : {
             "testid" : testId,
-            "server" : settings["server"]
+            "server" : settings["server"],
+            "dbaccess" : settings["dbaccess"]
         }
     });
 };
@@ -498,8 +495,8 @@ var CreateSettingsTable = function(results) {
 var getTestSettings = function(){
     //Make the ajax call
     $.ajax({
-        url: 'json/startedTestSettings.php',
-        //url: settings["proxy"] + 'pollforsetupproxy.php',
+        //url: 'json/startedTestSettings.php',
+        url: settings["proxy"] + 'pollforsetupproxy.php',
         cache: false,
         dataType: "json",
         success: function(data){
@@ -510,7 +507,8 @@ var getTestSettings = function(){
         },
         data : {
             "testid" : testId,
-            "server" : settings["server"]
+            "server" : settings["server"],
+            "dbaccess" : settings["dbaccess"]
         }
     });
 };
@@ -530,6 +528,7 @@ var loadSettings = function(){
         success: function(data){
             settings["server"] = data.server;
             settings["proxy"] = data.proxy;
+            settings["dbaccess"] = data.dbaccess;
             getTestSettings();
         },
         error: function(error){

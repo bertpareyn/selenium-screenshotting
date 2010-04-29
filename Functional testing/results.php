@@ -56,7 +56,7 @@
 	<hr>
 </div>
 
-<!-- SETTINGS TABLE -->
+<!-- SETTINGS TABLE TEMPLATE -->
 <div id="settings_table_template" style="display:none;"><!--
     <div class=test_container>
         <div class="test_header" id="test_settings">
@@ -92,7 +92,7 @@
     </div>-->
 </div>
 
-<!-- RESULTS TABLE -->
+<!-- RESULTS TABLE TEMPLATE -->
 <div id="results_table_template" style="display:none;"><!--
     {for o in operatingsystems}
         <div class="test_container">
@@ -120,6 +120,19 @@
         </div>        
     {/for}-->
 </div>
+
+<!-- NO REFERENCE SCREENSHOT FANCYBOX TEMPLATE -->
+<div id="no_reference_screenshot_fancybox_template" style="display:none;"><!--
+    <h1>No screenshot to compare with</h1>
+    <p id="show_browser_results" class="${className.split('no_reference_screenshot ')[1]}">Show browser results</p>
+    <a href="${src}" title="Show full screenshot" target="_blank"><img src="${src}" class="no_reference_screenshot_big"></a>-->
+</div>
+
+<!-- REFERENCE SCREENSHOT FANCYBOX TEMPLATE -->
+<div id="reference_screenshot_fancybox_template" style="display:none;"></div>
+
+<!-- RESULT OVERVIEW FANCYBOX TEMPLATE -->
+<div id="result_overview_fancybox_template" style="display:none;"></div>
 </body>
 
 <?php 

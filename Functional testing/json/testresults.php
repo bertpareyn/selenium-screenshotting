@@ -44,7 +44,7 @@
                                     "subTestId": "2",
                                     "screenshot": "\/Users\/hh354\/Sites\/php-src\/screenshots\/2010\/4\/27\/osTest_1\/macosx\/firefox\/merged\/merged0.png",
                                     "reference": "",
-                                    "success": "1"
+                                    "success": "0"
                                 },
                                 {
                                     "testId": "1",
@@ -58,7 +58,7 @@
                                     "subTestId": "4",
                                     "screenshot": "\/Users\/hh354\/Sites\/php-src\/screenshots\/2010\/4\/27\/osTest_1\/macosx\/firefox\/merged\/merged1.png",
                                     "reference": "",
-                                    "success": "1"
+                                    "success": "0"
                                 }
                             ]
                         },

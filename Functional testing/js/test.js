@@ -251,7 +251,8 @@ var getBrowserSettings = function(){
             alert(error);
         },
         data : {
-            "server" : settings["server"]
+            "server" : settings["server"],
+            "dbaccess" : settings["dbaccess"]
         }
     });
 };
@@ -271,6 +272,7 @@ var loadSettings = function(){
         success: function(data){
             settings["server"] = data.server;
             settings["proxy"] = data.proxy;
+            settings["dbaccess"] = data.dbaccess;
             getBrowserSettings();
         },
         error: function(error){

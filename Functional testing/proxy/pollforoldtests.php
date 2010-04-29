@@ -3,7 +3,7 @@
 header('Content-type: application/xml');
 
 // Website url to open
-$daurl = $_GET['server'] . 'polldbforoldtests.php';
+$daurl = $_GET['server'] . $_GET['dbaccess'] . 'polldbforoldtests.php';
 
 // Get that website's content
 $handle = fopen($daurl, "r");
