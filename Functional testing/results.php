@@ -124,15 +124,28 @@
 <!-- NO REFERENCE SCREENSHOT FANCYBOX TEMPLATE -->
 <div id="no_reference_screenshot_fancybox_template" style="display:none;"><!--
     <h1>No screenshot to compare with</h1>
+    <form>
+        <input name="chkref" id="chk_ref" type="checkbox"/>
+        <label for="chk_ref" id="reflabel">Set as reference</label>
+    </form>
     <p id="show_browser_results" class="${className.split('no_reference_screenshot ')[1]}">Show browser results</p>
     <a href="${src}" title="Show full screenshot" target="_blank"><img src="${src}" class="no_reference_screenshot_big"></a>-->
 </div>
 
-<!-- REFERENCE SCREENSHOT FANCYBOX TEMPLATE -->
-<div id="reference_screenshot_fancybox_template" style="display:none;"></div>
+<!-- OK SCREENSHOT FANCYBOX TEMPLATE -->
+<div id="ok_screenshot_fancybox_template" style="display:none;"><!--
+    <h1>Screenshot successful</h1>
+    <p id="show_browser_results" class="${className.split('ok_compare_img ')[1]}">Show browser results</p>
+    <a href="${src}" title="Show full screenshot" target="_blank"><img src="${src}" class="ok_compare_img_big"></a>-->
+</div>
 
-<!-- RESULT OVERVIEW FANCYBOX TEMPLATE -->
-<div id="result_overview_fancybox_template" style="display:none;"></div>
+<!-- ERROR SCREENSHOT FANCYBOX TEMPLATE -->
+<div id="error_screenshot_fancybox_template" style="display:none;"><!--
+    <h1>Screenshot error</h1>
+    <p id="show_browser_results" class="${context.className.split('error_compare_img ')[1]}">Show browser results</p>
+    <img src="${data('reference')}" class="reference_image">
+    <a href="${context.src}" title="Show full screenshot" target="_blank"><img src="${context.src}" class="error_compare_img_big '${context.className.split("error_compare_img ")[1]}"></a>-->
+</div>
 </body>
 
 <?php 

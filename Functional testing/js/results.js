@@ -21,6 +21,10 @@ resultsTableTemplate = "results_table_template";
 settings = Array();
 // noReferenceScreenshotTemplate: Template to show the screenshot without reference image
 noReferenceScreenshotTemplate = "no_reference_screenshot_fancybox_template";
+// okScreenshotTemplate: Template to show if the screenshot is ok
+okScreenshotTemplate = "ok_screenshot_fancybox_template";
+// errorScreenshotTemplate: Template to show if the screenshot is ok
+errorScreenshotTemplate = "error_screenshot_fancybox_template";
 
 /**
  * With scrollbars floats can become messy
@@ -129,13 +133,10 @@ var showBrowserReport = function(ev){
  * @param {Object} ev event that came in after click
  */
 var showOkScreenshot = function(ev) {
+    // Reset the width of the FancyBox
     $fancyBoxContent.width("");
-    var template = '<h1>Screenshot successful</h1>';
-    template += '<p id="show_browser_results" class="' + ev.context.className.split("ok_compare_img ")[1] + '">Show browser results</p>';
-    template += '<a href="' + ev.context.src + '" title="Show full screenshot" target="_blank"><img src="' + ev.context.src + '" class="ok_compare_img_big"></a>';
-    // Add the template to the html
-    $fancyBoxContent.html(template);
-
+    // Render the template
+    $.TemplateRenderer(okScreenshotTemplate, ev.context, $fancyBoxContent);
     // Trigger click to show fancybox
     $("#hidden_clicker").trigger("click");
 };
@@ -147,19 +148,12 @@ var showOkScreenshot = function(ev) {
  */
 var showErrorScreenshot = function(ev) {
     $fancyBoxContent.width("");
-    var template = '<h1>Screenshot error</h1>';
-    template += '<p id="show_browser_results" class="' + ev.context.className.split("error_compare_img ")[1] + '">Show browser results</p>';
-    //template += '<a href="' + ev.context.nextSibling.innerHTML + '" title="Reference Image" target="_blank"><img src="images/screenshots/' + ev.context.nextSibling.innerHTML + '" class="reference_image"></a>';
-    template += '<img src="images/screenshots/' + ev.data("reference") + '" class="reference_image">';
-    template += '<a href="' + ev.context.src + '" title="Show full screenshot" target="_blank"><img src="' + ev.context.src + '" class="error_compare_img_big ' + ev.context.className.split("error_compare_img ")[1] + '"></a>';
-    
-    var reference = ev.data("reference");
-    
-    // Add the template to the html
-    $fancyBoxContent.html(template);
-    
+    // Render the template
+    $.TemplateRenderer(errorScreenshotTemplate, ev, $fancyBoxContent);
+    // Get the data from the image reference
+    var reference = ev.data("reference");    
     // Put the arbitrary data in the image on the Fancybox
-    // It will be needed when going back to the browser overview
+    // It's needed to insure that the right images are compared next to each other
     $fancyBoxContent.children('a').children('img').data("reference", reference); 
     // Trigger click to show fancybox
     $("#hidden_clicker").trigger("click");
@@ -274,7 +268,7 @@ var fillTableWithResults = function(results){
                             testContentHolder.append(template);
                             // Put arbitrary data in the images tag
                             // The reference screenshot will be kept in this arbitrary data
-                            var referenceData = results.tests[0].testresults[i].osresults[j].browserresults[k].reference;
+                            var referenceData = settings["server"] + results.tests[0].testresults[i].osresults[j].browserresults[k].reference.split('Sites/')[1];
                             var image = null;
                             image = $("img.error_compare_img." + results.tests[0].testresults[i].osId + "." + results.tests[0].testresults[i].osresults[j].browserId + '.' + uidForEveryImage);
                             image.data("reference", referenceData);
@@ -518,6 +512,7 @@ var getTestSettings = function(){
  * These settings are:
  *      - URL for the server
  *      - URL for the proxy directory
+ *      - URL for the polling directory
  */
 var loadSettings = function(){
     //Make the ajax call

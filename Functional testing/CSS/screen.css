@@ -35,7 +35,7 @@ hr {display: block; clear:left; margin:0; visibility: hidden;}
 #site_to_check, #description, #search_test_input {width:300px;}
 #submit_form_button, #reset_form_button, #submit_search_test_button, #submit_old_test_button {border:1px solid #AAA;cursor:pointer;float:left;padding:5px; margin-top:5px; display:block;}
 #reset_form_button {margin-left:10px;}
-label {color:#dfe3e5; padding:6px 0 6px 0; font-size: 17px; font-weight:bold; font-family:sans-serif; display:block;}
+label {color:#dfe3e5; padding:6px 0; font-size: 17px; font-weight:bold; font-family:sans-serif; display:block;}
 
 /* TABLES */
 #test_preview .test_header {height:21px;}
@@ -89,3 +89,6 @@ hr {display: block; clear: left; margin:0; visibility: hidden;}
 #fancy_box_content .test_content_column_content {width:200px; height:56px;}
 #fancy_box_content .test_content_column_content img {max-width: 130px; max-height:50px; height:50px;}
 #fancy_box_content #show_browser_results {float:right; position:absolute; top:22px; right:60px; cursor:pointer;}
+
+#reflabel {color:#2a3c4f; padding:6px 0; font-size: 14px; font-weight:normal;}
+#chk_ref {margin:6px 6px 6px 0; float:left;}

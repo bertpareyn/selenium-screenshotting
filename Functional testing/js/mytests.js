@@ -42,6 +42,7 @@ var getOldTests = function(){
  * These settings are:
  *      - URL for the server
  *      - URL for the proxy directory
+ *      - URL for the polling directory
  */
 var loadSettings = function(){
     //Make the ajax call
