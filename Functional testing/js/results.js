@@ -15,8 +15,10 @@ $hiddenClicker = $("#hiddenclicker");
 $fancyBoxContent = $("#fancy_box_content");
 // settings_table_template: Template to show the settings table
 settingsTableTemplate = "settings_table_template";
-// results_table_template
+// results_table_template: Template to show the results table
 resultsTableTemplate = "results_table_template";
+// showBrowserReportTemplate: Template to show the browser reports
+showBrowserReportTemplate = "show_browser_report_template";
 // settings: Settings that contain the server ip
 settings = Array();
 // noReferenceScreenshotTemplate: Template to show the screenshot without reference image
@@ -51,6 +53,17 @@ $("#hidden_clicker").fancybox({
  * @param {Object} ev event fired by clicked checkbox
  */
 var setReference = function(ev){
+    // Set the data on the image so that no reload of the data is needed
+    $("img", ".test_content_column_content").each(function(){
+        if ($(this).data("subtestid") == ev[0].value) {
+            if ($(this).data("isref") == "") {
+                $(this).data("isref", "checked");
+            }
+            else {
+                $(this).data("isref", "");
+            }
+        }
+    });
     //Make the ajax call
     $.ajax({
         url: settings["proxy"] + 'pushreferencesetting.php',
@@ -107,40 +120,31 @@ var showHideTest = function(ev){
  * @param {Object} ev event that came in after click
  */
 var showBrowserReport = function(ev){
-    // Add browser title and os to title tag
-    var template = '<h1>' + ev.context.title + '</h1>';
-    // Add browser image to the right top corner
-    template += '<img class="browser_image" src="' + ev.context.src + '" class="browser_images" alt="' + ev.context.alt + '" title="' + ev.context.title + '"/>';
-    // Add description of the test
-    $descriptionColumn = $("div.description_column." + ev.context.className.split(' ')[1]);
-    template += '<div class="description_column">';
-    $descriptionColumn.children().each(function(){
-        template += '<div class="description_column_content"><p>' + $(this).children('p').html() + '</p></div>';
+    // Clear the page
+    $fancyBoxContent.html("");
+    // Create array that holds the data in the description column
+    var descriptionCArr = {};
+    $("p", $("div.description_column." + ev[0].className.split(" ")[1])).each(function(i){
+        descriptionCArr[i] = $("p", ".description_column_content")[i];
     });
-    template += '</div>';
-    // Add the whole description next to the short description
-    template += '<div class="test_content_column">';
-    $descriptionColumn.children().each(function(){
-        template += '<div class="test_content_column_content">';
-        template += $(this).children('p')[0].title;
-        template += '</div>';
+
+    // Create array that holds the data in the content column
+    var contentArr = {};
+    ($("div.test_content_column." + ev.context.className.split(' ')[1] + '.' + ev.context.className.split(' ')[2]).children()).each(function(j){
+        contentArr[j] = $("img",this);
     });
-    // Close testContentColumn div
-    template += '</div>';
-    // Add the testresults next to the description
-    // Get the contentcolumn with results
-    $contentcolumn = $("div.test_content_column." + ev.context.className.split(' ')[1] + '.' + ev.context.className.split(' ')[2]);
-    template += '<div class="test_content_column">';
-    $contentcolumn.children().each(function(){
-        template += '<div class="test_content_column_content">';
-        template += '<img src="' + $(this).children('img')[0].src + '" alt="' + $(this).children('img')[0].alt + '" class="' + $(this).children('img')[0].className + '"/>';
-        template += '</div>';
-    });
-    // Close testContentColumn div
-    template += '</div>';
     
-    // Add the template to the html
-    $fancyBoxContent.html(template);
+    // Create the data to give with the template rendering
+    var templateData = {
+        "ev" : ev,
+        "descrColumns" : descriptionCArr,
+        "contentColumns" : contentArr
+    };
+
+    // Render the template
+    $.TemplateRenderer(showBrowserReportTemplate, templateData, $fancyBoxContent);
+
+    $contentcolumn = $("div.test_content_column." + ev.context.className.split(' ')[1] + '.' + ev.context.className.split(' ')[2]);
     
     // Loop all children of the testcontencolumn
     $contentcolumn.children().each(function(){
@@ -150,7 +154,7 @@ var showBrowserReport = function(ev){
             $fancyBoxContent.children('div').children('div').children("img."+$(this).children('img')[0].className.split(' ')[0]+"."+$(this).children('img')[0].className.split(' ')[1]+"."+$(this).children('img')[0].className.split(' ')[2]).data("reference", $(this).children('img').data("reference"));
         }
     });
-    
+
     // Trigger click to show fancybox
     $("#hidden_clicker").trigger("click");
 };

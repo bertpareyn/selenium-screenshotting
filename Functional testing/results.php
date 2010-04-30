@@ -125,8 +125,8 @@
 <div id="no_reference_screenshot_fancybox_template" style="display:none;"><!--
     <h1>No screenshot to compare with</h1>
     <form>
-        <input name="chkref" id="chk_ref" value="${data("subtestid")} "type="checkbox" ${data("isref")}/>
-        <label for="chk_ref" id="reflabel">${data("isref")}Set as reference</label>
+        <input name="chkref" id="chk_ref" value="${data("subtestid")}" type="checkbox" ${data("isref")}/>
+        <label for="chk_ref" id="reflabel">Set as reference</label>
     </form>
     <p id="show_browser_results" class="${context.className.split('no_reference_screenshot ')[1]}">Show browser results</p>
     <a href="${context.src}" title="Show full screenshot" target="_blank"><img src="${context.src}" class="no_reference_screenshot_big"></a>-->
@@ -148,6 +148,31 @@
 </div>
 </body>
 
+<!-- SHOW BROWSER REPORT TEMPLATE -->
+<div id="show_browser_report_template" style="display:none;"><!--
+    <h1>${ev.context.title}</h1>
+    <img class="browser_image" src="${ev.context.src}" class="browser_images" alt="${ev.context.alt}" title="${ev.context.title}"/>
+    <div class="description_column">
+	    {for i in descrColumns}
+	        <div class="description_column_content"><p>${i.innerHTML}</p></div>
+	    {/for}
+    </div>
+    <div class="test_content_column">
+        {for t in descrColumns}
+            <div class="test_content_column_content">
+                ${t.title}
+            </div>
+        {/for}
+    </div>
+    <div class="test_content_column">
+        {for img in contentColumns}
+            <div class="test_content_column_content">
+               <img src=" ${img[0].src}" alt="${img[0].alt}" class="${img[0].className}"/>
+            </div>
+        {/for}
+    </div>
+    -->
+</div>
 <?php 
     echo ("<script>var testId= ''; testId='" . $_GET['testid'] . "'</script>");
 ?>
