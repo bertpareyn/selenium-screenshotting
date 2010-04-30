@@ -47,6 +47,29 @@ $("#hidden_clicker").fancybox({
 });
 
 /**
+ * Sets the image as a reference image
+ * @param {Object} ev event fired by clicked checkbox
+ */
+var setReference = function(ev){
+    //Make the ajax call
+    $.ajax({
+        url: settings["proxy"] + 'pushreferencesetting.php',
+        cache: false,
+        success: function(data){
+            // Success
+        },
+        error: function(error){
+            alert(error);
+        }, data : {
+            "server" : settings["server"],
+            "dbaccess" : settings["dbaccess"],
+            "refbool" : ev[0].checked,
+            "subtestid" : ev[0].value
+        }
+    });
+};
+
+/**
  * Add clickhandlers
  */
 $(".test_header").live("click", function(){showHideTest($(this));});
@@ -55,6 +78,11 @@ $(".ok_compare_img").live("click", function(){showReport($(this));});
 $(".error_compare_img").live("click", function(){showReport($(this));});
 $(".no_reference_screenshot").live("click", function(){showReport($(this));});
 $("#show_browser_results").live("click", function(){showReport($(this));});
+
+/**
+ * Add handler for checkbox that defines if a screenshot acts as a reference
+ */
+$("#chk_ref").live("click", function(){setReference($(this));});
 
 /**
  * Show the testresults or not
@@ -166,7 +194,7 @@ var showErrorScreenshot = function(ev) {
  */
 var showNoReferenceScreenshot = function(ev) {
     // Render the template
-    $.TemplateRenderer(noReferenceScreenshotTemplate, ev.context, $fancyBoxContent);
+    $.TemplateRenderer(noReferenceScreenshotTemplate, ev, $fancyBoxContent);
     
     // Trigger click to show fancybox
     $("#hidden_clicker").trigger("click");
@@ -268,10 +296,21 @@ var fillTableWithResults = function(results){
                             testContentHolder.append(template);
                             // Put arbitrary data in the images tag
                             // The reference screenshot will be kept in this arbitrary data
-                            var referenceData = settings["server"] + results.tests[0].testresults[i].osresults[j].browserresults[k].reference.split('Sites/')[1];
+                            if (results.tests[0].testresults[i].osresults[j].browserresults[k].reference != null){
+                                var referenceData = settings["server"] + results.tests[0].testresults[i].osresults[j].browserresults[k].reference.split('Sites/')[1];
+                            }
+                            
                             var image = null;
                             image = $("img.error_compare_img." + results.tests[0].testresults[i].osId + "." + results.tests[0].testresults[i].osresults[j].browserId + '.' + uidForEveryImage);
                             image.data("reference", referenceData);
+                            
+                            image = $("img.no_reference_screenshot." + results.tests[0].testresults[i].osId + "." + results.tests[0].testresults[i].osresults[j].browserId + '.' + uidForEveryImage);
+                            image.data("subtestid", results.tests[0].testresults[i].osresults[j].browserresults[k].subTestId);
+                            if (results.tests[0].testresults[i].osresults[j].browserresults[k].isRef == 1){
+                                image.data("isref", "checked");  
+                            }else {
+                                image.data("isref", "");   
+                            }
                         }
                     }
                     uidForEveryImage++;

@@ -125,11 +125,11 @@
 <div id="no_reference_screenshot_fancybox_template" style="display:none;"><!--
     <h1>No screenshot to compare with</h1>
     <form>
-        <input name="chkref" id="chk_ref" type="checkbox"/>
-        <label for="chk_ref" id="reflabel">Set as reference</label>
+        <input name="chkref" id="chk_ref" value="${data("subtestid")} "type="checkbox" ${data("isref")}/>
+        <label for="chk_ref" id="reflabel">${data("isref")}Set as reference</label>
     </form>
-    <p id="show_browser_results" class="${className.split('no_reference_screenshot ')[1]}">Show browser results</p>
-    <a href="${src}" title="Show full screenshot" target="_blank"><img src="${src}" class="no_reference_screenshot_big"></a>-->
+    <p id="show_browser_results" class="${context.className.split('no_reference_screenshot ')[1]}">Show browser results</p>
+    <a href="${context.src}" title="Show full screenshot" target="_blank"><img src="${context.src}" class="no_reference_screenshot_big"></a>-->
 </div>
 
 <!-- OK SCREENSHOT FANCYBOX TEMPLATE -->

@@ -25,7 +25,7 @@
 	<div id="content_content">
 		<p id="test_explanation">You can test your webpages for inconsistencies on this page. Once the test is submitted you will be redirected to the results page were your results will appear as soon as they are ready.</p>
 		<div id="test_container">
-		    <form name ="checkboxform" method="GET" action="http://10.0.0.57:8888/testSubmit.php">
+		    <form name ="checkboxform" method="GET" action="http://10.0.0.86:8888/testSubmit.php">
 		        <div id="test_preview">
 
                 </div>
@@ -62,7 +62,7 @@
             <div class="browser_images_container">
                 {for b in browser}
                     {if b.isSupported == "true"}
-                        <img src="images/browsers/${b.browserpic}" id="${b.browserId}" alt=${b.browserName}" title=${b.browserName}" class="browser_images"/>
+                        <img src="images/browsers/${b.browserpic}" id="${b.browserId}" alt="${b.browserName}" title="${b.browserName}" class="browser_images"/>
                     {/if}
                 {/for}
             </div>

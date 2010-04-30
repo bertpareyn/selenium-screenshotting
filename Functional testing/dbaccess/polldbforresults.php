@@ -42,7 +42,7 @@ if($result = $db->query($query)){
     while ($row = $result->fetch_object()) {
         $osresult["browserId"] = $row->browserId;
 
-        $browserresultsQuery = "SELECT r.osTestId, r.subTestId, r.screen, r.refScreen, r.success, os.browserId 
+        $browserresultsQuery = "SELECT r.osTestId, r.isRef, r.subTestId, r.screen, r.refScreen, r.success, os.browserId 
 FROM Results r, OSTests os, Tests t WHERE r.osTestId = os.id AND os.testId = t.id AND t.id= " . $_GET['testid'] . " AND os.browserId = '" . $row->browserId . "'";
         $browserresults = array();
         if($browserresultresult = $db->query($browserresultsQuery)){
@@ -52,6 +52,7 @@ FROM Results r, OSTests os, Tests t WHERE r.osTestId = os.id AND os.testId = t.i
                 $browserresult["subTestId"] = $browserresultRow->subTestId;
                 $browserresult["screenshot"] = $browserresultRow->screen;
                 $browserresult["reference"] = $browserresultRow->refScreen;
+                $browserresult["isRef"] = $browserresultRow->isRef;
                 $browserresult["success"] = $browserresultRow->success;
                 $browserresults[] = $browserresult;
             }
