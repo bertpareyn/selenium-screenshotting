@@ -1,0 +1,5 @@
+<?php header('Content-type: application/json'); ?>
+{
+    "server" : "http://localhost:8888/functional_testing",
+    "proxy" : "proxy/"
+}
