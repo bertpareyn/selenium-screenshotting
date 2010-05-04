@@ -91,4 +91,4 @@ hr {display: block; clear: left; margin:0; visibility: hidden;}
 #fancy_box_content #show_browser_results {float:right; position:absolute; top:22px; right:60px; cursor:pointer;}
 
 #reflabel {color:#2a3c4f; padding:6px 0; font-size:inherit; font-weight:normal;}
-#chk_ref {margin:6px 6px 6px 0; float:left;}
+.chk_ref {margin:6px 6px 6px 0; float:left;}

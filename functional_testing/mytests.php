@@ -35,7 +35,7 @@
 
     <!-- SELECT OLD TEST FORM TEMPLATE -->
     <div id="select_old_test_template" style="display:none;"><!--
-        <form name ="old_test_form" method="POST" action="testSubmit.php">
+        <form name ="old_test_form" method="POST" action="http://10.0.0.48:8888/functional_testing/testSubmit.php">
             <label for="old_tests_box">Choose a test that has been run</label>
             <select id="old_tests_box" name="refTestId" value="test">
                  {for r in tests}

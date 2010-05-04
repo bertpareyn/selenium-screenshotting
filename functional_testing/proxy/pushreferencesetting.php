@@ -1,7 +1,11 @@
 <?php
 
 // Website url to open
-$daurl = $_GET['server'] . $_GET['dbaccess'] . '/pushreferencesetting.php?refbool=' . $_GET['refbool'] . '&subtestid=' . $_GET['subtestid'];
+if ($_GET['checkcase'] == "chkref"){
+    $daurl = $_GET['server'] . $_GET['dbaccess'] . 'pushreferencesetting.php?refbool=' . $_GET['refbool'] . '&subtestid=' . $_GET['subtestid'];	
+} else if ($_GET['checkcase'] == "chkbrowserref"){
+	$daurl = $_GET['server'] . $_GET['dbaccess'] . 'pushbrowserreferencesetting.php?testid=' . $_GET['testid'] . '&refbool=' . $_GET['refbool'];
+}
 
 // Get that website's content
 $handle = fopen($daurl, "r");

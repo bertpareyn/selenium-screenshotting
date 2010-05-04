@@ -125,7 +125,7 @@
 <div id="no_reference_screenshot_fancybox_template" style="display:none;"><!--
     <h1>No screenshot to compare with</h1>
     <form>
-        <input name="chkref" id="chk_ref" value="${data("subtestid")}" type="checkbox" ${data("isref")}/>
+        <input name="chkref" class="chk_ref" value="${data("subtestid")}" type="checkbox" ${data("isref")}/>
         <label for="chk_ref" id="reflabel">Set as reference</label>
     </form>
     <p id="show_browser_results" class="${context.className.split('no_reference_screenshot ')[1]}">Show browser results</p>
@@ -152,6 +152,10 @@
 <div id="show_browser_report_template" style="display:none;"><!--
     <h1>${ev.context.title}</h1>
     <img class="browser_image" src="${ev.context.src}" class="browser_images" alt="${ev.context.alt}" title="${ev.context.title}"/>
+    <form>
+        <input id="chkbrowserref" name="chkbrowserref" class="chk_ref ${ev[0].className.split(' ')[1]} ${ev[0].className.split(' ')[2]}" value="" type="checkbox"/>
+        <label for="chkbrowserref" id="reflabel">Set all as reference</label>
+    </form>
     <div class="description_column">
         {for i in descrColumns}
             <div class="description_column_content"><p>${i.innerHTML}</p></div>

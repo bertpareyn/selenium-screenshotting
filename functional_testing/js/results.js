@@ -53,17 +53,41 @@ $("#hidden_clicker").fancybox({
  * @param {Object} ev event fired by clicked checkbox
  */
 var setReference = function(ev){
-    // Set the data on the image so that no reload of the data is needed
-    $("img", ".test_content_column_content").each(function(){
-        if ($(this).data("subtestid") == ev[0].value) {
-            if ($(this).data("isref") == "") {
-                $(this).data("isref", "checked");
+    // Check which case is true
+    var checkCase = "";
+    // Check if the whole browser has to be selected or only one screenshot of the browser
+    
+    if (ev[0].name == "chkbrowserref") {
+        checkCase = "chkbrowserref";
+        // Check or uncheck all browser items and persist this in the database
+        $("img", ".test_content_column." + ev[0].className.split(" ")[1] + "." + ev[0].className.split(" ")[2]).each(function(){
+            // If there is a isref in the data then set it according to the state of the checkbox
+            if ($(this).data("isref") != null) {
+                if (ev[0].checked) {
+                    $(this).data("isref", "checked");
+                }
+                else {
+                    $(this).data("isref", "");
+                }
             }
-            else {
-                $(this).data("isref", "");
-            }
+        });
+    }
+    else 
+        if (ev[0].name == "chkref") {
+            checkCase = "chkref";
+            // Set the data on the image so that no reload of the data is needed
+            $("img", ".test_content_column_content").each(function(){
+                if ($(this).data("subtestid") == ev[0].value) {
+                    if ($(this).data("isref") == "") {
+                        $(this).data("isref", "checked");
+                    }
+                    else {
+                        $(this).data("isref", "");
+                    }
+                }
+            });
         }
-    });
+    
     //Make the ajax call
     $.ajax({
         url: settings["proxy"] + 'pushreferencesetting.php',
@@ -73,11 +97,14 @@ var setReference = function(ev){
         },
         error: function(error){
             alert(error);
-        }, data : {
-            "server" : settings["server"],
-            "dbaccess" : settings["dbaccess"],
-            "refbool" : ev[0].checked,
-            "subtestid" : ev[0].value
+        },
+        data: {
+            "server": settings["server"],
+            "dbaccess": settings["dbaccess"],
+            "refbool": ev[0].checked,
+            "subtestid": ev[0].value,
+            "checkcase": checkCase,
+            "testid" : testId
         }
     });
 };
@@ -95,7 +122,7 @@ $("#show_browser_results").live("click", function(){showReport($(this));});
 /**
  * Add handler for checkbox that defines if a screenshot acts as a reference
  */
-$("#chk_ref").live("click", function(){setReference($(this));});
+$(".chk_ref").live("click", function(){setReference($(this));});
 
 /**
  * Show the testresults or not
@@ -279,7 +306,7 @@ var fillTableWithResults = function(results){
                             }
                             else {
                                 // There is a screenshot, display it
-                                template += '<img src="' + results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot + '"';
+                                template += '<img src="' + settings["screenshots"] + results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot + '"';
                                 // Check if the error is OK or ERROR
                                 if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == '1') {
                                     template += 'alt="OK screenshot" title="screenshot OK" class="ok_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
@@ -567,6 +594,7 @@ var loadSettings = function(){
             settings["server"] = data.server;
             settings["proxy"] = data.proxy;
             settings["dbaccess"] = data.dbaccess;
+            settings["screenshots"] = data.screenshots;
             getTestSettings();
         },
         error: function(error){
