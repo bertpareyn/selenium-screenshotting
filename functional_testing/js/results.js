@@ -1,32 +1,33 @@
 /**
  * Declare some variables to be used in the document
  */
+/*global $, showHideTest, testId, showReport, TrimPath*/
 // testSettings: header, clickable for settings
-$testSettings = $('#test_settings');
+var $testSettings = $('#test_settings');
 // settingsDiv: div containing settings data
-$settingsDiv = $('#settings_div');
+var $settingsDiv = $('#settings_div');
 // contentcontent: Contains all content data
-$contentcontent = $('#result_container');
+var $contentcontent = $('#result_container');
 // displayBox: Overlay that shows more information about the topic clicked
-$displayBox = $('#displayBox');
+var $displayBox = $('#displayBox');
 // hiddenClicker: simulates click on a link
-$hiddenClicker = $("#hiddenclicker");
+var $hiddenClicker = $("#hiddenclicker");
 // fancyBoxContent: Content to be shown in the fancybox component
-$fancyBoxContent = $("#fancy_box_content");
+var $fancyBoxContent = $("#fancy_box_content");
 // settings_table_template: Template to show the settings table
-settingsTableTemplate = "settings_table_template";
+var settingsTableTemplate = "settings_table_template";
 // results_table_template: Template to show the results table
-resultsTableTemplate = "results_table_template";
+var resultsTableTemplate = "results_table_template";
 // showBrowserReportTemplate: Template to show the browser reports
-showBrowserReportTemplate = "show_browser_report_template";
+var showBrowserReportTemplate = "show_browser_report_template";
 // settings: Settings that contain the server ip
-settings = Array();
+var settings = Array();
 // noReferenceScreenshotTemplate: Template to show the screenshot without reference image
-noReferenceScreenshotTemplate = "no_reference_screenshot_fancybox_template";
+var noReferenceScreenshotTemplate = "no_reference_screenshot_fancybox_template";
 // okScreenshotTemplate: Template to show if the screenshot is ok
-okScreenshotTemplate = "ok_screenshot_fancybox_template";
+var okScreenshotTemplate = "ok_screenshot_fancybox_template";
 // errorScreenshotTemplate: Template to show if the screenshot is ok
-errorScreenshotTemplate = "error_screenshot_fancybox_template";
+var errorScreenshotTemplate = "error_screenshot_fancybox_template";
 
 /**
  * With scrollbars floats can become messy
@@ -44,7 +45,7 @@ $("#hidden_clicker").fancybox({
     'transitionIn':'fade',
     'transitionOut':'fade',
     'onComplete' : function() {
-       var t=setTimeout("setFancyBoxWidth()",1);
+       setTimeout(setFancyBoxWidth,1);
     }
 });
 
@@ -57,12 +58,12 @@ var setReference = function(ev){
     var checkCase = "";
     // Check if the whole browser has to be selected or only one screenshot of the browser
     
-    if (ev[0].name == "chkbrowserref") {
+    if (ev[0].name === "chkbrowserref") {
         checkCase = "chkbrowserref";
         // Check or uncheck all browser items and persist this in the database
         $("img", ".test_content_column." + ev[0].className.split(" ")[1] + "." + ev[0].className.split(" ")[2]).each(function(){
             // If there is a isref in the data then set it according to the state of the checkbox
-            if ($(this).data("isref") != null) {
+            if ($(this).data("isref") !== null) {
                 if (ev[0].checked) {
                     $(this).data("isref", "checked");
                 }
@@ -72,13 +73,12 @@ var setReference = function(ev){
             }
         });
     }
-    else 
-        if (ev[0].name == "chkref") {
+    else {
             checkCase = "chkref";
             // Set the data on the image so that no reload of the data is needed
-            $("img", ".test_content_column_content").each(function(){
+            $(".test_content_column_content").find("img").each(function(){
                 if ($(this).data("subtestid") == ev[0].value) {
-                    if ($(this).data("isref") == "") {
+                    if ($(this).data("isref") === "") {
                         $(this).data("isref", "checked");
                     }
                     else {
@@ -90,7 +90,7 @@ var setReference = function(ev){
     
     //Make the ajax call
     $.ajax({
-        url: settings["proxy"] + 'pushreferencesetting.php',
+        url: settings.proxy + 'pushreferencesetting.php',
         cache: false,
         success: function(data){
             // Success
@@ -99,12 +99,14 @@ var setReference = function(ev){
             alert(error);
         },
         data: {
-            "server": settings["server"],
-            "dbaccess": settings["dbaccess"],
+            "server": settings.server,
+            "dbaccess": settings.dbaccess,
             "refbool": ev[0].checked,
             "subtestid": ev[0].value,
             "checkcase": checkCase,
-            "testid" : testId
+            "testid" : testId,
+            "os" : ev[0].className.split(" ")[1],
+            "browser" : ev[0].className.split(" ")[2]
         }
     });
 };
@@ -125,7 +127,7 @@ $("#show_browser_results").live("click", function(){showReport($(this));});
 $(".chk_ref").live("click", function(){setReference($(this));});
 
 /**
- * Show the testresults or not
+ * Show the test results or not
  * @param {Object} ev event that's fired on click of the header
  */ 
 var showHideTest = function(ev){
@@ -149,6 +151,7 @@ var showHideTest = function(ev){
 var showBrowserReport = function(ev){
     // Clear the page
     $fancyBoxContent.html("");
+
     // Create array that holds the data in the description column
     var descriptionCArr = {};
     $("p", $("div.description_column." + ev[0].className.split(" ")[1])).each(function(i){
@@ -156,27 +159,27 @@ var showBrowserReport = function(ev){
     });
 
     // Create array that holds the data in the content column
-    var contentArr = {};
+    var contentArr = Array();
     ($("div.test_content_column." + ev.context.className.split(' ')[1] + '.' + ev.context.className.split(' ')[2]).children()).each(function(j){
-        contentArr[j] = $("img",this);
+        contentArr[j] = $(this).find("img");
     });
-    
+
     // Create the data to give with the template rendering
     var templateData = {
         "ev" : ev,
         "descrColumns" : descriptionCArr,
-        "contentColumns" : contentArr
+        "contentColumns" : contentArr,
+        "allRef" : $(".browser_images." + ev.context.className.split(' ')[1] + '.' + ev.context.className.split(' ')[2]).data("allRef")
     };
 
     // Render the template
     $.TemplateRenderer(showBrowserReportTemplate, templateData, $fancyBoxContent);
 
-    $contentcolumn = $("div.test_content_column." + ev.context.className.split(' ')[1] + '.' + ev.context.className.split(' ')[2]);
-    
+    var $contentcolumn = $("div.test_content_column." + ev.context.className.split(' ')[1] + '.' + ev.context.className.split(' ')[2]);
     // Loop all children of the testcontencolumn
     $contentcolumn.children().each(function(){
         // If there is a child that is a screenshot get his data and add it to the same screenshot on the fancybox page
-        if ($(this).children('img')[0].className.split(' ')[0] == "error_compare_img"){
+        if ($(this).children('img')[0].className.split(' ')[0] === "error_compare_img"){
             // Give the browser header the same data as the image
             $fancyBoxContent.children('div').children('div').children("img."+$(this).children('img')[0].className.split(' ')[0]+"."+$(this).children('img')[0].className.split(' ')[1]+"."+$(this).children('img')[0].className.split(' ')[2]).data("reference", $(this).children('img').data("reference"));
         }
@@ -224,9 +227,11 @@ var showErrorScreenshot = function(ev) {
  * @param {Object} ev event that came in after click
  */
 var showNoReferenceScreenshot = function(ev) {
+    ev.data("isref", $(".test_container").find(".no_reference_screenshot." + ev[0].className.split(" ")[1] + "." + ev[0].className.split(" ")[2] + "." + ev[0].className.split(" ")[3]).data("isref"));
+    ev.data("subtestid", $(".test_container").find(".no_reference_screenshot." + ev[0].className.split(" ")[1] + "." + ev[0].className.split(" ")[2] + "." + ev[0].className.split(" ")[3]).data("subtestid"));
     // Render the template
     $.TemplateRenderer(noReferenceScreenshotTemplate, ev, $fancyBoxContent);
-    
+
     // Trigger click to show fancybox
     $("#hidden_clicker").trigger("click");
 };
@@ -237,21 +242,21 @@ var showNoReferenceScreenshot = function(ev) {
  * @param {Object} ev Clickevent
  */
 var showReport = function (ev){
-    if (ev.context.className.split(' ')[0] == 'browser_images'){
+    if (ev.context.className.split(' ')[0] === 'browser_images'){
         // Execute function to show information about a specific browser on a specific os
         // Is called when a browser header is clicked and when a user wants more browser information coming from screenshots
         showBrowserReport(ev);
-    } else if (ev.context.className.split(' ')[0] == 'ok_compare_img'){
+    } else if (ev.context.className.split(' ')[0] === 'ok_compare_img'){
         // Execute function to show information about a specific browser on a specific os
         showOkScreenshot(ev);
-    } else if (ev.context.className.split(' ')[0] == 'error_compare_img'){
+    } else if (ev.context.className.split(' ')[0] === 'error_compare_img'){
         // Execute function to show information about a specific browser on a specific os
         showErrorScreenshot(ev);
-    } else if (ev.context.id == 'show_browser_results'){
+    } else if (ev.context.id === 'show_browser_results'){
         // Trigger click of browser header
         // This sets all settings correct at once with the same function
         $('.browser_images.' + ev.context.className.split(' ')[0] + '.' + ev.context.className.split(' ')[1]).trigger("click");
-    } else if (ev.context.className.split(' ')[0] == 'no_reference_screenshot'){
+    } else if (ev.context.className.split(' ')[0] === 'no_reference_screenshot'){
         // Show a screenshot that hasn't got any reference image
         showNoReferenceScreenshot(ev);
     }
@@ -262,89 +267,103 @@ var showReport = function (ev){
  * @param {Object} results Results from the Ajax call that contain results from the test
  */
 var fillTableWithResults = function(results){
-    // Unique ID to give to each image on the gui
-    var uidForEveryImage = 0;
-    // Loop through all tests
-    for (var i = 0; i < results.tests[0].testresults.length; i++) {
-        // Loop through all results (eg. firefox and safari)
-        for (var j = 0; j < results.tests[0].testresults[i].osresults.length; j++) {
-            // display the array on the results page
-            for (var k = 0; k < results.tests[0].testresults[i].osresults[j].browserresults.length; k++) {
-                var testContentHolder = $('div.' + results.tests[0].testresults[i].osId + '.' + results.tests[0].testresults[i].osresults[j].browserId);
-                // check if there are results to start with
-                if (results.tests[0].testresults[i].osresults[j].browserresults.length > 0) {
-                    // If the content holder is empty then the test has to be shown
-                    // otherwise a repeat would occur
-                    if (testContentHolder.children().size() < results.tests[0].testresults[i].ostests.length) {
-                        // Variable to determine if the data can be added or is already present on the page
-                        var canBeAdded = true;
-                        // Loop all children and check if the item received is already in the list
-                        // If it's already in there it can not be added again
-                        testContentHolder.children().each(function(){
-                            if ($(this).hasClass(results.tests[0].testresults[i].osresults[j].browserresults[k].subTestId)) {
-                                // Can't be added because it already exists
-                                canBeAdded = false;
-                            }
-                        });
-
-                        // If the content holder doesn't have any children then the first item
-                        // has to be added anywy
-                        if (testContentHolder.children().size() == 0) {
-                            canBeAdded = true;
-                        }
-
-                        // If the data may be added this will be executed
-                        if (canBeAdded) {
-                            template = '<div class="test_content_column_content ' + results.tests[0].testresults[i].osresults[j].browserresults[k].subTestId + '">';
-                            if (results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot == '') {
-                                // There is no screenshot, show OK of ERROR sign
-                                if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == '1') {
-                                    template += '<img src="images/testok.png" alt="Test OK" title="Test OK" class="test_ok_check"></img>';
-                                } else {
-                                    template += '<img src="images/testerror.png" alt="Test Error" title="Test Error" class="test_error_cross"></img>';
+    if (results.tests[0].testresults) {
+        // Unique ID to give to each image on the gui
+        var uidForEveryImage = 0;
+        // Loop through all tests
+        for (var i = 0; i < results.tests[0].testresults.length; i++) {
+            // Loop through all results (eg. firefox and safari)
+            for (var j = 0; j < results.tests[0].testresults[i].osresults.length; j++) {
+                // Set the data for the browserimage
+                // The data contains a boolean to see if the test browser is checked as a reference
+                var $browserImg = $(".browser_images." + results.tests[0].testresults[i].osId + "." + results.tests[0].testresults[i].osresults[j].browserId);
+                if (results.tests[0].testresults[i].osresults[j].allRef === 1) {
+                    $browserImg.data("allRef", "checked");
+                }
+                else {
+                    $browserImg.data("allRef", "");
+                }
+                // display the array on the results page
+                for (var k = 0; k < results.tests[0].testresults[i].osresults[j].browserresults.length; k++) {
+                    var testContentHolder = $('div.' + results.tests[0].testresults[i].osId + '.' + results.tests[0].testresults[i].osresults[j].browserId);
+                    // check if there are results to start with
+                    if (results.tests[0].testresults[i].osresults[j].browserresults.length > 0) {
+                        // If the content holder is empty then the test has to be shown
+                        // otherwise a repeat would occur
+                        if (testContentHolder.children().size() < results.tests[0].testresults[i].ostests.length) {
+                            // Variable to determine if the data can be added or is already present on the page
+                            var canBeAdded = true;
+                            // Loop all children and check if the item received is already in the list
+                            // If it's already in there it can not be added again
+                            testContentHolder.children().each(function(){
+                                if ($(this).hasClass(results.tests[0].testresults[i].osresults[j].browserresults[k].subTestId)) {
+                                    // Can't be added because it already exists
+                                    canBeAdded = false;
                                 }
+                            });
+                            
+                            // If the content holder doesn't have any children then the first item
+                            // has to be added anywy
+                            if (testContentHolder.children().size() === 0) {
+                                canBeAdded = true;
                             }
-                            else {
-                                // There is a screenshot, display it
-                                template += '<img src="' + settings["screenshots"] + results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot + '"';
-                                // Check if the error is OK or ERROR
-                                if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == '1') {
-                                    template += 'alt="OK screenshot" title="screenshot OK" class="ok_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
-                                }
-                                else {
-                                    // Check if there is a reference screenshot available
-                                    if (results.tests[0].testresults[i].osresults[j].browserresults[k].reference == '') {
-                                        template += 'alt="Screenshot without reference" title="Screenshot without reference" class="no_reference_screenshot ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
+                            
+                            // If the data may be added this will be executed
+                            if (canBeAdded) {
+                                var template = '<div class="test_content_column_content ' + results.tests[0].testresults[i].osresults[j].browserresults[k].subTestId + '">';
+                                if (results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot === '') {
+                                    // There is no screenshot, show OK of ERROR sign
+                                    if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == '1') {
+                                        template += '<img src="images/testok.png" alt="Test OK" title="Test OK" class="test_ok_check"></img>';
                                     }
                                     else {
-                                        template += 'alt="Error in screenshot" title="Screenshot error"class="error_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
+                                        template += '<img src="images/testerror.png" alt="Test Error" title="Test Error" class="test_error_cross"></img>';
                                     }
                                 }
-                            }
-
-                            // Close testContentColumn div
-                            template += '</div>';
-                            testContentHolder.append(template);
-                            // Put arbitrary data in the images tag
-                            // The reference screenshot will be kept in this arbitrary data
-                            if (results.tests[0].testresults[i].osresults[j].browserresults[k].reference != null){
-                                var referenceData = settings["server"] + results.tests[0].testresults[i].osresults[j].browserresults[k].reference.split('Sites/')[1];
-                            }
-                            
-                            var image = null;
-                            image = $("img.error_compare_img." + results.tests[0].testresults[i].osId + "." + results.tests[0].testresults[i].osresults[j].browserId + '.' + uidForEveryImage);
-                            image.data("reference", referenceData);
-                            
-                            image = $("img.no_reference_screenshot." + results.tests[0].testresults[i].osId + "." + results.tests[0].testresults[i].osresults[j].browserId + '.' + uidForEveryImage);
-                            image.data("subtestid", results.tests[0].testresults[i].osresults[j].browserresults[k].subTestId);
-                            if (results.tests[0].testresults[i].osresults[j].browserresults[k].isRef == 1){
-                                image.data("isref", "checked");  
-                            }else {
-                                image.data("isref", "");   
+                                else {
+                                    // There is a screenshot, display it
+                                    template += '<img src="' + settings.screenshots + results.tests[0].testresults[i].osresults[j].browserresults[k].screenshot + '"';
+                                    // Check if the error is OK or ERROR
+                                    if (results.tests[0].testresults[i].osresults[j].browserresults[k].success == '1') {
+                                        template += 'alt="OK screenshot" title="screenshot OK" class="ok_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
+                                    }
+                                    else {
+                                        // Check if there is a reference screenshot available
+                                        if (results.tests[0].testresults[i].osresults[j].browserresults[k].reference === '') {
+                                            template += 'alt="Screenshot without reference" title="Screenshot without reference" class="no_reference_screenshot ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
+                                        }
+                                        else {
+                                            template += 'alt="Error in screenshot" title="Screenshot error"class="error_compare_img ' + results.tests[0].testresults[i].osId + ' ' + results.tests[0].testresults[i].osresults[j].browserId + ' ' + uidForEveryImage + '"></img>';
+                                        }
+                                    }
+                                }
+                                
+                                // Close testContentColumn div
+                                template += '</div>';
+                                testContentHolder.append(template);
+                                // Put arbitrary data in the images tag
+                                // The reference screenshot will be kept in this arbitrary data
+                                var referenceData = "";
+                                if (results.tests[0].testresults[i].osresults[j].browserresults[k].reference !== null) {
+                                    referenceData = settings.screenshots + results.tests[0].testresults[i].osresults[j].browserresults[k].reference;
+                                }
+                                
+                                var image = null;
+                                image = $("img.error_compare_img." + results.tests[0].testresults[i].osId + "." + results.tests[0].testresults[i].osresults[j].browserId + '.' + uidForEveryImage);
+                                image.data("reference", referenceData);
+                                
+                                image = $("img.no_reference_screenshot." + results.tests[0].testresults[i].osId + "." + results.tests[0].testresults[i].osresults[j].browserId + '.' + uidForEveryImage);
+                                image.data("subtestid", results.tests[0].testresults[i].osresults[j].browserresults[k].subTestId);
+                                if (results.tests[0].testresults[i].osresults[j].browserresults[k].isRef === 1) {
+                                    image.data("isref", "checked");
+                                }
+                                else {
+                                    image.data("isref", "");
+                                }
                             }
                         }
+                        uidForEveryImage++;
                     }
-                    uidForEveryImage++;
                 }
             }
         }
@@ -413,7 +432,7 @@ var getResults = function(){
     //Make the ajax call
     $.ajax({
         //url: 'json/testresults.php',
-        url: settings["proxy"] + 'pollforresultsproxy.php',
+        url: settings.proxy + 'pollforresultsproxy.php',
         cache: false,
         dataType:"json",
         success: function(data){
@@ -424,8 +443,8 @@ var getResults = function(){
         },
         data : {
             "testid" : testId,
-            "server" : settings["server"],
-            "dbaccess" : settings["dbaccess"]
+            "server" : settings.server,
+            "dbaccess" : settings.dbaccess
         }
     });
 };
@@ -454,7 +473,7 @@ var createTable = function(results){
 
         // Check if this is the last item to be put on stage
         // If it is set its bottom corners rounded
-        if (i == results.operatingsystems.length -1){
+        if (i === results.operatingsystems.length -1){
             $("div.test_content." + results.operatingsystems[i].osId).corners("bottom 13px");
         }
 
@@ -469,7 +488,7 @@ var createTable = function(results){
     $(".test_container").width(25+136+20+(highestNumberOfColumns*110));
     // Request the results
     getResults();
-    var id = setInterval(getResults, 2000);  
+    var id = setInterval(getResults, 4000);  
 };
 
 /**
@@ -560,7 +579,7 @@ var getTestSettings = function(){
     //Make the ajax call
     $.ajax({
         //url: 'json/startedTestSettings.php',
-        url: settings["proxy"] + 'pollforsetupproxy.php',
+        url: settings.proxy + 'pollforsetupproxy.php',
         cache: false,
         dataType: "json",
         success: function(data){
@@ -571,8 +590,8 @@ var getTestSettings = function(){
         },
         data : {
             "testid" : testId,
-            "server" : settings["server"],
-            "dbaccess" : settings["dbaccess"]
+            "server" : settings.server,
+            "dbaccess" : settings.dbaccess
         }
     });
 };
@@ -591,10 +610,10 @@ var loadSettings = function(){
         cache: false,
         dataType: "json",
         success: function(data){
-            settings["server"] = data.server;
-            settings["proxy"] = data.proxy;
-            settings["dbaccess"] = data.dbaccess;
-            settings["screenshots"] = data.screenshots;
+            settings.server = data.server;
+            settings.proxy = data.proxy;
+            settings.dbaccess = data.dbaccess;
+            settings.screenshots = data.screenshots;
             getTestSettings();
         },
         error: function(error){

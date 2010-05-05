@@ -1,6 +1,6 @@
 <?php
 
-//header('Content-Type:application/json');
+header('Content-Type:application/json');
 
 $db = new mysqli('localhost','hh354','cycling','selenium');
 if(mysqli_connect_errno()){
@@ -12,7 +12,7 @@ FROM Tests t, OSTests o, OperatingSystems os, Browsers b
 WHERE t.id = '" . $_GET['testid'] .  "' AND o.testId = t.id AND os.id = o.osId AND b.id = o.browserId";
 
 if($result = $db->query($query)){
-echo "in here";
+
     while ($row = $result->fetch_object()) {
         $test = array();
         $test["testId"] = $row->id;;
@@ -26,21 +26,26 @@ echo "in here";
         $osId = $row->osId;
         $os["osName"] = $row->osName;
         $os["osId"] = $osId;
+        $os["osVersion"] = $row->osVersion;
         
         $oss[] = $os;
         
         $browser = array();
         $browser["browserName"] = $row->browserName;
         $browser["browserId"] = $row->browserId;
+        $browser["browserVersion"] = $row->browserVersion;
         $browser["browserPic"] = $row->icon;
         $browser["osId"] = $osId;
         
         $browsers[] = $browser;
     }
 }
-var_dump($tests);
 $test = $tests[0];
-$subtests = split(";",$test["subTests"]);
+
+$subtests = $test["subTests"];
+$subtests = preg_replace("/\\\/","",$subtests);
+$subtests = preg_replace("/\"/","'",$subtests);
+$subtests = split(";",$subtests);
 foreach($subtests as $st){
     $subtest = array();
     if($pos = strpos($st,"("))
@@ -95,6 +100,6 @@ foreach ($oss as $o){
     }
 }
 
-//print json_encode($testSetup);
+print json_encode($testSetup);
 
 ?>

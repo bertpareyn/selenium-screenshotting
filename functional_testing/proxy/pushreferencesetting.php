@@ -4,7 +4,7 @@
 if ($_GET['checkcase'] == "chkref"){
     $daurl = $_GET['server'] . $_GET['dbaccess'] . 'pushreferencesetting.php?refbool=' . $_GET['refbool'] . '&subtestid=' . $_GET['subtestid'];	
 } else if ($_GET['checkcase'] == "chkbrowserref"){
-	$daurl = $_GET['server'] . $_GET['dbaccess'] . 'pushbrowserreferencesetting.php?testid=' . $_GET['testid'] . '&refbool=' . $_GET['refbool'];
+	$daurl = $_GET['server'] . $_GET['dbaccess'] . 'pushbrowserreferencesetting.php?testid=' . $_GET['testid'] . '&refbool=' . $_GET['refbool'] . '&os=' . $_GET['os'] . '&browser=' . $_GET['browser'];
 }
 
 // Get that website's content
