@@ -25,7 +25,7 @@
     <div id="content_content">
         <p id="test_explanation">You can test your webpages for inconsistencies on this page. Once the test is submitted you will be redirected to the results page were your results will appear as soon as they are ready.</p>
         <div id="test_container">
-            <form name ="checkboxform" method="POST" action="http://10.0.0.84:8888/functional_testing/testSubmit.php">
+            <form name ="checkboxform" method="POST" action="http://10.0.0.80:8888/functional_testing/testSubmit.php">
                 <div id="test_preview">
 
                 </div>
