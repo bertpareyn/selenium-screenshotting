@@ -187,6 +187,7 @@ var getOldTests = function(){
         }
     });
 };
+
 /**
  * Loads the settings form the settings.php file
  * These settings are:

@@ -1,7 +1,7 @@
-<?php header('Content-type: application/json'); //"screenshots" : "/Users/hh354/Sites" ?>
+<?php header('Content-type: application/json');?>
 {
-    "server" : "http://10.0.0.80:8888/",
+    "server" : "http://10.0.0.60:8888/",
     "proxy" : "proxy/",
     "dbaccess" : "polling/",
-    "screenshots" : "http://10.0.0.80:8888/functional_testing/php-src/"
+    "screenshots" : "http://10.0.0.60:8888/functional_testing/php-src/"
 }

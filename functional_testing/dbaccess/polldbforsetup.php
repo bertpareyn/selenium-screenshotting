@@ -7,7 +7,7 @@ if(mysqli_connect_errno()){
     echo mysqli_connect_error();
 }
 
-$query = "SELECT t.id, t.description, t.url, t.subTests, o.osId, o.browserId, os.name as osName, b.name as browserName, b.icon 
+$query = "SELECT t.id, t.description, t.url, t.subTests, t.refTestId, o.osId, o.browserId, os.name as osName, b.name as browserName, b.icon 
 FROM Tests t, OSTests o, OperatingSystems os, Browsers b 
 WHERE t.id = '" . $_GET['testid'] .  "' AND o.testId = t.id AND os.id = o.osId AND b.id = o.browserId";
 
@@ -18,6 +18,7 @@ if($result = $db->query($query)){
         $test["testId"] = $row->id;;
         $test["description"] = $row->description;
         $test["url"] = $row->url;
+	$test["refTestId"] = $row->refTestId;
         $test["subTests"] = $row->subTests;
         
         $tests[] = $test;

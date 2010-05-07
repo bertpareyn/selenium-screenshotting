@@ -112,6 +112,31 @@ var setReference = function(ev){
 };
 
 /**
+ * Function that sets a test as a test that can server as a reference for other tests
+ * This test can be re-run from the 'my tests' page after it has been set as a reference
+ * @param {Object} ev Event fired when clicking the checkbox
+ */
+var setTestAsBasicTest = function(ev){
+    //Make the ajax call
+    $.ajax({
+        url: settings.proxy + 'pushtestasbasictest.php',
+        cache: false,
+        success: function(data){
+            // Remove checkbox
+            $("#setreftest").html('<p>Test set as base test</p>');
+        },
+        error: function(error){
+            alert(error);
+        },
+        data: {
+            "server": settings.server,
+            "dbaccess": settings.dbaccess,
+            "testid" : ev[0].value
+        }
+    });
+};
+
+/**
  * Add clickhandlers
  */
 $(".test_header").live("click", function(){showHideTest($(this));});
@@ -125,6 +150,7 @@ $("#show_browser_results").live("click", function(){showReport($(this));});
  * Add handler for checkbox that defines if a screenshot acts as a reference
  */
 $(".chk_ref").live("click", function(){setReference($(this));});
+$(".chk_testref").live("click", function(){setTestAsBasicTest($(this));});
 
 /**
  * Show the test results or not
@@ -488,7 +514,7 @@ var createTable = function(results){
     $(".test_container").width(25+136+20+(highestNumberOfColumns*110));
     // Request the results
     getResults();
-    var id = setInterval(getResults, 4000);  
+    var id = setInterval(getResults, 2000);  
 };
 
 /**

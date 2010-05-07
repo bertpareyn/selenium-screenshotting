@@ -63,7 +63,14 @@
             <h1>+ Test settings</h1>
         </div>
         <div class="test_content" id="settings_div">
+            {if refTestId != 0}
+                <form id="setreftest">
+                    <input name="chkref" id="chk_testref" class="chk_testref" value="${testId}" type="checkbox"}/>
+                    <label for="chk_testref" id="reflabel">Set test as base test</label>
+                </form>
+            {/if}
             <h2>Operating systems and browsers</h2>
+            <hr>
             <ul>
                 {for o in operatingsystems}
                     <li class="os_test_list_item">${o.osName}</li>

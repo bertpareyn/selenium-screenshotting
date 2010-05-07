@@ -29,13 +29,12 @@
         <div id="footer_content">
             <div id="footer_shadow">
             </div>
-            
         </div>
     </div>
 
     <!-- SELECT OLD TEST FORM TEMPLATE -->
     <div id="select_old_test_template" style="display:none;"><!--
-        <form name ="old_test_form" method="POST" action="http://10.0.0.80:8888/functional_testing/testSubmit.php">
+        <form name ="old_test_form" method="POST" action="http://10.0.0.60:8888/functional_testing/testSubmit.php">
             <label for="old_tests_box">Choose a test that has been run</label>
             <select name="refTestId" id="old_tests_box" value="test">
                  {for r in tests}
@@ -55,6 +54,7 @@
 	    <div class=test_container>
 	        <div class="test_header" id="test_settings">
 	        <h1>Test settings</h1>
+	        <a href="results.php?testid=${testId}" class="contentlink" title="show test ${testId}" target="_blank">Show test ${testId}</a>
 	    </div>
 	        <h2>Operating systems and browsers</h2>
 	        <ul>
@@ -100,7 +100,7 @@
 			   <div class="reftestdaterun">${t.runat}</div>
 			   <div class="reftestdescription">${t.description}</div>
 			   <div class="reftestsuccesserror"><span class="reftest_success">${t.success}</span> / <span class="reftest_error">${t.fail}</span></div>
-			   <div class="showreftest"><a href="results.php?testid=${t.testId}" title="show test ${t.testId}" target="_blank">show test ${t.testId}</a></div>
+			   <div class="showreftest"><a href="results.php?testid=${t.testId}" title="show test ${t.testId}" target="_blank" class="contentlink">show test ${t.testId}</a></div>
 			   <hr>
 		   </div>
 	   {/for}
